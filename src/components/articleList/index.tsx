@@ -31,11 +31,18 @@ const ArticleList = () => {
 export default ArticleList;
 
 const Container = styled.main`
-  margin-top: 60px;
+  /* margin-top: 60px; */
   padding: 20px;
+  padding-top: 80px;
   padding-bottom: 105px;
   width: 100%;
+  height: 100%;
   background-color: #f0f1f4;
+
+  overflow-y: scroll;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 
   display: flex;
   flex-direction: column;

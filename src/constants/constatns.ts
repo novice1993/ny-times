@@ -74,4 +74,18 @@ export const dummyArticle = [
     reporter: "이정확",
     date: "2021.3.15. (목)",
   },
+  {
+    title: "'한동훈 독직폭행' 정진웅∙∙∙ 검찰, 항소심서도 징역 1년 구형",
+    scrap: articleStar,
+    newspaper: "중앙일보",
+    reporter: "이정확",
+    date: "2021.3.15. (목)",
+  },
+  {
+    title: "'한동훈 독직폭행' 정진웅∙∙∙ 검찰, 항소심서도 징역 1년 구형",
+    scrap: articleStar,
+    newspaper: "중앙일보",
+    reporter: "이정확",
+    date: "2021.3.15. (목)",
+  },
 ];
