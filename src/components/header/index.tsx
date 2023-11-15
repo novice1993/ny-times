@@ -22,7 +22,7 @@ export default Header;
 
 const Container = styled.header`
   position: fixed;
-  top: 44px;
+  top: 0;
   width: 375px;
   height: 60px;
   padding: 13px 0px 13px 20px;
@@ -33,5 +33,5 @@ const Container = styled.header`
   gap: 7px;
 
   background-color: rgba(255, 255, 255, 1);
-  border: 1px solid darkgray; // 임시 추가
+  border-bottom: 1px solid #c4c4c4;
 `;
