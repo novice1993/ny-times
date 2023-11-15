@@ -1,6 +1,6 @@
 @font-face {
   font-family: "Apple SD Gothic Neo";
-  src: url("../public/font/AppleSDGothicNeoR.ttf") format("trueType");
+  src: url("/AppleSDGothicNeoR.ttf") format("trueType");
   font-weight: normal;
   font-style: normal;
 }
