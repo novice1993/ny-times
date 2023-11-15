@@ -2,6 +2,8 @@ import searchIcon from "../assets/header-searchIcon.svg";
 import calendarIcon from "../assets/header-calendarIcon.svg";
 import homeOnIcon from "../assets/footer-homeOn.svg";
 import scrapOffIcon from "../assets/footer-scrapOff.svg";
+import noScrapIcon from "../assets/noScrapIndicator-icon.svg";
+import articleStar from "../assets/article-star.svg";
 
 // header 컴포넌트
 export const headerSearchIcon: string = searchIcon;
@@ -15,3 +17,61 @@ export const footerHomeOnIcon: string = homeOnIcon;
 export const footerScrapOffIcon: string = scrapOffIcon;
 export const footerButtonText01: string = "홈";
 export const footerButtonText02: string = "스크랩";
+
+// noScrapIndicator 컴포넌트
+export const noScrapIndicatorIcon: string = noScrapIcon;
+export const noScrapMessage: string = "저장된 스크랩이 없습니다.";
+export const goHomeButtonText: string = "스크랩 하러 가기";
+
+// article dummy data
+export const dummyArticle = [
+  {
+    title: "'한동훈 독직폭행' 정진웅∙∙∙ 검찰, 항소심서도 징역 1년 구형",
+    scrap: articleStar,
+    newspaper: "중앙일보",
+    reporter: "이정확",
+    date: "2021.3.15. (목)",
+  },
+  {
+    title: "'한동훈 독직폭행' 정진웅∙∙∙ 검찰, 항소심서도 징역 1년 구형",
+    scrap: articleStar,
+    newspaper: "중앙일보",
+    reporter: "이정확",
+    date: "2021.3.15. (목)",
+  },
+  {
+    title: "'한동훈 독직폭행' 정진웅∙∙∙ 검찰, 항소심서도 징역 1년 구형",
+    scrap: articleStar,
+    newspaper: "중앙일보",
+    reporter: "이정확",
+    date: "2021.3.15. (목)",
+  },
+  {
+    title: "'한동훈 독직폭행' 정진웅∙∙∙ 검찰, 항소심서도 징역 1년 구형",
+    scrap: articleStar,
+    newspaper: "중앙일보",
+    reporter: "이정확",
+    date: "2021.3.15. (목)",
+  },
+  {
+    title: "'한동훈 독직폭행' 정진웅∙∙∙ 검찰, 항소심서도 징역 1년 구형",
+    scrap: articleStar,
+    newspaper: "중앙일보",
+    reporter: "이정확",
+    date: "2021.3.15. (목)",
+  },
+  {
+    title: "'한동훈 독직폭행' 정진웅∙∙∙ 검찰, 항소심서도 징역 1년 구형",
+    scrap: articleStar,
+    newspaper: "중앙일보",
+    reporter: "이정확",
+    date: "2021.3.15. (목)",
+  },
+  {
+    title: "'한동훈 독직폭행' 정진웅∙∙∙ 검찰, 항소심서도 징역 1년 구형",
+    scrap: articleStar,
+    newspaper: "중앙일보",
+    reporter: "이정확",
+    date: "2021.3.15. (목)",
+  },
+];
