@@ -21,8 +21,7 @@ const Header = () => {
 export default Header;
 
 const Container = styled.header`
-  /* position: fixed; */
-  position: absolute;
+  position: fixed;
   top: 0;
   width: 375px;
   height: 60px;

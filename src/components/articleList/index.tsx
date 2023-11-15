@@ -31,10 +31,7 @@ const ArticleList = () => {
 export default ArticleList;
 
 const Container = styled.main`
-  /* margin-top: 60px; */
-  padding: 20px;
-  padding-top: 80px;
-  padding-bottom: 105px;
+  padding: 80px 20px 105px 20px;
   width: 100%;
   height: 100%;
   background-color: #f0f1f4;
