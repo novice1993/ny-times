@@ -2,6 +2,7 @@ import styled from "styled-components";
 import Header from "./components/header";
 import ArticleList from "./components/articleList";
 import Footer from "./components/footer";
+import FilterModal from "./components/filterModal";
 
 function App() {
   return (
@@ -9,6 +10,7 @@ function App() {
       <Header />
       <ArticleList />
       <Footer />
+      <FilterModal />
     </Container>
   );
 }
