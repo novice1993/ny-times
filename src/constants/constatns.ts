@@ -2,6 +2,7 @@ import searchIcon from "../assets/header-searchIcon.svg";
 import calendarIcon from "../assets/header-calendarIcon.svg";
 import homeOnIcon from "../assets/footer-homeOn.svg";
 import scrapOffIcon from "../assets/footer-scrapOff.svg";
+import noScrapIcon from "../assets/noScrapIndicator-icon.svg";
 import articleStar from "../assets/article-star.svg";
 
 // header 컴포넌트
@@ -16,6 +17,11 @@ export const footerHomeOnIcon: string = homeOnIcon;
 export const footerScrapOffIcon: string = scrapOffIcon;
 export const footerButtonText01: string = "홈";
 export const footerButtonText02: string = "스크랩";
+
+// noScrapIndicator 컴포넌트
+export const noScrapIndicatorIcon: string = noScrapIcon;
+export const noScrapMessage: string = "저장된 스크랩이 없습니다.";
+export const goHomeButtonText: string = "스크랩 하러 가기";
 
 // article dummy data
 export const dummyArticle = [
