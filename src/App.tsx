@@ -1,11 +1,13 @@
 import styled from "styled-components";
-import NoScrapIndicator from "./components/noScrapIndicator";
+import Header from "./components/header";
+import ArticleList from "./components/articleList";
 import Footer from "./components/footer";
 
 function App() {
   return (
     <Container>
-      <NoScrapIndicator />
+      <Header />
+      <ArticleList />
       <Footer />
     </Container>
   );
