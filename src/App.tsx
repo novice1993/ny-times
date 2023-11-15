@@ -1,10 +1,12 @@
 import styled from "styled-components";
 import Header from "./components/header"; // 임시추가
+import Footer from "./components/footer"; // 임시추가
 
 function App() {
   return (
     <Container>
       <Header />
+      <Footer />
     </Container>
   );
 }
@@ -12,7 +14,8 @@ function App() {
 export default App;
 
 const Container = styled.div`
-  width: fit-content;
+  position: relative;
+  width: 375px;
   max-width: 560px;
-  height: 100%;
+  height: 812px;
 `;
