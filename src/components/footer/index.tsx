@@ -30,20 +30,20 @@ const Footer = () => {
 
   return (
     <Container>
-      <Link to="/">
+      <StyledLink to="/">
         <PageChangeBtn
           type="home"
           iconImg={footerBtnState === "home" ? footerHomeOnIcon : footerHomeOffIcon}
           buttonText={footerButtonText01}
         />
-      </Link>
-      <Link to={scrapState === "scrap" ? "/scrap" : "/noScrap"}>
+      </StyledLink>
+      <StyledLink to={scrapState === "scrap" ? "/scrap" : "/noScrap"}>
         <PageChangeBtn
           type="scrap"
           iconImg={footerBtnState === "scrap" ? footerScrapOnIcon : footerScrapOffIcon}
           buttonText={footerButtonText02}
         />
-      </Link>
+      </StyledLink>
     </Container>
   );
 };
@@ -62,4 +62,8 @@ const Container = styled.footer`
   display: flex;
   justify-content: space-between;
   align-items: center;
+`;
+
+const StyledLink = styled(Link)`
+  text-decoration: none;
 `;
