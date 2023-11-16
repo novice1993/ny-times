@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 import PageChangeBtn from "./pageChangeBtn";
 import {
   footerHomeOnIcon,
@@ -10,8 +11,12 @@ import {
 const Footer = () => {
   return (
     <Container>
-      <PageChangeBtn iconImg={footerHomeOnIcon} buttonText={footerButtonText01} />
-      <PageChangeBtn iconImg={footerScrapOffIcon} buttonText={footerButtonText02} />
+      <Link to="/">
+        <PageChangeBtn iconImg={footerHomeOnIcon} buttonText={footerButtonText01} />
+      </Link>
+      <Link to="/scrap">
+        <PageChangeBtn iconImg={footerScrapOffIcon} buttonText={footerButtonText02} />
+      </Link>
     </Container>
   );
 };
