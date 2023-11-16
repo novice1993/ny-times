@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { changeFooterBtnState } from "../../reducers/footerBtnState-Reducer";
 import { Link } from "react-router-dom";
@@ -6,9 +7,10 @@ import { noScrapIndicatorIcon, noScrapMessage, goHomeButtonText } from "../../co
 
 const NoScrapIndicator = () => {
   const dispatch = useDispatch();
-  const handleChangeFooterBtnState = () => {
-    dispatch(changeFooterBtnState("home"));
-  };
+
+  useEffect(() => {
+    dispatch(changeFooterBtnState("scrap"));
+  }, []);
 
   return (
     <Container>
@@ -17,7 +19,7 @@ const NoScrapIndicator = () => {
         <span className="message">{noScrapMessage}</span>
       </div>
       <Link to="/">
-        <button onClick={handleChangeFooterBtnState} className="goHomeBtn">
+        <button className="goHomeBtn">
           <div className="buttonText">{goHomeButtonText}</div>
         </button>
       </Link>

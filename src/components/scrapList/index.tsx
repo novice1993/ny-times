@@ -1,9 +1,18 @@
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { changeFooterBtnState } from "../../reducers/footerBtnState-Reducer";
 import { ListLayout } from "../../layout/layout";
 // import Article from "../article";
 // import { dummyArticle } from "../../constants/constatns";
 // import { ArticleProps } from "../../models/articleProps";
 
 const ScrapList = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(changeFooterBtnState("scrap"));
+  }, []);
+
   return (
     <ListLayout>
       {/* {dummyArticle.map((article: ArticleProps) => {
