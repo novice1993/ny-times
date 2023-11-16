@@ -1,11 +1,18 @@
 import styled from "styled-components";
+import { useDispatch } from "react-redux";
+import { setFilterModal } from "../../reducers/filterModalState-Reducer";
 
 const FilterBtn = (props: HeaderProps) => {
   const iconImg = props.iconImg;
   const buttonText = props.buttonText;
 
+  const dispatch = useDispatch();
+  const handleOpenFilterModal = () => {
+    dispatch(setFilterModal(true));
+  };
+
   return (
-    <Button>
+    <Button onClick={handleOpenFilterModal}>
       {iconImg && <img src={iconImg} />}
       <span>{buttonText}</span>
     </Button>

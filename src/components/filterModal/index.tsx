@@ -1,17 +1,24 @@
 import styled from "styled-components";
+import { useDispatch } from "react-redux";
 import HeadlineFilter from "./headlineFilter";
 import DateFilter from "./dateFilter";
 import NationFilter from "./nationFilter";
+import { setFilterModal } from "../../reducers/filterModalState-Reducer";
 import { confirmButtonText } from "../../constants/constatns";
 
 const FilterModal = () => {
+  const dispatch = useDispatch();
+  const handleCloseFilterModal = () => {
+    dispatch(setFilterModal(false));
+  };
+
   return (
     <Background>
       <div className="container">
         <HeadlineFilter />
         <DateFilter />
         <NationFilter />
-        <button className="confirmBtn">
+        <button className="confirmBtn" onClick={handleCloseFilterModal}>
           <div className="buttonText">{confirmButtonText}</div>
         </button>
       </div>
