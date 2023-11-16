@@ -7,3 +7,20 @@ export const PageLayout = styled.div`
   max-width: 560px;
   height: 100vh;
 `;
+
+// ArticleList, ScrapList 컴포넌트 레이아웃
+export const ListLayout = styled.div`
+  padding: 80px 20px 105px 20px;
+  width: 100%;
+  height: 100%;
+  background-color: #f0f1f4;
+
+  overflow-y: scroll;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+`;

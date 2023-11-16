@@ -1,17 +1,26 @@
 import styled from "styled-components";
 import { ArticleProps } from "../../models/articleProps";
 
+import scrap from "../../assets/article-star.svg"; // 임시추가
+
 const Article = (props: ArticleProps) => {
-  const title = props.title;
-  const scrap = props.scrap;
+  const headline = props.headline;
   const newspaper = props.newspaper;
   const reporter = props.reporter;
   const date = props.date;
+  const articleUrl = props.url;
+
+  const handleRedirect = (url: string) => {
+    // 📌 다시 확인 필요
+    window.location.href = url;
+  };
 
   return (
     <Container>
       <div className="firstLine">
-        <div className="title">{title}</div>
+        <div className="headline" onClick={() => handleRedirect(articleUrl)}>
+          {headline}
+        </div>
         <img className="scrapBtn" src={scrap} />
       </div>
       <div className="secondLine">
@@ -44,8 +53,13 @@ const Container = styled.section`
     justify-content: space-between;
     align-items: flex-start;
 
-    .title {
+    & a {
+      text-decoration: none;
+    }
+
+    .headline {
       width: 260px;
+      height: 56px;
       flex-shrink: 0;
       color: #000;
       font-size: 18px;
@@ -54,6 +68,13 @@ const Container = styled.section`
       line-height: 28px;
       letter-spacing: -0.9px;
       text-transform: uppercase;
+
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      word-wrap: break-word;
+      white-space: normal;
     }
 
     .scrapBtn {
@@ -77,6 +98,16 @@ const Container = styled.section`
     font-weight: 400;
     line-height: 20px;
     letter-spacing: -0.65px;
+
+    .reporter {
+      width: 100px;
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
+      word-wrap: break-word;
+      white-space: normal;
+    }
   }
 
   .date {
