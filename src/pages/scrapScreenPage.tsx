@@ -3,7 +3,7 @@ import { GlobalStateProps } from "../models/globalStateProps";
 
 import { PageLayout } from "../layout/layout";
 import Header from "../components/header";
-import ArticleList from "../components/articleList";
+import ScrapList from "../components/scrapList";
 import FilterModal from "../components/filterModal";
 
 const ScrapScreenPage = () => {
@@ -12,7 +12,7 @@ const ScrapScreenPage = () => {
   return (
     <PageLayout>
       <Header />
-      <ArticleList />
+      <ScrapList />
       {isFilterModal && <FilterModal />}
     </PageLayout>
   );

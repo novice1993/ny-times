@@ -1,7 +1,7 @@
 export interface ArticleProps {
-  title: string;
-  scrap: string;
+  headline: string;
   newspaper: string;
   reporter: string;
   date: string;
+  url: string;
 }
