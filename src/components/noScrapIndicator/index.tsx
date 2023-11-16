@@ -1,16 +1,26 @@
 import styled from "styled-components";
+import { useDispatch } from "react-redux";
+import { changeFooterBtnState } from "../../reducers/footerBtnState-Slice";
+import { Link } from "react-router-dom";
 import { noScrapIndicatorIcon, noScrapMessage, goHomeButtonText } from "../../constants/constatns";
 
 const NoScrapIndicator = () => {
+  const dispatch = useDispatch();
+  const handleChangeFooterBtnState = () => {
+    dispatch(changeFooterBtnState("home"));
+  };
+
   return (
     <Container>
       <div className="indicator">
         <img className="iconImg" src={noScrapIndicatorIcon} />
         <span className="message">{noScrapMessage}</span>
       </div>
-      <button className="goHomeBtn">
-        <div className="buttonText">{goHomeButtonText}</div>
-      </button>
+      <Link to="/">
+        <button onClick={handleChangeFooterBtnState} className="goHomeBtn">
+          <div className="buttonText">{goHomeButtonText}</div>
+        </button>
+      </Link>
     </Container>
   );
 };
