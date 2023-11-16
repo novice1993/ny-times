@@ -1,47 +1,46 @@
-import styled from "styled-components";
-import Article from "./article";
-import { dummyArticle } from "../../constants/constatns"; // 임시 데이터
-import { ArticleProps } from "../../models/articleProps"; // 임시 데이터
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { changeFooterBtnState } from "../../reducers/footerBtnState-Reducer";
+import { ArticleProps } from "../../models/articleProps";
+
+import { ListLayout } from "../../layout/layout";
+import Article from "../article";
+import useGetArticleData from "../../hooks/useGetArticleData";
 
 const ArticleList = () => {
+  const dispatch = useDispatch();
+  const { articleInfo, articleInfoLoading, articleInfoError } = useGetArticleData();
+
+  useEffect(() => {
+    dispatch(changeFooterBtnState("home"));
+  }, []);
+
+  if (articleInfoLoading || articleInfoError) {
+    return <>indicator add</>;
+  }
+
   return (
-    <Container>
-      {dummyArticle.map((article: ArticleProps) => {
-        const title = article.title;
-        const scrap = article.scrap;
+    <ListLayout>
+      {articleInfo.map((article: ArticleProps) => {
+        const headline = article.headline;
         const newspaper = article.newspaper;
         const reporter = article.reporter;
         const date = article.date;
+        const url = article.url;
 
         return (
           <Article
-            key={title}
-            title={title}
-            scrap={scrap}
+            key={headline}
+            headline={headline}
             newspaper={newspaper}
             reporter={reporter}
             date={date}
+            url={url}
           />
         );
       })}
-    </Container>
+    </ListLayout>
   );
 };
 
 export default ArticleList;
-
-const Container = styled.main`
-  padding: 80px 20px 105px 20px;
-  width: 100%;
-  height: 100%;
-  background-color: #f0f1f4;
-
-  overflow-y: scroll;
-  &::-webkit-scrollbar {
-    display: none;
-  }
-
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-`;

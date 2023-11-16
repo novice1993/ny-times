@@ -1,23 +1,20 @@
-import styled from "styled-components";
-import Header from "./components/header";
-import ArticleList from "./components/articleList";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import HomeSreenPage from "./pages/homeSreenPage";
+import ScrapScreenPage from "./pages/scrapScreenPage";
+import NoScrapIndicatorPage from "./pages/noScrapIndicatorPage";
 import Footer from "./components/footer";
 
 function App() {
   return (
-    <Container>
-      <Header />
-      <ArticleList />
+    <Router>
+      <Routes>
+        <Route path="/" element={<HomeSreenPage />} />
+        <Route path="/scrap" element={<ScrapScreenPage />} />
+        <Route path="/noScrap" element={<NoScrapIndicatorPage />} />
+      </Routes>
       <Footer />
-    </Container>
+    </Router>
   );
 }
 
 export default App;
-
-const Container = styled.div`
-  position: relative;
-  width: 375px;
-  max-width: 560px;
-  height: 100vh;
-`;

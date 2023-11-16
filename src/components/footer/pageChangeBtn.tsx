@@ -1,11 +1,16 @@
 import styled from "styled-components";
+import { useSelector } from "react-redux";
+import { GlobalStateProps } from "../../models/globalStateProps";
 
 const PageChangeBtn = (props: FooterProps) => {
   const iconImg = props.iconImg;
   const buttonText = props.buttonText;
+  const type = props.type; // 'home' or 'scrap'
+
+  const footerBtnState = useSelector((state: GlobalStateProps) => state.footerBtnState);
 
   return (
-    <Container>
+    <Container type={type} footerBtnState={footerBtnState}>
       <img src={iconImg} />
       <span>{buttonText}</span>
     </Container>
@@ -17,9 +22,10 @@ export default PageChangeBtn;
 interface FooterProps {
   iconImg: string;
   buttonText: string;
+  type: string;
 }
 
-const Container = styled.div`
+const Container = styled.div<{ type: string; footerBtnState: string }>`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -32,8 +38,15 @@ const Container = styled.div`
   }
 
   & span {
-    color: #fff; // on color
-    // color: #6d6d6d; // off color
+    color: ${(props) =>
+      props.type === "home" // home 버튼
+        ? props.footerBtnState === "home"
+          ? "#fff"
+          : "#6d6d6d"
+        : props.footerBtnState === "scrap" // scrap 버튼
+        ? "#fff"
+        : "#6d6d6d"};
+
     text-align: center;
     font-size: 10px;
     font-style: normal;
