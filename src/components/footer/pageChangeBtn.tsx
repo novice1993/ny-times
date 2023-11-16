@@ -1,26 +1,16 @@
 import styled from "styled-components";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { GlobalStateProps } from "../../models/globalStateProps";
-import { changeFooterBtnState } from "../../reducers/footerBtnState-Reducer";
 
 const PageChangeBtn = (props: FooterProps) => {
   const iconImg = props.iconImg;
   const buttonText = props.buttonText;
   const type = props.type; // 'home' or 'scrap'
 
-  const dispatch = useDispatch();
   const footerBtnState = useSelector((state: GlobalStateProps) => state.footerBtnState);
 
-  const handleChangeFooterBtnState = () => {
-    if (type === "home") {
-      dispatch(changeFooterBtnState("home"));
-    } else if (type === "scrap") {
-      dispatch(changeFooterBtnState("scrap"));
-    }
-  };
-
   return (
-    <Container type={type} footerBtnState={footerBtnState} onClick={handleChangeFooterBtnState}>
+    <Container type={type} footerBtnState={footerBtnState}>
       <img src={iconImg} />
       <span>{buttonText}</span>
     </Container>
