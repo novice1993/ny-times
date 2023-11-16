@@ -1,12 +1,12 @@
 import { PageLayout } from "../layout/layout";
-import NoScrapIndicator from "../components/noScrapIndicator";
-import Footer from "../components/footer";
+import Header from "../components/header";
+import ArticleList from "../components/articleList";
 
 const ScrapScreenPage = () => {
   return (
     <PageLayout>
-      <NoScrapIndicator />
-      <Footer />
+      <Header />
+      <ArticleList />
     </PageLayout>
   );
 };

@@ -14,7 +14,7 @@ const Footer = () => {
       <Link to="/">
         <PageChangeBtn iconImg={footerHomeOnIcon} buttonText={footerButtonText01} />
       </Link>
-      <Link to="/scrap">
+      <Link to="/noScrap">
         <PageChangeBtn iconImg={footerScrapOffIcon} buttonText={footerButtonText02} />
       </Link>
     </Container>

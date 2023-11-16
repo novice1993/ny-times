@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 import { noScrapIndicatorIcon, noScrapMessage, goHomeButtonText } from "../../constants/constatns";
 
 const NoScrapIndicator = () => {
@@ -8,9 +9,11 @@ const NoScrapIndicator = () => {
         <img className="iconImg" src={noScrapIndicatorIcon} />
         <span className="message">{noScrapMessage}</span>
       </div>
-      <button className="goHomeBtn">
-        <div className="buttonText">{goHomeButtonText}</div>
-      </button>
+      <Link to="/">
+        <button className="goHomeBtn">
+          <div className="buttonText">{goHomeButtonText}</div>
+        </button>
+      </Link>
     </Container>
   );
 };
