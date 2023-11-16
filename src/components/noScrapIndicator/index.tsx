@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
-import { changeFooterBtnState } from "../../reducers/footerBtnState-Slice";
+import { changeFooterBtnState } from "../../reducers/footerBtnState-Reducer";
 import { Link } from "react-router-dom";
 import { noScrapIndicatorIcon, noScrapMessage, goHomeButtonText } from "../../constants/constatns";
 

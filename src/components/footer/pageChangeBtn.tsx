@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import { GlobalStateProps } from "../../models/globalStateProps";
-import { changeFooterBtnState } from "../../reducers/footerBtnState-Slice";
+import { changeFooterBtnState } from "../../reducers/footerBtnState-Reducer";
 
 const PageChangeBtn = (props: FooterProps) => {
   const iconImg = props.iconImg;
