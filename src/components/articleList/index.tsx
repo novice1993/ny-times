@@ -1,32 +1,17 @@
-import { useDispatch } from "react-redux";
-import { useEffect } from "react";
-import { changeFooterBtnState } from "../../reducers/footerBtnState-Reducer";
 import { ArticleProps } from "../../models/articleProps";
 
 import { ListLayout } from "../../layout/layout";
 import Article from "../article";
-import useGetArticleData from "../../hooks/useGetArticleData";
+
+// 임시 data
+import { dummyArticle } from "../../constants/constatns";
+// import useGetArticleData from "../../hooks/useGetArticleData";
 
 const ArticleList = () => {
-  const dispatch = useDispatch();
-  const { articleInfo, articleInfoLoading, articleInfoError } = useGetArticleData();
-
-  useEffect(() => {
-    dispatch(changeFooterBtnState("home"));
-  }, []);
-
-  if (articleInfoLoading || articleInfoError) {
-    return <>indicator add</>;
-  }
-
   return (
     <ListLayout>
-      {articleInfo.map((article: ArticleProps) => {
-        const headline = article.headline;
-        const newspaper = article.newspaper;
-        const reporter = article.reporter;
-        const date = article.date;
-        const url = article.url;
+      {dummyArticle.map((article: ArticleProps) => {
+        const { headline, newspaper, reporter, date, url } = article;
 
         return (
           <Article
@@ -39,6 +24,7 @@ const ArticleList = () => {
           />
         );
       })}
+      {/* <div className="observerTarget" ref={targetRef} /> */}
     </ListLayout>
   );
 };

@@ -1,27 +1,47 @@
+import { useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { ArticleProps } from "../../models/articleProps";
+import { scrapListKeyInLocalStorage } from "../../constants/constatns";
+import { handleAddScrap, handleDeleteScrap } from "../../utils/aboutSetScrap";
 
-import scrap from "../../assets/article-star.svg"; // 임시추가
+import scrap from "../../assets/article-starFill.svg";
+import noScrap from "../../assets/article-star.svg";
 
 const Article = (props: ArticleProps) => {
-  const headline = props.headline;
-  const newspaper = props.newspaper;
-  const reporter = props.reporter;
-  const date = props.date;
-  const articleUrl = props.url;
+  const { headline, newspaper, reporter, date, url } = props;
+  const scrapArticles = localStorage.getItem(scrapListKeyInLocalStorage);
+
+  const dispatch = useDispatch();
+  const [isScrap, setScrap] = useState(false);
 
   const handleRedirect = (url: string) => {
-    // 📌 다시 확인 필요
     window.location.href = url;
   };
+
+  const handleClickStarBtn = isScrap
+    ? () => handleDeleteScrap(headline, setScrap, dispatch)
+    : () => handleAddScrap(props, setScrap, dispatch);
+
+  // already done scrap check
+  useEffect(() => {
+    if (scrapArticles !== null) {
+      const scrapList = JSON.parse(scrapArticles);
+      const alreadyScrap = scrapList.some((article: ArticleProps) => {
+        return article.headline === headline;
+      });
+
+      alreadyScrap && setScrap(true);
+    }
+  }, []);
 
   return (
     <Container>
       <div className="firstLine">
-        <div className="headline" onClick={() => handleRedirect(articleUrl)}>
+        <div className="headline" onClick={() => handleRedirect(url)}>
           {headline}
         </div>
-        <img className="scrapBtn" src={scrap} />
+        <img className="scrapBtn" src={isScrap ? scrap : noScrap} onClick={handleClickStarBtn} />
       </div>
       <div className="secondLine">
         <div className="info">

@@ -5,7 +5,9 @@ import homeOffIcon from "../assets/footer-homeOff.svg";
 import scrapOnIcon from "../assets/footer-scrapOn.svg";
 import scrapOffIcon from "../assets/footer-scrapOff.svg";
 import noScrapIcon from "../assets/noScrapIndicator-icon.svg";
-import articleStar from "../assets/article-star.svg";
+
+// scrap Article Data Key in LocalStroage
+export const scrapListKeyInLocalStorage = "scrapArticles";
 
 // header 컴포넌트
 export const headerSearchIcon: string = searchIcon;
@@ -49,69 +51,140 @@ export const nations: string[] = [
   "영국",
 ];
 
+// dummy Data
 // article dummy data
 export const dummyArticle = [
   {
-    title: "'한동훈 독직폭행' 정진웅∙∙∙ 검찰, 항소심서도 징역 1년 구형",
-    scrap: articleStar,
+    headline: "'한동훈 독직폭행' 정진웅∙∙∙ 검찰, 항소심서도 징역 1년 구형",
     newspaper: "중앙일보",
     reporter: "이정확",
     date: "2021.3.15. (목)",
+    url: "https://www.naver.com",
   },
   {
-    title: "'한동훈 독직폭행' 정진웅∙∙∙ 검찰, 항소심서도 징역 1년 구형",
-    scrap: articleStar,
+    headline: "'동훈 독직폭행' 정진웅∙∙∙ 검찰, 항소심서도 징역 1년 구형",
     newspaper: "중앙일보",
     reporter: "이정확",
     date: "2021.3.15. (목)",
+    url: "https://www.naver.com",
   },
   {
-    title: "'한동훈 독직폭행' 정진웅∙∙∙ 검찰, 항소심서도 징역 1년 구형",
-    scrap: articleStar,
+    headline: "'한동 독직폭행' 정진웅∙∙∙ 검찰, 항소심서도 징역 1년 구형",
     newspaper: "중앙일보",
     reporter: "이정확",
     date: "2021.3.15. (목)",
+    url: "https://www.naver.com",
   },
   {
-    title: "'한동훈 독직폭행' 정진웅∙∙∙ 검찰, 항소심서도 징역 1년 구형",
-    scrap: articleStar,
+    headline: "'한동훈 독직폭행' 정진웅∙∙∙ 검찰, 항소심서도 징역 1년",
     newspaper: "중앙일보",
     reporter: "이정확",
     date: "2021.3.15. (목)",
+    url: "https://www.naver.com",
   },
   {
-    title: "'한동훈 독직폭행' 정진웅∙∙∙ 검찰, 항소심서도 징역 1년 구형",
-    scrap: articleStar,
+    headline: "'한동훈 독직폭행' 정진웅∙∙∙ 검찰, 항소심서도 징역 구형",
     newspaper: "중앙일보",
     reporter: "이정확",
     date: "2021.3.15. (목)",
+    url: "https://www.naver.com",
   },
   {
-    title: "'한동훈 독직폭행' 정진웅∙∙∙ 검찰, 항소심서도 징역 1년 구형",
-    scrap: articleStar,
+    headline: "'한동훈 독직폭행' 정진웅∙∙∙ 검찰, 항소심서 징역 1년 구형",
     newspaper: "중앙일보",
     reporter: "이정확",
     date: "2021.3.15. (목)",
+    url: "https://www.naver.com",
   },
   {
-    title: "'한동훈 독직폭행' 정진웅∙∙∙ 검찰, 항소심서도 징역 1년 구형",
-    scrap: articleStar,
+    headline: "'한동훈 독직폭행' 정진웅∙∙∙ 항소심서도 징역 1년 구형",
     newspaper: "중앙일보",
     reporter: "이정확",
     date: "2021.3.15. (목)",
+    url: "https://www.naver.com",
   },
   {
-    title: "'한동훈 독직폭행' 정진웅∙∙∙ 검찰, 항소심서도 징역 1년 구형",
-    scrap: articleStar,
+    headline: "'한동훈 독직폭행' 검찰, 항소심서도 징역 1년 구형",
     newspaper: "중앙일보",
     reporter: "이정확",
     date: "2021.3.15. (목)",
+    url: "https://www.naver.com",
   },
   {
-    title: "'한동훈 독직폭행' 정진웅∙∙∙ 검찰, 항소심서도 징역 1년 구형",
-    scrap: articleStar,
+    headline: "'한동훈' 정진웅∙∙∙ 검찰, 항소심서도 징역 1년 구형",
     newspaper: "중앙일보",
     reporter: "이정확",
     date: "2021.3.15. (목)",
+    url: "https://www.naver.com",
+  },
+  {
+    headline: "'한동훈  검찰, 항소심서도 징역 1년 구형",
+    newspaper: "중앙일보",
+    reporter: "이정확",
+    date: "2021.3.15. (목)",
+    url: "https://www.naver.com",
+  },
+  {
+    headline: "정진웅∙∙∙ 검찰, 항소심서도 징역 1년 구형",
+    newspaper: "중앙일보",
+    reporter: "이정확",
+    date: "2021.3.15. (목)",
+    url: "https://www.naver.com",
+  },
+  {
+    headline: "'한동훈 독직폭행' 정진웅∙∙∙ 검찰",
+    newspaper: "중앙일보",
+    reporter: "이정확",
+    date: "2021.3.15. (목)",
+    url: "https://www.naver.com",
+  },
+  {
+    headline: "'한동훈 독직행' 정진웅∙∙∙ 검찰, 항소심서도 구형",
+    newspaper: "중앙일보",
+    reporter: "이정확",
+    date: "2021.3.15. (목)",
+    url: "https://www.naver.com",
+  },
+  {
+    headline: "'한동훈 독폭행' 정진웅∙∙∙ 검찰, 항소심서도 징역 1년 구형",
+    newspaper: "중앙일보",
+    reporter: "이정확",
+    date: "2021.3.15. (목)",
+    url: "https://www.naver.com",
+  },
+  {
+    headline: "'한동훈 독직폭' 정진웅 검찰, 항소심서도 징역 1년 구형",
+    newspaper: "중앙일보",
+    reporter: "이정확",
+    date: "2021.3.15. (목)",
+    url: "https://www.naver.com",
+  },
+  {
+    headline: "'한동훈 독직폭행' 정웅∙∙∙ 검찰, 항소심서도 징역 1년 구형",
+    newspaper: "중앙일보",
+    reporter: "이정확",
+    date: "2021.3.15. (목)",
+    url: "https://www.naver.com",
+  },
+  {
+    headline: "'한동훈 독직폭행' 진웅∙∙∙ 검찰, 항소심서도 징역 1년 구형",
+    newspaper: "중앙일보",
+    reporter: "이정확",
+    date: "2021.3.15. (목)",
+    url: "https://www.naver.com",
+  },
+  {
+    headline: "'한동훈 독직폭행' 정진∙∙∙ 검찰, 항소심서도 징역 1년 구형",
+    newspaper: "중앙일보",
+    reporter: "이정확",
+    date: "2021.3.15. (목)",
+    url: "https://www.naver.com",
+  },
+  {
+    headline: "'한동훈 독직폭행' 정 검찰, 항소심서도 징역 1년 구형",
+    newspaper: "중앙일보",
+    reporter: "이정확",
+    date: "2021.3.15. (목)",
+    url: "https://www.naver.com",
   },
 ];
