@@ -1,11 +1,14 @@
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { API_ENDPOINT } from "../constants/apiConstant";
 import changeDateFormat from "../utils/changeDateFormat";
 import changeReporterFormat from "../utils/changeReporterFromate";
 
 const useGetArticleData = () => {
-  const { data, isLoading, isError } = useQuery("articleInfo", getArticleData);
+  const { data, isLoading, isError } = useQuery({
+    queryKey: ["articleInfo"],
+    queryFn: () => getArticleData(),
+  });
 
   return { articleInfo: data, articleInfoLoading: isLoading, articleInfoError: isError };
 };
