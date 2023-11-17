@@ -1,8 +1,13 @@
+import { setScrapArticles } from "../reducers/scrapedArticles-Reducer";
 import { scrapListKeyInLocalStorage } from "../constants/constatns";
 import { ArticleProps } from "../models/articleProps";
 
 // add scrap
-export const handleAddScrap = (props: ArticleProps, setScrap: (boolean: boolean) => void) => {
+export const handleAddScrap = (
+  props: ArticleProps,
+  setScrap: (boolean: boolean) => void,
+  dispatch: (func: any) => void
+) => {
   const scrapArticles = localStorage.getItem(scrapListKeyInLocalStorage);
 
   const articleInfo = [
@@ -17,10 +22,12 @@ export const handleAddScrap = (props: ArticleProps, setScrap: (boolean: boolean)
 
   if (scrapArticles === null) {
     storeInLocalStorage(articleInfo);
+    dispatch(setScrapArticles(articleInfo));
   } else {
-    const scarpList = JSON.parse(scrapArticles);
-    const newScrapList = [...scarpList, ...articleInfo];
+    const scrapList = JSON.parse(scrapArticles);
+    const newScrapList = [...scrapList, ...articleInfo];
     storeInLocalStorage(newScrapList);
+    dispatch(setScrapArticles(newScrapList));
   }
   setScrap(true);
 };
@@ -28,7 +35,8 @@ export const handleAddScrap = (props: ArticleProps, setScrap: (boolean: boolean)
 // delete scrap
 export const handleDeleteScrap = (
   deleteArticleHeadline: string,
-  setScrap: (boolean: boolean) => void
+  setScrap: (boolean: boolean) => void,
+  dispatch: (func: any) => void
 ) => {
   const scrapArticles = localStorage.getItem(scrapListKeyInLocalStorage);
 
@@ -40,7 +48,14 @@ export const handleDeleteScrap = (
       }
     });
 
-    storeInLocalStorage(newScrapList);
+    if (newScrapList.length === 0) {
+      localStorage.removeItem(scrapListKeyInLocalStorage);
+      dispatch(setScrapArticles([]));
+    } else {
+      storeInLocalStorage(newScrapList);
+      dispatch(setScrapArticles(newScrapList));
+    }
+
     setScrap(false);
   }
 };

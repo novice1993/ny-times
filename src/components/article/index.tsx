@@ -1,3 +1,4 @@
+import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { ArticleProps } from "../../models/articleProps";
@@ -8,22 +9,19 @@ import scrap from "../../assets/article-starFill.svg";
 import noScrap from "../../assets/article-star.svg";
 
 const Article = (props: ArticleProps) => {
-  const [isScrap, setScrap] = useState(false);
+  const { headline, newspaper, reporter, date, url } = props;
   const scrapArticles = localStorage.getItem(scrapListKeyInLocalStorage);
 
-  const headline = props.headline;
-  const newspaper = props.newspaper;
-  const reporter = props.reporter;
-  const date = props.date;
-  const articleUrl = props.url;
+  const dispatch = useDispatch();
+  const [isScrap, setScrap] = useState(false);
 
   const handleRedirect = (url: string) => {
     window.location.href = url;
   };
 
   const handleClickStarBtn = isScrap
-    ? () => handleDeleteScrap(headline, setScrap)
-    : () => handleAddScrap(props, setScrap);
+    ? () => handleDeleteScrap(headline, setScrap, dispatch)
+    : () => handleAddScrap(props, setScrap, dispatch);
 
   // already done scrap check
   useEffect(() => {
@@ -40,7 +38,7 @@ const Article = (props: ArticleProps) => {
   return (
     <Container>
       <div className="firstLine">
-        <div className="headline" onClick={() => handleRedirect(articleUrl)}>
+        <div className="headline" onClick={() => handleRedirect(url)}>
           {headline}
         </div>
         <img className="scrapBtn" src={isScrap ? scrap : noScrap} onClick={handleClickStarBtn} />

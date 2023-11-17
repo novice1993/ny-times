@@ -1,27 +1,17 @@
-import { useGetArticleDataToInfinite } from "../../hooks/useGetArticleDataInfinite";
 import { ArticleProps } from "../../models/articleProps";
 
 import { ListLayout } from "../../layout/layout";
 import Article from "../article";
 
+// 임시 data
+import { dummyArticle } from "../../constants/constatns";
+// import useGetArticleData from "../../hooks/useGetArticleData";
+
 const ArticleList = () => {
-  const { articleData, hasNextPage, fetchNextPage, isFetchingNextPage, fetchStatus } =
-    useGetArticleDataToInfinite();
-
-  if (isFetchingNextPage || fetchStatus === "error") {
-    return <>indicator add</>;
-  }
-
-  const articleInfo = articleData?.flat();
-
   return (
     <ListLayout>
-      {articleInfo?.map((article: ArticleProps) => {
-        const headline = article.headline;
-        const newspaper = article.newspaper;
-        const reporter = article.reporter;
-        const date = article.date;
-        const url = article.url;
+      {dummyArticle.map((article: ArticleProps) => {
+        const { headline, newspaper, reporter, date, url } = article;
 
         return (
           <Article
@@ -34,6 +24,7 @@ const ArticleList = () => {
           />
         );
       })}
+      {/* <div className="observerTarget" ref={targetRef} /> */}
     </ListLayout>
   );
 };
