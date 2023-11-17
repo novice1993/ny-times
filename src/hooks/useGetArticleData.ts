@@ -1,8 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { API_ENDPOINT } from "../constants/apiConstant";
-import changeDateFormat from "../utils/changeDateFormat";
-import changeReporterFormat from "../utils/changeReporterFromate";
 
 const useGetArticleData = () => {
   const { data, isLoading, isError } = useQuery({
@@ -24,8 +22,8 @@ const getArticleData = async () => {
     const information = {
       headline: article.headline.main,
       newspaper: article.source,
-      reporter: changeReporterFormat(article.byline.original),
-      date: changeDateFormat(article.pub_date),
+      reporter: article.byline.original,
+      date: article.pub_date,
       url: article.web_url,
     };
     return information;

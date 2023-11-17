@@ -32,7 +32,7 @@ const Footer = ({ type }: { type: string }) => {
           buttonText={footerButtonText01}
         />
       </StyledLink>
-      <StyledLink to="scrap">
+      <StyledLink to="/scrap">
         <PageChangeBtn
           type="scrap"
           iconImg={footerBtnState === "scrap" ? footerScrapOnIcon : footerScrapOffIcon}

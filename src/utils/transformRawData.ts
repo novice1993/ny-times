@@ -1,12 +1,9 @@
-import changeReporterFormat from "./changeReporterFromate";
-import changeDateFormat from "./changeDateFormat";
-
 // trasnform raw Data to selected Data
 export const transformRawData = (originData: any) => {
   const articleInfo = originData.map((article: any) => {
     const information = {
       headline: article.headline.main,
-      newspaper: article.source,
+      newspaper: article.source.replace("International", ""),
       reporter: changeReporterFormat(article.byline.original),
       date: changeDateFormat(article.pub_date),
       url: article.web_url,
@@ -15,4 +12,21 @@ export const transformRawData = (originData: any) => {
   });
 
   return articleInfo;
+};
+
+const changeReporterFormat = (originForm: string) => {
+  const removeUnnecessaryText = originForm.substring(3);
+  const changeForm = removeUnnecessaryText.split(",");
+  const result = changeForm[0];
+  return result;
+};
+
+const changeDateFormat = (originDate: string) => {
+  const date = new Date(originDate);
+  const year = date.getFullYear();
+  const month = date.getMonth() + 1;
+  const day = date.getDate();
+  const dayOfWeek = ["일", "월", "화", "수", "목", "금", "토"][date.getDay()];
+
+  return `${year}.${month}.${day} (${dayOfWeek})`;
 };

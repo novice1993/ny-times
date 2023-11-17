@@ -5,29 +5,31 @@ import { API_ENDPOINT } from "../constants/apiConstant";
 
 // useInfiniteQuery
 export const useGetArticleDataToInfinite = () => {
-  const { data, hasNextPage, fetchNextPage, isFetchingNextPage, status } = useInfiniteQuery({
-    queryKey: ["articles"],
-    queryFn: ({ pageParam = 0 }) => getArtilcleDataForInfinite(pageParam),
-    getNextPageParam: (lastPage: any, allPages: any) => {
-      return lastPage.length !== 0 ? allPages.length + 1 : undefined;
-    },
-    select: (rawData) => {
-      const selectedData = rawData.pages.map((originData) => {
-        const articleData = originData.data.response.docs;
-        const neededInfo = transformRawData(articleData);
+  const { data, hasNextPage, fetchNextPage, isLoading, isFetchingNextPage, status } =
+    useInfiniteQuery({
+      queryKey: ["articles"],
+      queryFn: ({ pageParam = 0 }) => getArtilcleDataForInfinite(pageParam),
+      getNextPageParam: (lastPage: any, allPages: any) => {
+        return lastPage.length !== 0 ? allPages.length : undefined;
+      },
+      select: (rawData) => {
+        const selectedData = rawData.pages.map((originData) => {
+          const articleData = originData.data.response.docs;
+          const neededInfo = transformRawData(articleData);
 
-        return neededInfo;
-      });
+          return neededInfo;
+        });
 
-      return selectedData;
-    },
-    refetchOnWindowFocus: false,
-  });
+        return selectedData;
+      },
+      refetchOnWindowFocus: false,
+    });
 
   return {
     articleData: data,
     hasNextPage,
     fetchNextPage,
+    isLoading,
     isFetchingNextPage,
     fetchStatus: status,
   };

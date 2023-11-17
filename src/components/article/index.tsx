@@ -1,9 +1,16 @@
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { ArticleProps } from "../../models/articleProps";
+import { scrapListKeyInLocalStorage } from "../../constants/constatns";
+import { handleAddScrap, handleDeleteScrap } from "../../utils/aboutSetScrap";
 
-import scrap from "../../assets/article-star.svg"; // 임시추가
+import scrap from "../../assets/article-starFill.svg";
+import noScrap from "../../assets/article-star.svg";
 
 const Article = (props: ArticleProps) => {
+  const [isScrap, setScrap] = useState(false);
+  const scrapArticles = localStorage.getItem(scrapListKeyInLocalStorage);
+
   const headline = props.headline;
   const newspaper = props.newspaper;
   const reporter = props.reporter;
@@ -11,9 +18,24 @@ const Article = (props: ArticleProps) => {
   const articleUrl = props.url;
 
   const handleRedirect = (url: string) => {
-    // 📌 다시 확인 필요
     window.location.href = url;
   };
+
+  const handleClickStarBtn = isScrap
+    ? () => handleDeleteScrap(headline, setScrap)
+    : () => handleAddScrap(props, setScrap);
+
+  // already done scrap check
+  useEffect(() => {
+    if (scrapArticles !== null) {
+      const scrapList = JSON.parse(scrapArticles);
+      const alreadyScrap = scrapList.some((article: ArticleProps) => {
+        return article.headline === headline;
+      });
+
+      alreadyScrap && setScrap(true);
+    }
+  }, []);
 
   return (
     <Container>
@@ -21,7 +43,7 @@ const Article = (props: ArticleProps) => {
         <div className="headline" onClick={() => handleRedirect(articleUrl)}>
           {headline}
         </div>
-        <img className="scrapBtn" src={scrap} />
+        <img className="scrapBtn" src={isScrap ? scrap : noScrap} onClick={handleClickStarBtn} />
       </div>
       <div className="secondLine">
         <div className="info">
