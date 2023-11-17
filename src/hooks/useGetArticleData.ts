@@ -7,7 +7,8 @@ import changeReporterFormat from "../utils/changeReporterFromate";
 const useGetArticleData = () => {
   const { data, isLoading, isError } = useQuery({
     queryKey: ["articleInfo"],
-    queryFn: () => getArticleData(),
+    queryFn: getArticleData,
+    refetchOnWindowFocus: false,
   });
 
   return { articleInfo: data, articleInfoLoading: isLoading, articleInfoError: isError };
