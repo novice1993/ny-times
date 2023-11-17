@@ -1,7 +1,8 @@
-import { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { changeFooterBtnState } from "../../reducers/footerBtnState-Reducer";
 import { GlobalStateProps } from "../../models/globalStateProps";
 
 import PageChangeBtn from "./pageChangeBtn";
@@ -14,19 +15,13 @@ import {
   footerButtonText02,
 } from "../../constants/constatns";
 
-const Footer = () => {
-  const [scrapState, setScrapState] = useState("noScrap");
+const Footer = ({ type }: { type: string }) => {
+  const dispatch = useDispatch();
   const footerBtnState = useSelector((state: GlobalStateProps) => state.footerBtnState);
 
   useEffect(() => {
-    const isScrap = localStorage.getItem("scrapList");
-
-    if (isScrap !== null) {
-      setScrapState("scrap");
-    } else {
-      setScrapState("noScrap");
-    }
-  }, [footerBtnState]);
+    dispatch(changeFooterBtnState(type));
+  }, []);
 
   return (
     <Container>
@@ -37,7 +32,7 @@ const Footer = () => {
           buttonText={footerButtonText01}
         />
       </StyledLink>
-      <StyledLink to={scrapState === "scrap" ? "/scrap" : "/noScrap"}>
+      <StyledLink to="scrap">
         <PageChangeBtn
           type="scrap"
           iconImg={footerBtnState === "scrap" ? footerScrapOnIcon : footerScrapOffIcon}

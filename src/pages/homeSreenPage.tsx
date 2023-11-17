@@ -3,6 +3,7 @@ import { GlobalStateProps } from "../models/globalStateProps";
 
 import { PageLayout } from "../layout/layout";
 import Header from "../components/header";
+import Footer from "../components/footer";
 import ArticleList from "../components/articleList";
 import FilterModal from "../components/filterModal";
 
@@ -13,6 +14,7 @@ const HomeSreenPage = () => {
     <PageLayout>
       <Header />
       <ArticleList />
+      <Footer type="home" />
       {isFilterModal && <FilterModal />}
     </PageLayout>
   );
