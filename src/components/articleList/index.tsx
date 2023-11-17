@@ -1,27 +1,30 @@
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { changeFooterBtnState } from "../../reducers/footerBtnState-Reducer";
+import { useGetArticleDataToInfinite } from "../../hooks/useGetArticleDataInfinite";
 import { ArticleProps } from "../../models/articleProps";
 
 import { ListLayout } from "../../layout/layout";
 import Article from "../article";
-import useGetArticleData from "../../hooks/useGetArticleData";
 
 const ArticleList = () => {
   const dispatch = useDispatch();
-  const { articleInfo, articleInfoLoading, articleInfoError } = useGetArticleData();
+  const { articleData, hasNextPage, fetchNextPage, isFetchingNextPage, fetchStatus } =
+    useGetArticleDataToInfinite();
 
   useEffect(() => {
     dispatch(changeFooterBtnState("home"));
   }, []);
 
-  if (articleInfoLoading || articleInfoError) {
+  if (isFetchingNextPage || fetchStatus === "error") {
     return <>indicator add</>;
   }
 
+  const articleInfo = articleData?.flat();
+
   return (
     <ListLayout>
-      {articleInfo.map((article: ArticleProps) => {
+      {articleInfo?.map((article: ArticleProps) => {
         const headline = article.headline;
         const newspaper = article.newspaper;
         const reporter = article.reporter;
