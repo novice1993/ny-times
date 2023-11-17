@@ -1,9 +1,7 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
+import { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { changeFooterBtnState } from "../../reducers/footerBtnState-Reducer";
-import { GlobalStateProps } from "../../models/globalStateProps";
 
 import PageChangeBtn from "./pageChangeBtn";
 import {
@@ -15,27 +13,30 @@ import {
   footerButtonText02,
 } from "../../constants/constatns";
 
-const Footer = ({ type }: { type: string }) => {
-  const dispatch = useDispatch();
-  const footerBtnState = useSelector((state: GlobalStateProps) => state.footerBtnState);
+const Footer = () => {
+  const location = useLocation();
+  const [active, setActive] = useState("home");
 
   useEffect(() => {
-    dispatch(changeFooterBtnState(type));
-  }, []);
+    const urlPath = location.pathname;
+    urlPath === "/" ? setActive("home") : setActive("scrap");
+  }, [location]);
 
   return (
     <Container>
       <StyledLink to="/">
         <PageChangeBtn
           type="home"
-          iconImg={footerBtnState === "home" ? footerHomeOnIcon : footerHomeOffIcon}
+          active={active}
+          iconImg={active === "home" ? footerHomeOnIcon : footerHomeOffIcon}
           buttonText={footerButtonText01}
         />
       </StyledLink>
       <StyledLink to="/scrap">
         <PageChangeBtn
           type="scrap"
-          iconImg={footerBtnState === "scrap" ? footerScrapOnIcon : footerScrapOffIcon}
+          active={active}
+          iconImg={active === "scrap" ? footerScrapOnIcon : footerScrapOffIcon}
           buttonText={footerButtonText02}
         />
       </StyledLink>
