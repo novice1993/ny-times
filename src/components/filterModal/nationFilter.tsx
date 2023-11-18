@@ -1,14 +1,24 @@
 import styled from "styled-components";
 import NationBtn from "./nationBtn";
+import { FilterSetProps } from "../../models/flterProps";
 import { nationFilterTitle, nations } from "../../constants/constatns";
 
-const NationFilter = () => {
+const NationFilter = (props: FilterSetProps) => {
+  const { filterState, filterStateFunc, dispatch } = props;
   return (
     <Container>
       <div className="title">{nationFilterTitle}</div>
       <div className="nationList">
         {nations.map((nation) => {
-          return <NationBtn key={nation} nation={nation} />;
+          return (
+            <NationBtn
+              key={nation}
+              nation={nation}
+              filterState={filterState}
+              filterStateFunc={filterStateFunc}
+              dispatch={dispatch}
+            />
+          );
         })}
       </div>
     </Container>

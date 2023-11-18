@@ -16,7 +16,7 @@ export const handleAddScrap = (
       newspaper: props.newspaper,
       reporter: props.reporter,
       date: props.date,
-      articleUrl: props.url,
+      url: props.url,
     },
   ];
 

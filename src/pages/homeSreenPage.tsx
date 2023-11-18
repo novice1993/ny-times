@@ -11,9 +11,9 @@ const HomeSreenPage = () => {
 
   return (
     <PageLayout>
-      <Header />
+      <Header type="home" />
       <ArticleList />
-      {isFilterModal && <FilterModal />}
+      {isFilterModal && <FilterModal type="home" />}
     </PageLayout>
   );
 };

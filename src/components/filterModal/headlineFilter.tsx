@@ -1,12 +1,25 @@
 import styled from "styled-components";
+import { FilterSetProps } from "../../models/flterProps";
 import { headLineFilterTitle, headLineFilterInputText } from "../../constants/constatns";
 
-const HeadlineFilter = () => {
+const HeadlineFilter = (props: FilterSetProps) => {
+  const { filterState, filterStateFunc, dispatch } = props;
+
+  const handleChangeHeadlineFilter = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    dispatch(filterStateFunc(value));
+  };
+
   return (
     <Container>
       <div className="title">{headLineFilterTitle}</div>
       <label className="inputBox">
-        <input type="text" placeholder={headLineFilterInputText} />
+        <input
+          type="text"
+          placeholder={headLineFilterInputText}
+          value={filterState}
+          onChange={handleChangeHeadlineFilter}
+        />
       </label>
     </Container>
   );
@@ -43,12 +56,19 @@ const Container = styled.div`
 
   & input {
     width: 100%;
-    color: #c4c4c4;
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
     line-height: 24px;
     letter-spacing: -0.56px;
     border: none;
+
+    &::placeholder {
+      color: #c4c4c4;
+    }
+
+    &:focus {
+      outline: none;
+    }
   }
 `;
