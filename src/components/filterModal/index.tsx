@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import HeadlineFilter from "./headlineFilter";
 import DateFilter from "./dateFilter";
 import NationFilter from "./nationFilter";
-import { setFilterModal } from "../../reducers/filterModalState-Reducer";
+import { setFilterModal } from "../../reducers/client/filterModalState-Reducer";
 import { confirmButtonText } from "../../constants/constatns";
 
 const FilterModal = () => {

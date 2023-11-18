@@ -1,16 +1,36 @@
-import { ArticleProps } from "../../models/articleProps";
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { useInView } from "react-intersection-observer";
+import { plusArticlePageNum } from "../../reducers/server/articleDataFromServer-Reducer";
+import getArticleDataFromServer from "../../utils/getArticleDataFromServer";
 
+import { GlobalStateProps } from "../../models/globalStateProps";
+import { ArticleProps } from "../../models/articleProps";
 import { ListLayout } from "../../layout/layout";
 import Article from "../article";
 
-// 임시 data
-import { dummyArticle } from "../../constants/constatns";
-// import useGetArticleData from "../../hooks/useGetArticleData";
-
 const ArticleList = () => {
+  const dispatch = useDispatch();
+  const [targetRef, inView] = useInView();
+
+  const articleData = useSelector((state: GlobalStateProps) => state.articleDataFromServer);
+  const { articleList, pageNum } = articleData;
+
+  // update articleList
+  useEffect(() => {
+    getArticleDataFromServer(pageNum, dispatch);
+  }, [pageNum]);
+
+  // plus article pageNum
+  useEffect(() => {
+    if (inView) {
+      dispatch(plusArticlePageNum());
+    }
+  }, [inView]);
+
   return (
     <ListLayout>
-      {dummyArticle.map((article: ArticleProps) => {
+      {articleList.map((article: ArticleProps) => {
         const { headline, newspaper, reporter, date, url } = article;
 
         return (
@@ -24,7 +44,7 @@ const ArticleList = () => {
           />
         );
       })}
-      {/* <div className="observerTarget" ref={targetRef} /> */}
+      <div className="observerTarget" ref={targetRef} />
     </ListLayout>
   );
 };
