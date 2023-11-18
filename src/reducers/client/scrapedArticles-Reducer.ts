@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { scrapListKeyInLocalStorage } from "../constants/constatns";
+import { scrapListKeyInLocalStorage } from "../../constants/constatns";
 
 const scrapList = localStorage.getItem(scrapListKeyInLocalStorage);
 const initialState = scrapList === null ? [] : JSON.parse(scrapList);
