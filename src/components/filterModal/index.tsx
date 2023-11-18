@@ -35,6 +35,7 @@ const FilterModal = ({ type }: { type: string }) => {
 
     dispatch(changeHeaderHeadline(headlineFilter));
     dispatch(changeHeadaerDate(dateFilter));
+
     dispatch(changeHeaderNation(nationFilter));
   };
 

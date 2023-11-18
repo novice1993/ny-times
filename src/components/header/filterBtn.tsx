@@ -14,7 +14,7 @@ const FilterBtn = (props: HeaderProps) => {
   return (
     <Button onClick={handleOpenFilterModal}>
       {iconImg && <img src={iconImg} />}
-      <span>{buttonText}</span>
+      <div className="buttonText">{buttonText}</div>
     </Button>
   );
 };
@@ -27,6 +27,7 @@ interface HeaderProps {
 }
 
 const Button = styled.button`
+  max-width: 119px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -44,4 +45,13 @@ const Button = styled.button`
   font-weight: 400;
   line-height: 24px;
   letter-spacing: -0.56px;
+
+  .buttonText {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    word-wrap: break-word;
+    white-space: normal;
+  }
 `;

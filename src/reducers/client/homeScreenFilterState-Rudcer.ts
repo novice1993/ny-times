@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   headlineFilter: "",
   dateFilter: "",
-  nationFilter: [],
+  nationFilter: [] as string[],
 };
 
 const homeScreenFilterStateSlice = createSlice({
@@ -17,7 +17,13 @@ const homeScreenFilterStateSlice = createSlice({
       state.dateFilter = action.payload;
     },
     setNationFilter: (state, action) => {
-      state.nationFilter = action.payload;
+      if (!action.payload.isSelect) {
+        state.nationFilter.push(action.payload.nation);
+      } else {
+        state.nationFilter = state.nationFilter.filter((nation) => {
+          return nation !== action.payload.nation;
+        });
+      }
     },
   },
 });

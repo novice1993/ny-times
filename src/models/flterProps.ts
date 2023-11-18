@@ -1,6 +1,6 @@
 export interface FilterSetProps {
   filterState: string | string[];
-  filterStateFunc: (state: string) => void;
+  filterStateFunc: (state: string | { isSelect: boolean; nation: string }) => void;
   dispatch: (func: any) => void;
 }
 

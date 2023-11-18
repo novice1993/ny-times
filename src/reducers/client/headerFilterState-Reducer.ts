@@ -39,10 +39,14 @@ const headerFilterStateSlice = createSlice({
     chnageHomeHeaderNation: (state, action) => {
       if (action.payload.length === 0) {
         state.homeScreen.nation = headerButtonText03;
+      } else if (action.payload.length === 1) {
+        state.homeScreen.nation = action.payload[0];
       } else {
-        state.homeScreen.nation = action.payload;
+        const remainNum = action.payload.length - 1;
+        state.homeScreen.nation = `${action.payload[0]} 외 ${remainNum}개`;
       }
     },
+
     chnageScrapHeaderHeadline: (state, action) => {
       if (action.payload === "") {
         state.scrapScreen.headline = headerButtonText01;
@@ -60,8 +64,11 @@ const headerFilterStateSlice = createSlice({
     chnageScrapHeaderNation: (state, action) => {
       if (action.payload.length === 0) {
         state.scrapScreen.nation = headerButtonText03;
+      } else if (action.payload.length === 1) {
+        state.scrapScreen.nation = action.payload[0];
       } else {
-        state.scrapScreen.nation = action.payload;
+        const remainNum = action.payload.length - 1;
+        state.scrapScreen.nation = `${action.payload[0]} 외 ${remainNum}개`;
       }
     },
   },
