@@ -56,12 +56,19 @@ const Container = styled.div`
 
   & input {
     width: 100%;
-    color: #c4c4c4;
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
     line-height: 24px;
     letter-spacing: -0.56px;
     border: none;
+
+    &::placeholder {
+      color: #c4c4c4;
+    }
+
+    &:focus {
+      outline: none;
+    }
   }
 `;

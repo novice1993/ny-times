@@ -1,14 +1,23 @@
 import styled from "styled-components";
 import { FilterSetProps } from "../../models/flterProps";
-import { dateFilterTitle, dateFilterInputText, dateFilterIconImg } from "../../constants/constatns";
+import { dateFilterTitle, dateFilterIconImg } from "../../constants/constatns";
+
+// test
+import Calendar from "./calendar";
 
 const DateFilter = (props: FilterSetProps) => {
+  const { filterState, filterStateFunc, dispatch } = props;
+
   return (
     <Container>
       <div className="title">{dateFilterTitle}</div>
       <div className="inputBox">
         <label>
-          <input type="text" placeholder={dateFilterInputText} />
+          <Calendar
+            filterState={filterState}
+            filterStateFunc={filterStateFunc}
+            dispatch={dispatch}
+          />
         </label>
         <img src={dateFilterIconImg} />
       </div>
@@ -44,10 +53,17 @@ const Container = styled.div`
     align-items: center;
     border-radius: 8px;
     border: 1px solid #c4c4c4;
+
+    & ::placeholder {
+      color: #c4c4c4;
+    }
+
+    & :focus {
+      outline: none;
+    }
   }
 
   & input {
-    color: #c4c4c4;
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
