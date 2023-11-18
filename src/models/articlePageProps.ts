@@ -1,6 +1,6 @@
 import { ArticleProps } from "./articleProps";
 
 export interface ArticlePageProps {
-  articleData: ArticleProps[];
+  articleList: ArticleProps[];
   pageNum: number;
 }

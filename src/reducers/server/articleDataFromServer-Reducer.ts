@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { ArticlePageProps } from "../../models/articlePageProps";
 
 const initialState: ArticlePageProps = {
-  articleData: [],
+  articleList: [],
   pageNum: 0,
 };
 
@@ -14,9 +14,9 @@ const articleDataFromServerSlice = createSlice({
       state.pageNum = state.pageNum + 1;
     },
     plusArticleData: (state, action) => {
-      const originArticleData = state.articleData;
+      const originArticleData = state.articleList;
       const newArticleData = action.payload;
-      state.articleData = [...originArticleData, ...newArticleData];
+      state.articleList = [...originArticleData, ...newArticleData];
     },
   },
 });
