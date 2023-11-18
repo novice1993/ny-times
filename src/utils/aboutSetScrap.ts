@@ -1,4 +1,4 @@
-import { setScrapArticles } from "../reducers/scrapedArticles-Reducer";
+import { setScrapArticles } from "../reducers/client/scrapedArticles-Reducer";
 import { scrapListKeyInLocalStorage } from "../constants/constatns";
 import { ArticleProps } from "../models/articleProps";
 
@@ -16,7 +16,7 @@ export const handleAddScrap = (
       newspaper: props.newspaper,
       reporter: props.reporter,
       date: props.date,
-      articleUrl: props.url,
+      url: props.url,
     },
   ];
 

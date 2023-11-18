@@ -1,19 +1,34 @@
+import { useSelector } from "react-redux";
 import styled from "styled-components";
+import { GlobalStateProps } from "../../models/globalStateProps";
 import FilterBtn from "./filterBtn";
-import {
-  headerSearchIcon,
-  headerCalendarIcon,
-  headerButtonText01,
-  headerButtonText02,
-  headerButtonText03,
-} from "../../constants/constatns";
+import { headerSearchIcon, headerCalendarIcon } from "../../constants/constatns";
 
-const Header = () => {
+const Header = ({ type }: { type: string }) => {
+  const headerFilterState = useSelector((state: GlobalStateProps) => state.headerFilterState);
+  const {
+    headline: homeScreenHeadline,
+    date: homeScreenDate,
+    nation: homeScreenNation,
+  } = headerFilterState.homeScreen;
+
+  const {
+    headline: scrapScreenHeadline,
+    date: scrapScreenDate,
+    nation: scrapScreenNation,
+  } = headerFilterState.scrapScreen;
+
   return (
     <Container>
-      <FilterBtn iconImg={headerSearchIcon} buttonText={headerButtonText01} />
-      <FilterBtn iconImg={headerCalendarIcon} buttonText={headerButtonText02} />
-      <FilterBtn buttonText={headerButtonText03} />
+      <FilterBtn
+        iconImg={headerSearchIcon}
+        buttonText={type === "home" ? homeScreenHeadline : scrapScreenHeadline}
+      />
+      <FilterBtn
+        iconImg={headerCalendarIcon}
+        buttonText={type === "home" ? homeScreenDate : scrapScreenDate}
+      />
+      <FilterBtn buttonText={type === "home" ? homeScreenNation : scrapScreenNation} />
     </Container>
   );
 };

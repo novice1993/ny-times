@@ -1,16 +1,10 @@
 import styled from "styled-components";
-import { useSelector } from "react-redux";
-import { GlobalStateProps } from "../../models/globalStateProps";
 
 const PageChangeBtn = (props: FooterProps) => {
-  const iconImg = props.iconImg;
-  const buttonText = props.buttonText;
-  const type = props.type; // 'home' or 'scrap'
-
-  const footerBtnState = useSelector((state: GlobalStateProps) => state.footerBtnState);
+  const { iconImg, buttonText, type, active } = props; // type: 'home' or 'scrap', active: current active Btn
 
   return (
-    <Container type={type} footerBtnState={footerBtnState}>
+    <Container type={type} active={active}>
       <img src={iconImg} />
       <span>{buttonText}</span>
     </Container>
@@ -23,9 +17,10 @@ interface FooterProps {
   iconImg: string;
   buttonText: string;
   type: string;
+  active: string;
 }
 
-const Container = styled.div<{ type: string; footerBtnState: string }>`
+const Container = styled.div<{ type: string; active: string }>`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -39,11 +34,11 @@ const Container = styled.div<{ type: string; footerBtnState: string }>`
 
   & span {
     color: ${(props) =>
-      props.type === "home" // home 버튼
-        ? props.footerBtnState === "home"
+      props.type === "home" // home Btn
+        ? props.active === "home"
           ? "#fff"
           : "#6d6d6d"
-        : props.footerBtnState === "scrap" // scrap 버튼
+        : props.active === "scrap" // scrap Btn
         ? "#fff"
         : "#6d6d6d"};
 
