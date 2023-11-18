@@ -1,8 +1,9 @@
 import styled from "styled-components";
 import NationBtn from "./nationBtn";
+import { FilterSetProps } from "../../models/flterProps";
 import { nationFilterTitle, nations } from "../../constants/constatns";
 
-const NationFilter = () => {
+const NationFilter = (props: FilterSetProps) => {
   return (
     <Container>
       <div className="title">{nationFilterTitle}</div>

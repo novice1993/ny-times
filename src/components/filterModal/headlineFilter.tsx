@@ -1,12 +1,25 @@
 import styled from "styled-components";
+import { FilterSetProps } from "../../models/flterProps";
 import { headLineFilterTitle, headLineFilterInputText } from "../../constants/constatns";
 
-const HeadlineFilter = () => {
+const HeadlineFilter = (props: FilterSetProps) => {
+  const { filterState, filterStateFunc, dispatch } = props;
+
+  const handleChangeHeadlineFilter = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    dispatch(filterStateFunc(value));
+  };
+
   return (
     <Container>
       <div className="title">{headLineFilterTitle}</div>
       <label className="inputBox">
-        <input type="text" placeholder={headLineFilterInputText} />
+        <input
+          type="text"
+          placeholder={headLineFilterInputText}
+          value={filterState}
+          onChange={handleChangeHeadlineFilter}
+        />
       </label>
     </Container>
   );

@@ -1,7 +1,8 @@
 import styled from "styled-components";
+import { FilterSetProps } from "../../models/flterProps";
 import { dateFilterTitle, dateFilterInputText, dateFilterIconImg } from "../../constants/constatns";
 
-const DateFilter = () => {
+const DateFilter = (props: FilterSetProps) => {
   return (
     <Container>
       <div className="title">{dateFilterTitle}</div>

@@ -16,9 +16,9 @@ const ScrapScreenPage = () => {
     <PageLayout>
       {isScrap ? (
         <>
-          <Header />
+          <Header type="scrap" />
           <ScrapList />
-          {isFilterModal && <FilterModal />}
+          {isFilterModal && <FilterModal type="scrap" />}
         </>
       ) : (
         <NoScrapIndicator />
