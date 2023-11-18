@@ -14,7 +14,7 @@ const ScrapList = () => {
 
         return (
           <Article
-            key={headline}
+            key={url}
             headline={headline}
             newspaper={newspaper}
             reporter={reporter}
