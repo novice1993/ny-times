@@ -13,7 +13,7 @@ const NationBtn = (props: ButtonProps) => {
   };
 
   useEffect(() => {
-    const alreadySelect = filterState.some((selectedNation: string) => {
+    const alreadySelect = (filterState as string[]).some((selectedNation: string) => {
       return selectedNation === nation;
     });
     alreadySelect && setSelect(true);

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
-import { ko } from "date-fns/esm/locale";
 import transformDateForm from "../../utils/transformDateForm";
+import { ko } from "date-fns/esm/locale";
 
 import { FilterSetProps } from "../../models/flterProps";
 import { dateFilterInputText } from "../../constants/constatns";
@@ -13,8 +13,6 @@ const Calendar = (props: FilterSetProps) => {
   const [startDate, setStartDate] = useState(initialState);
 
   useEffect(() => {
-    console.log(filterState);
-
     if (startDate === null) {
       dispatch(filterStateFunc(""));
     } else {
