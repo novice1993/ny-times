@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
+
 import { homeScreenFilterFunc } from "../../reducers/client/homeScreenFilterState-Rudcer";
 import { scrapScreenFilterFunc } from "../../reducers/client/scrapScreenFilterState-Reducer";
 import { homeScreenHeaderFilterFunc } from "../../reducers/client/headerFilterState-Reducer";

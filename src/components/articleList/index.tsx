@@ -14,11 +14,18 @@ const ArticleList = () => {
   const [targetRef, inView] = useInView();
 
   const articleData = useSelector((state: GlobalStateProps) => state.articleDataFromServer);
+  const homeScreenFilterState = useSelector(
+    (state: GlobalStateProps) => state.homeScreenFilterState
+  );
   const { articleList, pageNum } = articleData;
+  const { headlineFilter, dateFilter, nationFilter } = homeScreenFilterState;
+  const noFiltering = headlineFilter === "" && dateFilter === "" && nationFilter.length === 0;
 
-  // update articleList
+  // update articleList (No Filtering State)
   useEffect(() => {
-    getArticleDataFromServer(pageNum, dispatch);
+    if (noFiltering) {
+      getArticleDataFromServer(pageNum, dispatch);
+    }
   }, [pageNum]);
 
   // plus article pageNum
@@ -35,7 +42,7 @@ const ArticleList = () => {
 
         return (
           <Article
-            key={headline}
+            key={headline + reporter}
             headline={headline}
             newspaper={newspaper}
             reporter={reporter}
