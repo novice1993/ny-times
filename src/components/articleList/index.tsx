@@ -35,7 +35,7 @@ const ArticleList = () => {
 
         return (
           <Article
-            key={url}
+            key={headline}
             headline={headline}
             newspaper={newspaper}
             reporter={reporter}
