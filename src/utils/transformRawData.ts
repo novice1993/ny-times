@@ -25,6 +25,7 @@ const changeReporterFormat = (originForm: string) => {
   }
 };
 
+// 수정 필요
 const changeDateFormat = (originDate: string) => {
   const date = new Date(originDate);
   const year = date.getFullYear();

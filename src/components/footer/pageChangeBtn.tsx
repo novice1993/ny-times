@@ -1,10 +1,10 @@
 import styled from "styled-components";
 
 const PageChangeBtn = (props: FooterProps) => {
-  const { iconImg, buttonText, type, active } = props; // type: 'home' or 'scrap', active: current active Btn
+  const { iconImg, buttonText, type, activeBtn } = props; // type: 'home' or 'scrap', active: current active Btn
 
   return (
-    <Container type={type} active={active}>
+    <Container type={type} activeBtn={activeBtn}>
       <img src={iconImg} />
       <span>{buttonText}</span>
     </Container>
@@ -17,10 +17,10 @@ interface FooterProps {
   iconImg: string;
   buttonText: string;
   type: string;
-  active: string;
+  activeBtn: string;
 }
 
-const Container = styled.div<{ type: string; active: string }>`
+const Container = styled.div<{ type: string; activeBtn: string }>`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -35,10 +35,10 @@ const Container = styled.div<{ type: string; active: string }>`
   & span {
     color: ${(props) =>
       props.type === "home" // home Btn
-        ? props.active === "home"
+        ? props.activeBtn === "home"
           ? "#fff"
           : "#6d6d6d"
-        : props.active === "scrap" // scrap Btn
+        : props.activeBtn === "scrap" // scrap Btn
         ? "#fff"
         : "#6d6d6d"};
 

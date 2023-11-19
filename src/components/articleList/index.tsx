@@ -1,8 +1,9 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useInView } from "react-intersection-observer";
+import useGetNofilteringArticleData from "../../hooks/useGetNofilteringArticleData";
+import useGetFilteringArticleData from "../../hooks/useGetFilteringArticleData";
 import { plusArticlePageNum } from "../../reducers/server/articleDataFromServer-Reducer";
-import getArticleDataFromServer from "../../utils/getArticleDataFromServer";
 
 import { GlobalStateProps } from "../../models/globalStateProps";
 import { ArticleProps } from "../../models/articleProps";
@@ -14,25 +15,14 @@ const ArticleList = () => {
   const [targetRef, inView] = useInView();
 
   const articleData = useSelector((state: GlobalStateProps) => state.articleDataFromServer);
-  const homeScreenFilterState = useSelector(
-    (state: GlobalStateProps) => state.homeScreenFilterState
-  );
   const { articleList, pageNum } = articleData;
-  const { headlineFilter, dateFilter, nationFilter } = homeScreenFilterState;
-  const noFiltering = headlineFilter === "" && dateFilter === "" && nationFilter.length === 0;
 
-  // update articleList (No Filtering State)
-  useEffect(() => {
-    if (noFiltering) {
-      getArticleDataFromServer(pageNum, dispatch);
-    }
-  }, [pageNum]);
+  useGetNofilteringArticleData(pageNum); // fetching all article data
+  useGetFilteringArticleData(pageNum); // fetching filterd article data
 
   // plus article pageNum
   useEffect(() => {
-    if (inView) {
-      dispatch(plusArticlePageNum());
-    }
+    inView && dispatch(plusArticlePageNum());
   }, [inView]);
 
   return (

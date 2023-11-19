@@ -15,11 +15,11 @@ import {
 
 const Footer = () => {
   const location = useLocation();
-  const [active, setActive] = useState("home");
+  const [activeBtn, setActiveBtn] = useState("home");
 
   useEffect(() => {
     const urlPath = location.pathname;
-    urlPath === "/" ? setActive("home") : setActive("scrap");
+    urlPath === "/" ? setActiveBtn("home") : setActiveBtn("scrap");
   }, [location]);
 
   return (
@@ -27,16 +27,16 @@ const Footer = () => {
       <StyledLink to="/">
         <PageChangeBtn
           type="home"
-          active={active}
-          iconImg={active === "home" ? footerHomeOnIcon : footerHomeOffIcon}
+          activeBtn={activeBtn}
+          iconImg={activeBtn === "home" ? footerHomeOnIcon : footerHomeOffIcon}
           buttonText={footerButtonText01}
         />
       </StyledLink>
       <StyledLink to="/scrap">
         <PageChangeBtn
           type="scrap"
-          active={active}
-          iconImg={active === "scrap" ? footerScrapOnIcon : footerScrapOffIcon}
+          activeBtn={activeBtn}
+          iconImg={activeBtn === "scrap" ? footerScrapOnIcon : footerScrapOffIcon}
           buttonText={footerButtonText02}
         />
       </StyledLink>

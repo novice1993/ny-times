@@ -23,7 +23,7 @@ const FilterModal = ({ type }: { type: string }) => {
   const { headlineFilter, dateFilter, nationFilter } =
     type === "home" ? homeScreenFilter : scrapScreenFilter;
 
-  // set artcile filter keyword
+  // function for setting artcile filtering keyword
   const { setHeadlineFilter, setDateFilter, setNationFilter } =
     type === "home" ? homeScreenFilterFunc : scrapScreenFilterFunc;
 

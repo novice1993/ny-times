@@ -1,10 +1,13 @@
-import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
+import { setArticlePageNum } from "../../reducers/server/articleDataFromServer-Reducer";
 import { GlobalStateProps } from "../../models/globalStateProps";
 import FilterBtn from "./filterBtn";
 import { headerSearchIcon, headerCalendarIcon } from "../../constants/constatns";
 
 const Header = ({ type }: { type: string }) => {
+  const dispatch = useDispatch();
   const headerFilterState = useSelector((state: GlobalStateProps) => state.headerFilterState);
   const {
     headline: homeScreenHeadline,
@@ -17,6 +20,11 @@ const Header = ({ type }: { type: string }) => {
     date: scrapScreenDate,
     nation: scrapScreenNation,
   } = headerFilterState.scrapScreen;
+
+  // if change HomeScreenPage Filter, reset PageNum
+  useEffect(() => {
+    dispatch(setArticlePageNum(0));
+  }, [homeScreenHeadline, homeScreenDate, homeScreenNation]);
 
   return (
     <Container>
