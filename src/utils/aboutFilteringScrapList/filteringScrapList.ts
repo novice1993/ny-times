@@ -22,6 +22,9 @@ export const filteringScrapList = (
       if (nationFilter.length !== 0) {
         const nationFilterdList = getNationFilteringArticle(dateFilterdList, nationFilter);
         dispatch(setScrapArticles(nationFilterdList));
+      } else {
+        // headline + date
+        dispatch(setScrapArticles(dateFilterdList));
       }
     } else {
       // headine + nation

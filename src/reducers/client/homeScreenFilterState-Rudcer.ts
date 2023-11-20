@@ -1,14 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-// localStorage에 저장까지는 성공
-const defaultValue = {
+const initialState = {
   headlineFilter: "",
   dateFilter: "",
   nationFilter: [] as string[],
 };
-
-const storedFilterData = localStorage.getItem("homeScreenFilter");
-const initialState = storedFilterData !== null ? JSON.parse(storedFilterData) : defaultValue;
 
 const homeScreenFilterStateSlice = createSlice({
   name: "homeScreenFilterStateSlice",

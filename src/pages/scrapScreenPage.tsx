@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
+import useFilteringScrapList from "../hooks/useFilteringScrapList";
 import { GlobalStateProps } from "../models/globalStateProps";
 import { scrapListKeyInLocalStorage } from "../constants/constatns";
 
@@ -15,6 +16,7 @@ const ScrapScreenPage = () => {
   const [noResult, setNoResult] = useState(false);
   const isFilterModal = useSelector((state: GlobalStateProps) => state.isFilterModal);
   const scrapArticles = useSelector((state: GlobalStateProps) => state.scrapArticles);
+  useFilteringScrapList();
 
   useEffect(() => {
     if (scrapArticles.length !== 0) {
@@ -31,20 +33,29 @@ const ScrapScreenPage = () => {
     }
   }, [scrapArticles]);
 
-  return (
-    <PageLayout>
-      {noResult && <NoResultIndicator />}
-      {isScrap ? (
-        <>
-          <Header type="scrap" />
-          <ScrapList />
-          {isFilterModal && <FilterModal type="scrap" />}
-        </>
-      ) : (
-        <NoScrapIndicator />
-      )}
-    </PageLayout>
-  );
+  if (noResult) {
+    return (
+      <PageLayout>
+        <Header type="scrap" />
+        <NoResultIndicator />
+        {isFilterModal && <FilterModal type="scrap" />}
+      </PageLayout>
+    );
+  } else {
+    return (
+      <PageLayout>
+        {isScrap ? (
+          <>
+            <Header type="scrap" />
+            <ScrapList />
+            {isFilterModal && <FilterModal type="scrap" />}
+          </>
+        ) : (
+          <NoScrapIndicator />
+        )}
+      </PageLayout>
+    );
+  }
 };
 
 export default ScrapScreenPage;

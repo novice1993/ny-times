@@ -1,13 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const defaultValue = {
+const initialState = {
   headlineFilter: "",
   dateFilter: "",
   nationFilter: [] as string[],
 };
-
-const scrapScreenFilter = localStorage.getItem("scrapScreenFilter");
-const initialState = scrapScreenFilter !== null ? JSON.parse(scrapScreenFilter) : defaultValue;
 
 const scrapScreenFilterStateSlice = createSlice({
   name: "scrapScreenFilterStateSlice",

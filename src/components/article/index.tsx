@@ -27,13 +27,11 @@ const Article = (props: ArticleProps) => {
   // already done scrap check
   useEffect(() => {
     const scrapArticles = localStorage.getItem(scrapListKeyInLocalStorage);
+    const scrapList = scrapArticles !== null ? JSON.parse(scrapArticles) : [];
 
-    if (scrapArticles !== null) {
-      const scrapList = JSON.parse(scrapArticles);
-      scrapList.forEach((article: ArticleProps) => {
-        article.headline === headline && setScrap(true);
-      });
-    }
+    scrapList.forEach((article: ArticleProps) => {
+      article.headline === headline && setScrap(true);
+    });
   }, []);
 
   return (

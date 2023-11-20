@@ -1,17 +1,19 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { setHeaderStateInitValue } from "../../utils/setHeaderStateInitValue";
 import {
   headerButtonText01 as defaultHeadline,
   headerButtonText02 as defaultDate,
   headerButtonText03 as defaultNation,
 } from "../../constants/constatns";
 
-const storedHomeFilter = localStorage.getItem("homeScreenFilter");
-const storedScrapFilter = localStorage.getItem("scrapScreenFilter");
+const defaultValue = {
+  headline: defaultHeadline,
+  date: defaultDate,
+  nation: defaultNation,
+};
 
 const initialState = {
-  homeScreen: setHeaderStateInitValue(storedHomeFilter),
-  scrapScreen: setHeaderStateInitValue(storedScrapFilter),
+  homeScreen: defaultValue,
+  scrapScreen: defaultValue,
 };
 
 const headerFilterStateSlice = createSlice({
