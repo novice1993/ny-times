@@ -6,6 +6,7 @@ import { homeScreenFilterStateReducer } from "../reducers/client/homeScreenFilte
 import { headerFilterStateReducer } from "../reducers/client/headerFilterState-Reducer";
 import { scrapScreenFilterStateReducer } from "../reducers/client/scrapScreenFilterState-Reducer";
 import { loadingIndicatorReducer } from "../reducers/client/loadingIndicatorState-Reducer";
+import { fetchingErrorStateReducer } from "../reducers/client/fetchingErrorState-Reducer";
 
 const store = configureStore({
   reducer: {
@@ -16,6 +17,7 @@ const store = configureStore({
     homeScreenFilterState: homeScreenFilterStateReducer,
     scrapScreenFilterState: scrapScreenFilterStateReducer,
     headerFilterState: headerFilterStateReducer,
+    fetchingErrorState: fetchingErrorStateReducer,
   },
 });
 

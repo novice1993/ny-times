@@ -5,6 +5,7 @@ import {
 } from "../../reducers/client/loadingIndicatorState-Reducer";
 import { transformRawData } from "../aboutOrganizeData/transformRawData";
 import { plusArticleData } from "../../reducers/server/articleDataFromServer-Reducer";
+import { setFetchingErrorState } from "../../reducers/client/fetchingErrorState-Reducer";
 import { API_ENDPOINT } from "../../constants/apiConstant";
 import { API_DELAYTIME } from "../../constants/constatns";
 
@@ -17,16 +18,18 @@ const getArticleDataFromServer = async (option: FetchingFuncProps) => {
       const rawData = res.data.response.docs;
       dispatch(setTotalLoadingIndicator(false));
       dispatch(setUnderlineLoadingIndicator(false));
+      dispatch(setFetchingErrorState(false));
 
       if (rawData.length === 0) {
-        console.log("게시물 데이터가 없습니다");
+        pageNum === 0 && dispatch(plusArticleData([]));
       } else {
         const transformData = transformRawData(rawData);
         dispatch(plusArticleData(transformData));
       }
     }, API_DELAYTIME);
   } catch (error) {
-    console.log(error);
+    console.error(error);
+    dispatch(setFetchingErrorState(true));
   }
 };
 

@@ -16,19 +16,22 @@ const useGetArticleDataFromServer = (pageNum: number) => {
 
   const headerFilterState = useSelector((state: GlobalStateProps) => state.headerFilterState);
   const homeScreenFilter = useSelector((state: GlobalStateProps) => state.homeScreenFilterState);
+  const fetchErrorState = useSelector((state: GlobalStateProps) => state.fetchingErrorState);
 
   const { headline, date, nation } = headerFilterState.homeScreen;
   const { headlineFilter, dateFilter, nationFilter } = homeScreenFilter;
   const isFilter = headline !== defaultHeadline || date !== defaultDate || nation !== defaultNation;
 
   useEffect(() => {
-    dispatch(setUnderlineLoadingIndicator(true));
-    const option = isFilter
-      ? { pageNum, headlineFilter, dateFilter, nationFilter, dispatch }
-      : { pageNum, dispatch };
+    if (!fetchErrorState) {
+      dispatch(setUnderlineLoadingIndicator(true));
+      const option = isFilter
+        ? { pageNum, headlineFilter, dateFilter, nationFilter, dispatch }
+        : { pageNum, dispatch };
 
-    isFilter ? getFilteredDataFromServer(option) : getArticleDataFromServer(option);
-  }, [pageNum, headline, date, nation]);
+      isFilter ? getFilteredDataFromServer(option) : getArticleDataFromServer(option);
+    }
+  }, [pageNum, headline, date, nation, fetchErrorState]);
 
   return;
 };

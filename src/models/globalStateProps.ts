@@ -12,4 +12,5 @@ export interface GlobalStateProps {
   homeScreenFilterState: FilterStateProps; // 메인 화면 article 필터링 관련 state
   scrapScreenFilterState: FilterStateProps; // 스크랩 화면 article 필터링 관련 state
   isLoadingIndicator: LoadingIndicatorProps; // loadingIndicator on/off 관련 state
+  fetchingErrorState: boolean; // article data fetching 시 error 발생 여부
 }

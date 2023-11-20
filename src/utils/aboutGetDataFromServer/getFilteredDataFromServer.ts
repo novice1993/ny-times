@@ -5,6 +5,7 @@ import {
 } from "../../reducers/client/loadingIndicatorState-Reducer";
 import { transformRawData } from "../aboutOrganizeData/transformRawData";
 import { plusArticleData } from "../../reducers/server/articleDataFromServer-Reducer";
+import { setFetchingErrorState } from "../../reducers/client/fetchingErrorState-Reducer";
 import { getHeadlineQuery } from "../aboutGetUrlQuery/getHeadlineQuery";
 import { getDateQuery } from "../aboutGetUrlQuery/getDateQuery";
 import { getNationQuery } from "../aboutGetUrlQuery/getNationQuery";
@@ -35,9 +36,11 @@ const getFilteredDataFromServer = async (option: FetchingFuncProps) => {
       const rawData = res.data.response.docs;
       dispatch(setTotalLoadingIndicator(false));
       dispatch(setUnderlineLoadingIndicator(false));
+      dispatch(setFetchingErrorState(false));
 
       if (rawData.length === 0) {
-        console.log("there is no article data");
+        pageNum === 0 && dispatch(plusArticleData([]));
+
         // pageNum === 0 이면서 신규 data가 없는 경우
         // pageNum !== 0 이면서 신규 data가 없는 경우
         // → 2가지 경우로 나눠서 분기처리?
@@ -46,7 +49,8 @@ const getFilteredDataFromServer = async (option: FetchingFuncProps) => {
         dispatch(plusArticleData(transformData));
       }
     } catch (error) {
-      console.log(error);
+      console.error(error);
+      dispatch(setFetchingErrorState(true));
     }
   }, API_DELAYTIME);
 };
