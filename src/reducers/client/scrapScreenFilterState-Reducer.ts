@@ -1,10 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = {
+const defaultValue = {
   headlineFilter: "",
   dateFilter: "",
   nationFilter: [] as string[],
 };
+
+const scrapScreenFilter = localStorage.getItem("scrapScreenFilter");
+const initialState = scrapScreenFilter !== null ? JSON.parse(scrapScreenFilter) : defaultValue;
 
 const scrapScreenFilterStateSlice = createSlice({
   name: "scrapScreenFilterStateSlice",
@@ -20,7 +23,7 @@ const scrapScreenFilterStateSlice = createSlice({
       if (!action.payload.isSelect) {
         state.nationFilter.push(action.payload.nation);
       } else {
-        state.nationFilter = state.nationFilter.filter((nation) => {
+        state.nationFilter = state.nationFilter.filter((nation: string) => {
           return nation !== action.payload.nation;
         });
       }

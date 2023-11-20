@@ -1,16 +1,17 @@
+import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
-import styled from "styled-components";
+import { handleAddScrap } from "../../utils/aboutSetScrapList/handleAddScrap";
+import { handleDeleteScrap } from "../../utils/aboutSetScrapList/handleDeleteScrap";
+
 import { ArticleProps } from "../../models/articleProps";
 import { scrapListKeyInLocalStorage } from "../../constants/constatns";
-import { handleAddScrap, handleDeleteScrap } from "../../utils/aboutSetScrap";
 
 import scrap from "../../assets/article-starFill.svg";
 import noScrap from "../../assets/article-star.svg";
 
 const Article = (props: ArticleProps) => {
   const { headline, newspaper, reporter, date, url } = props;
-  const scrapArticles = localStorage.getItem(scrapListKeyInLocalStorage);
 
   const dispatch = useDispatch();
   const [isScrap, setScrap] = useState(false);
@@ -25,13 +26,13 @@ const Article = (props: ArticleProps) => {
 
   // already done scrap check
   useEffect(() => {
+    const scrapArticles = localStorage.getItem(scrapListKeyInLocalStorage);
+
     if (scrapArticles !== null) {
       const scrapList = JSON.parse(scrapArticles);
-      const alreadyScrap = scrapList.some((article: ArticleProps) => {
-        return article.headline === headline;
+      scrapList.forEach((article: ArticleProps) => {
+        article.headline === headline && setScrap(true);
       });
-
-      alreadyScrap && setScrap(true);
     }
   }, []);
 

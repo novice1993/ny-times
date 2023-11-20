@@ -1,8 +1,9 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useInView } from "react-intersection-observer";
+import useGetArticleDataFromServer from "../../hooks/useGetArticleDataFromServer";
+
 import { plusArticlePageNum } from "../../reducers/server/articleDataFromServer-Reducer";
-import getArticleDataFromServer from "../../utils/getArticleDataFromServer";
 
 import { GlobalStateProps } from "../../models/globalStateProps";
 import { ArticleProps } from "../../models/articleProps";
@@ -15,32 +16,27 @@ const ArticleList = () => {
 
   const articleData = useSelector((state: GlobalStateProps) => state.articleDataFromServer);
   const { articleList, pageNum } = articleData;
-
-  // update articleList
-  useEffect(() => {
-    getArticleDataFromServer(pageNum, dispatch);
-  }, [pageNum]);
+  useGetArticleDataFromServer(pageNum);
 
   // plus article pageNum
   useEffect(() => {
-    if (inView) {
-      dispatch(plusArticlePageNum());
-    }
+    inView && dispatch(plusArticlePageNum());
   }, [inView]);
 
   return (
     <ListLayout>
       {articleList.map((article: ArticleProps) => {
-        const { headline, newspaper, reporter, date, url } = article;
+        const { headline, newspaper, reporter, date, url, nation } = article;
 
         return (
           <Article
-            key={headline}
+            key={headline + reporter}
             headline={headline}
             newspaper={newspaper}
             reporter={reporter}
             date={date}
             url={url}
+            nation={nation}
           />
         );
       })}
