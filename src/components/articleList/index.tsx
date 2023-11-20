@@ -1,3 +1,4 @@
+import styled from "styled-components";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useInView } from "react-intersection-observer";
@@ -7,6 +8,8 @@ import { plusArticlePageNum } from "../../reducers/server/articleDataFromServer-
 import { GlobalStateProps } from "../../models/globalStateProps";
 import { ArticleProps } from "../../models/articleProps";
 import { ListLayout } from "../../layout/layout";
+import TotalLoadingIndicator from "../Indicator/TotalLoadingIndicator";
+import UnderlineLoadingIndicator from "../Indicator/UnderlineLoadingIndicator";
 import Article from "../article";
 
 const ArticleList = () => {
@@ -27,7 +30,7 @@ const ArticleList = () => {
   return (
     <ListLayout>
       {isLoadingIndicator.total ? (
-        <div>filter change ...</div>
+        <TotalLoadingIndicator />
       ) : (
         <>
           {articleList.map((article: ArticleProps) => {
@@ -45,9 +48,9 @@ const ArticleList = () => {
               />
             );
           })}
-          <div className="observerTarget" ref={targetRef}>
-            {isLoadingIndicator.underline && <div>loading ...</div>}
-          </div>
+          <ObsererTarget ref={targetRef}>
+            {isLoadingIndicator.underline && <UnderlineLoadingIndicator />}
+          </ObsererTarget>
         </>
       )}
     </ListLayout>
@@ -55,3 +58,10 @@ const ArticleList = () => {
 };
 
 export default ArticleList;
+
+const ObsererTarget = styled.div`
+  padding: 22px 0px 18px 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;

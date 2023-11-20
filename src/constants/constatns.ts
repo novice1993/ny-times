@@ -9,7 +9,7 @@ import noScrapIcon from "../assets/noScrapIndicator-icon.svg";
 // scrap Article Data Key in LocalStroage
 export const scrapListKeyInLocalStorage = "scrapArticles";
 
-export const API_DELAYTIME = 1000;
+export const API_DELAYTIME = 1500;
 
 // header 컴포넌트
 export const headerSearchIcon: string = searchIcon;
@@ -52,3 +52,6 @@ export const nations: string[] = [
   "프랑스",
   "영국",
 ];
+
+// indicator 컴포넌트
+export const loadingIndicatorText = "Loading...";
