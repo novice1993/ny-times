@@ -23,7 +23,7 @@ const scrapScreenFilterStateSlice = createSlice({
       if (!action.payload.isSelect) {
         state.nationFilter.push(action.payload.nation);
       } else {
-        state.nationFilter = state.nationFilter.filter((nation) => {
+        state.nationFilter = state.nationFilter.filter((nation: string) => {
           return nation !== action.payload.nation;
         });
       }
