@@ -31,6 +31,10 @@ export const noScrapIndicatorIcon: string = noScrapIcon;
 export const noScrapMessage: string = "저장된 스크랩이 없습니다.";
 export const goHomeButtonText: string = "스크랩 하러 가기";
 
+// noResultIndicator 컴포넌트
+export const noResultMessage: string = "조건과 일치하는 기사가 없습니다.";
+export const openModalButtonText: string = "조건 다시 설정하기";
+
 // filterModal 컴포넌트
 export const confirmButtonText: string = "필터 적용하기";
 
