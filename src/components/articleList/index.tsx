@@ -18,7 +18,6 @@ const ArticleList = () => {
   const { articleList, pageNum } = articleData;
 
   useGetNofilteringArticleData(pageNum); // fetching all article data
-  useGetFilteringArticleData(pageNum); // fetching filterd article data
 
   // plus article pageNum
   useEffect(() => {
@@ -28,7 +27,7 @@ const ArticleList = () => {
   return (
     <ListLayout>
       {articleList.map((article: ArticleProps) => {
-        const { headline, newspaper, reporter, date, url } = article;
+        const { headline, newspaper, reporter, date, url, nation } = article;
 
         return (
           <Article
@@ -38,6 +37,7 @@ const ArticleList = () => {
             reporter={reporter}
             date={date}
             url={url}
+            nation={nation}
           />
         );
       })}

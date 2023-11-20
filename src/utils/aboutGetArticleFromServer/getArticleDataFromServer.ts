@@ -1,7 +1,7 @@
 import axios from "axios";
-import { transformRawData } from "./transformRawData";
-import { plusArticleData } from "../reducers/server/articleDataFromServer-Reducer";
-import { API_ENDPOINT } from "../constants/apiConstant";
+import { transformRawData } from "../aboutOrganizeData/transformRawData";
+import { plusArticleData } from "../../reducers/server/articleDataFromServer-Reducer";
+import { API_ENDPOINT } from "../../constants/apiConstant";
 
 const getArticleDataFromServer = async (page: number, dispatch: (state: any) => void) => {
   try {
