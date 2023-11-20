@@ -17,6 +17,7 @@ const getArticleDataFromServer = async (option: FetchingFuncProps) => {
     setTimeout(async () => {
       const res = await axios.get(`${API_ENDPOINT}&page=${pageNum}`);
       const rawData = res.data.response.docs;
+
       dispatch(setTotalLoadingIndicator(false));
       dispatch(setUnderlineLoadingIndicator(false));
       dispatch(setFetchingErrorState(false));

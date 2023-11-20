@@ -35,6 +35,7 @@ const getFilteredDataFromServer = async (option: FetchingFuncProps) => {
     try {
       const res = await axios.get(API);
       const rawData = res.data.response.docs;
+
       dispatch(setTotalLoadingIndicator(false));
       dispatch(setUnderlineLoadingIndicator(false));
       dispatch(setFetchingErrorState(false));
