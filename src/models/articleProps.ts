@@ -4,4 +4,5 @@ export interface ArticleProps {
   reporter: string;
   date: string;
   url: string;
+  nation?: string;
 }

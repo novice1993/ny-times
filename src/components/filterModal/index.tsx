@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
+import { storeFilterState } from "../../utils/storeFilterState";
+
 import { homeScreenFilterFunc } from "../../reducers/client/homeScreenFilterState-Rudcer";
 import { scrapScreenFilterFunc } from "../../reducers/client/scrapScreenFilterState-Reducer";
 import { homeScreenHeaderFilterFunc } from "../../reducers/client/headerFilterState-Reducer";
@@ -22,7 +24,7 @@ const FilterModal = ({ type }: { type: string }) => {
   const { headlineFilter, dateFilter, nationFilter } =
     type === "home" ? homeScreenFilter : scrapScreenFilter;
 
-  // set artcile filter keyword
+  // function for setting artcile filtering keyword
   const { setHeadlineFilter, setDateFilter, setNationFilter } =
     type === "home" ? homeScreenFilterFunc : scrapScreenFilterFunc;
 
@@ -36,6 +38,7 @@ const FilterModal = ({ type }: { type: string }) => {
     dispatch(changeHeaderHeadline(headlineFilter));
     dispatch(changeHeadaerDate(dateFilter));
     dispatch(changeHeaderNation(nationFilter));
+    storeFilterState(type, headlineFilter, dateFilter, nationFilter);
   };
 
   return (
