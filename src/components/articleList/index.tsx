@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useInView } from "react-intersection-observer";
-import useGetNofilteringArticleData from "../../hooks/useGetNofilteringArticleData";
-import useGetFilteringArticleData from "../../hooks/useGetFilteringArticleData";
+import useGetArticleDataFromServer from "../../hooks/useGetArticleDataFromServer";
+
 import { plusArticlePageNum } from "../../reducers/server/articleDataFromServer-Reducer";
 
 import { GlobalStateProps } from "../../models/globalStateProps";
@@ -16,8 +16,7 @@ const ArticleList = () => {
 
   const articleData = useSelector((state: GlobalStateProps) => state.articleDataFromServer);
   const { articleList, pageNum } = articleData;
-
-  useGetNofilteringArticleData(pageNum); // fetching all article data
+  useGetArticleDataFromServer(pageNum);
 
   // plus article pageNum
   useEffect(() => {

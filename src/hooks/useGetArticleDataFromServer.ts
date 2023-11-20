@@ -10,8 +10,7 @@ import {
   headerButtonText03 as defaultNation,
 } from "../constants/constatns";
 
-// 함수명 변경 필요
-const useGetNofilteringArticleData = (pageNum: number) => {
+const useGetArticleDataFromServer = (pageNum: number) => {
   const dispatch = useDispatch();
 
   const headerFilterState = useSelector((state: GlobalStateProps) => state.headerFilterState);
@@ -33,4 +32,4 @@ const useGetNofilteringArticleData = (pageNum: number) => {
   return;
 };
 
-export default useGetNofilteringArticleData;
+export default useGetArticleDataFromServer;
