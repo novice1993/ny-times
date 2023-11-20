@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { setFetchingErrorState } from "../../reducers/client/fetchingErrorState-Reducer";
-import { noScrapIndicatorIcon } from "../../constants/constatns";
+import { errorIndicatorIcon } from "../../constants/constatns";
 
 const errorMessage = "기사 목록을 불러올 수 없습니다.";
 const refetchButtonText = "기사 목록 다시 불러오기";
@@ -16,7 +16,7 @@ const ErrorIndicator = () => {
   return (
     <Container>
       <div className="indicator">
-        <img className="iconImg" src={noScrapIndicatorIcon} />
+        <img className="iconImg" src={errorIndicatorIcon} />
         <span className="message">{errorMessage}</span>
       </div>
       <button className="goHomeBtn" onClick={handleRefetchData}>

@@ -6,6 +6,7 @@ import {
 import { transformRawData } from "../aboutOrganizeData/transformRawData";
 import { plusArticleData } from "../../reducers/server/articleDataFromServer-Reducer";
 import { setFetchingErrorState } from "../../reducers/client/fetchingErrorState-Reducer";
+import { setFilterModal } from "../../reducers/client/filterModalState-Reducer";
 import { API_ENDPOINT } from "../../constants/apiConstant";
 import { API_DELAYTIME } from "../../constants/constatns";
 
@@ -25,6 +26,7 @@ const getArticleDataFromServer = async (option: FetchingFuncProps) => {
       } else {
         const transformData = transformRawData(rawData);
         dispatch(plusArticleData(transformData));
+        dispatch(setFilterModal(false));
       }
     }, API_DELAYTIME);
   } catch (error) {

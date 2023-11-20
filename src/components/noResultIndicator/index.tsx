@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { setFilterModal } from "../../reducers/client/filterModalState-Reducer";
-import { noScrapIndicatorIcon } from "../../constants/constatns";
+import { noScrapIndicatorIcon as noResultIndicatorIcon } from "../../constants/constatns";
 import { noResultMessage, openModalButtonText } from "../../constants/constatns";
 
 const NoResultIndicator = () => {
@@ -14,7 +14,7 @@ const NoResultIndicator = () => {
   return (
     <Container>
       <div className="indicator">
-        <img className="iconImg" src={noScrapIndicatorIcon} />
+        <img className="iconImg" src={noResultIndicatorIcon} />
         <span className="message">{noResultMessage}</span>
       </div>
       <button className="openModalBtn" onClick={handleOpenFilterModal}>

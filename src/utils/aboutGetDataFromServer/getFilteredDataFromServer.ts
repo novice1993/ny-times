@@ -6,6 +6,7 @@ import {
 import { transformRawData } from "../aboutOrganizeData/transformRawData";
 import { plusArticleData } from "../../reducers/server/articleDataFromServer-Reducer";
 import { setFetchingErrorState } from "../../reducers/client/fetchingErrorState-Reducer";
+import { setFilterModal } from "../../reducers/client/filterModalState-Reducer";
 import { getHeadlineQuery } from "../aboutGetUrlQuery/getHeadlineQuery";
 import { getDateQuery } from "../aboutGetUrlQuery/getDateQuery";
 import { getNationQuery } from "../aboutGetUrlQuery/getNationQuery";
@@ -51,6 +52,7 @@ const getFilteredDataFromServer = async (option: FetchingFuncProps) => {
     } catch (error) {
       console.error(error);
       dispatch(setFetchingErrorState(true));
+      dispatch(setFilterModal(false));
     }
   }, API_DELAYTIME);
 };
