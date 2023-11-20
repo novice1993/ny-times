@@ -9,6 +9,8 @@ import noScrapIcon from "../assets/noScrapIndicator-icon.svg";
 // scrap Article Data Key in LocalStroage
 export const scrapListKeyInLocalStorage = "scrapArticles";
 
+export const API_DELAYTIME = 1000;
+
 // header 컴포넌트
 export const headerSearchIcon: string = searchIcon;
 export const headerCalendarIcon: string = calendarIcon;

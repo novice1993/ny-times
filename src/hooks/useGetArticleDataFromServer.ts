@@ -1,7 +1,8 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import getArticleDataFromServer from "../utils/aboutGetArticleFromServer/getArticleDataFromServer";
-import getFilteredDataFromServer from "../utils/aboutGetArticleFromServer/getFilteredDataFromServer";
+import getArticleDataFromServer from "../utils/aboutGetDataFromServer/getArticleDataFromServer";
+import getFilteredDataFromServer from "../utils/aboutGetDataFromServer/getFilteredDataFromServer";
+import { setUnderlineLoadingIndicator } from "../reducers/client/loadingIndicatorState-Reducer";
 import { GlobalStateProps } from "../models/globalStateProps";
 
 import {
@@ -18,15 +19,15 @@ const useGetArticleDataFromServer = (pageNum: number) => {
 
   const { headline, date, nation } = headerFilterState.homeScreen;
   const { headlineFilter, dateFilter, nationFilter } = homeScreenFilter;
-
-  const isFiltering =
-    headline !== defaultHeadline || date !== defaultDate || nation !== defaultNation;
-
-  const options = { pageNum, headlineFilter, dateFilter, nationFilter, dispatch };
+  const isFilter = headline !== defaultHeadline || date !== defaultDate || nation !== defaultNation;
 
   useEffect(() => {
-    !isFiltering && getArticleDataFromServer(pageNum, dispatch);
-    isFiltering && getFilteredDataFromServer(options);
+    dispatch(setUnderlineLoadingIndicator(true));
+    const option = isFilter
+      ? { pageNum, headlineFilter, dateFilter, nationFilter, dispatch }
+      : { pageNum, dispatch };
+
+    isFilter ? getFilteredDataFromServer(option) : getArticleDataFromServer(option);
   }, [pageNum, headline, date, nation]);
 
   return;

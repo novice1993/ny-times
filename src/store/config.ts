@@ -5,12 +5,14 @@ import { articleDataFromServerReducer } from "../reducers/server/articleDataFrom
 import { homeScreenFilterStateReducer } from "../reducers/client/homeScreenFilterState-Rudcer";
 import { headerFilterStateReducer } from "../reducers/client/headerFilterState-Reducer";
 import { scrapScreenFilterStateReducer } from "../reducers/client/scrapScreenFilterState-Reducer";
+import { loadingIndicatorReducer } from "../reducers/client/loadingIndicatorState-Reducer";
 
 const store = configureStore({
   reducer: {
     isFilterModal: filterModalReducer,
-    scrapArticles: scrapArticlesReducer,
+    isLoadingIndicator: loadingIndicatorReducer,
     articleDataFromServer: articleDataFromServerReducer,
+    scrapArticles: scrapArticlesReducer,
     homeScreenFilterState: homeScreenFilterStateReducer,
     scrapScreenFilterState: scrapScreenFilterStateReducer,
     headerFilterState: headerFilterStateReducer,

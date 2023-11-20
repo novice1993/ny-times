@@ -1,7 +1,8 @@
+import styled from "styled-components";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import styled from "styled-components";
 import { setArticlePageNum } from "../../reducers/server/articleDataFromServer-Reducer";
+import { setTotalLoadingIndicator } from "../../reducers/client/loadingIndicatorState-Reducer";
 import { GlobalStateProps } from "../../models/globalStateProps";
 import FilterBtn from "./filterBtn";
 import { headerSearchIcon, headerCalendarIcon } from "../../constants/constatns";
@@ -24,6 +25,7 @@ const Header = ({ type }: { type: string }) => {
   // if change HomeScreenPage Filter, reset PageNum
   useEffect(() => {
     dispatch(setArticlePageNum(0));
+    dispatch(setTotalLoadingIndicator(true));
   }, [homeScreenHeadline, homeScreenDate, homeScreenNation]);
 
   return (
