@@ -5,9 +5,23 @@ import homeOffIcon from "../assets/footer-homeOff.svg";
 import scrapOnIcon from "../assets/footer-scrapOn.svg";
 import scrapOffIcon from "../assets/footer-scrapOff.svg";
 import noScrapIcon from "../assets/noScrapIndicator-icon.svg";
+import errorIcon from "../assets/errorIndicator-errorIcon.png";
 
 // scrap Article Data Key in LocalStroage
 export const scrapListKeyInLocalStorage = "scrapArticles";
+
+// about toast message
+export const toastStyle = {
+  position: "top-left",
+  autoClose: 2000,
+  hideProgressBar: false,
+  closeOnClick: true,
+  pauseOnHover: true,
+  draggable: true,
+};
+
+export const addScrapMessage = "기사가 스크랩에 추가되었습니다";
+export const deleteScrapMessage = "기사가 스크랩에서 제거되었습니다";
 
 // header 컴포넌트
 export const headerSearchIcon: string = searchIcon;
@@ -28,6 +42,15 @@ export const footerButtonText02: string = "스크랩";
 export const noScrapIndicatorIcon: string = noScrapIcon;
 export const noScrapMessage: string = "저장된 스크랩이 없습니다.";
 export const goHomeButtonText: string = "스크랩 하러 가기";
+
+// noResultIndicator 컴포넌트
+export const noResultMessage: string = "조건과 일치하는 기사가 없습니다.";
+export const openModalButtonText: string = "조건 다시 설정하기";
+
+// errorIndicator 컴포넌트
+export const errorMessage = "기사 목록을 불러올 수 없습니다.";
+export const refetchButtonText = "기사 목록 다시 불러오기";
+export const errorIndicatorIcon = errorIcon;
 
 // filterModal 컴포넌트
 export const confirmButtonText: string = "필터 적용하기";
@@ -50,3 +73,6 @@ export const nations: string[] = [
   "프랑스",
   "영국",
 ];
+
+// indicator 컴포넌트
+export const loadingIndicatorText = "Loading...";
