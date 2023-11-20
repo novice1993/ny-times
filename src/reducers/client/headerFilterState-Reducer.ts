@@ -1,21 +1,17 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { setHeaderStateInitValue } from "../../utils/setHeaderStateInitValue";
 import {
-  headerButtonText01,
-  headerButtonText02,
-  headerButtonText03,
+  headerButtonText01 as defaultHeadline,
+  headerButtonText02 as defaultDate,
+  headerButtonText03 as defaultNation,
 } from "../../constants/constatns";
 
+const storedHomeFilter = localStorage.getItem("homeScreenFilter");
+const storedScrapFilter = localStorage.getItem("scrapScreenFilter");
+
 const initialState = {
-  homeScreen: {
-    headline: headerButtonText01,
-    date: headerButtonText02,
-    nation: headerButtonText03,
-  },
-  scrapScreen: {
-    headline: headerButtonText01,
-    date: headerButtonText02,
-    nation: headerButtonText03,
-  },
+  homeScreen: setHeaderStateInitValue(storedHomeFilter),
+  scrapScreen: setHeaderStateInitValue(storedScrapFilter),
 };
 
 const headerFilterStateSlice = createSlice({
@@ -24,21 +20,21 @@ const headerFilterStateSlice = createSlice({
   reducers: {
     changeHomeHeaderHeadline: (state, action) => {
       if (action.payload === "") {
-        state.homeScreen.headline = headerButtonText01;
+        state.homeScreen.headline = defaultHeadline;
       } else {
         state.homeScreen.headline = action.payload;
       }
     },
-    chnageHomeHeaderDate: (state, action) => {
+    changeHomeHeaderDate: (state, action) => {
       if (action.payload === "") {
-        state.homeScreen.date = headerButtonText02;
+        state.homeScreen.date = defaultDate;
       } else {
         state.homeScreen.date = action.payload;
       }
     },
     chnageHomeHeaderNation: (state, action) => {
       if (action.payload.length === 0) {
-        state.homeScreen.nation = headerButtonText03;
+        state.homeScreen.nation = defaultNation;
       } else if (action.payload.length === 1) {
         state.homeScreen.nation = action.payload[0];
       } else {
@@ -49,21 +45,21 @@ const headerFilterStateSlice = createSlice({
 
     chnageScrapHeaderHeadline: (state, action) => {
       if (action.payload === "") {
-        state.scrapScreen.headline = headerButtonText01;
+        state.scrapScreen.headline = defaultHeadline;
       } else {
         state.scrapScreen.headline = action.payload;
       }
     },
     chnageScrapHeaderDate: (state, action) => {
       if (action.payload === "") {
-        state.scrapScreen.date = headerButtonText02;
+        state.scrapScreen.date = defaultDate;
       } else {
         state.scrapScreen.date = action.payload;
       }
     },
     chnageScrapHeaderNation: (state, action) => {
       if (action.payload.length === 0) {
-        state.scrapScreen.nation = headerButtonText03;
+        state.scrapScreen.nation = defaultNation;
       } else if (action.payload.length === 1) {
         state.scrapScreen.nation = action.payload[0];
       } else {
@@ -76,7 +72,7 @@ const headerFilterStateSlice = createSlice({
 
 export const {
   changeHomeHeaderHeadline,
-  chnageHomeHeaderDate,
+  changeHomeHeaderDate,
   chnageHomeHeaderNation,
   chnageScrapHeaderHeadline,
   chnageScrapHeaderDate,
@@ -85,7 +81,7 @@ export const {
 
 export const homeScreenHeaderFilterFunc = {
   changeHeaderHeadline: changeHomeHeaderHeadline,
-  changeHeadaerDate: chnageHomeHeaderDate,
+  changeHeadaerDate: changeHomeHeaderDate,
   changeHeaderNation: chnageHomeHeaderNation,
 };
 export const scrapScreenHeaderFilterFun = {

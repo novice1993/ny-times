@@ -1,10 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = {
+// localStorage에 저장까지는 성공
+const defaultValue = {
   headlineFilter: "",
   dateFilter: "",
   nationFilter: [] as string[],
 };
+
+const storedFilterData = localStorage.getItem("homeScreenFilter");
+const initialState = storedFilterData !== null ? JSON.parse(storedFilterData) : defaultValue;
 
 const homeScreenFilterStateSlice = createSlice({
   name: "homeScreenFilterStateSlice",
@@ -20,7 +24,7 @@ const homeScreenFilterStateSlice = createSlice({
       if (!action.payload.isSelect) {
         state.nationFilter.push(action.payload.nation);
       } else {
-        state.nationFilter = state.nationFilter.filter((nation) => {
+        state.nationFilter = state.nationFilter.filter((nation: string) => {
           return nation !== action.payload.nation;
         });
       }
