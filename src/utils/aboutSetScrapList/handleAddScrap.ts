@@ -2,14 +2,17 @@ import { setScrapArticles } from "../../reducers/client/scrapedArticles-Reducer"
 import { storeInLocalStorage } from "./storeInLocalStorage";
 import { scrapListKeyInLocalStorage } from "../../constants/constatns";
 import { ArticleProps } from "../../models/articleProps";
+import { toast } from "react-toastify";
+import { toastStyle, addScrapMessage } from "../../constants/constatns";
 
 export const handleAddScrap = (
   props: ArticleProps,
   setScrap: (boolean: boolean) => void,
   dispatch: (func: any) => void
 ) => {
-  const scrapArticles = localStorage.getItem(scrapListKeyInLocalStorage);
+  toast.success(addScrapMessage, toastStyle as any);
 
+  const scrapArticles = localStorage.getItem(scrapListKeyInLocalStorage);
   const articleInfo = [
     {
       headline: props.headline,

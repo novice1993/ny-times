@@ -10,7 +10,18 @@ import errorIcon from "../assets/errorIndicator-errorIcon.png";
 // scrap Article Data Key in LocalStroage
 export const scrapListKeyInLocalStorage = "scrapArticles";
 
-export const API_DELAYTIME = 1500;
+// about toast message
+export const toastStyle = {
+  position: "top-left",
+  autoClose: 2000,
+  hideProgressBar: false,
+  closeOnClick: true,
+  pauseOnHover: true,
+  draggable: true,
+};
+
+export const addScrapMessage = "기사가 스크랩에 추가되었습니다";
+export const deleteScrapMessage = "기사가 스크랩에서 제거되었습니다";
 
 // header 컴포넌트
 export const headerSearchIcon: string = searchIcon;

@@ -12,7 +12,7 @@ import { getDateQuery } from "../aboutGetUrlQuery/getDateQuery";
 import { getNationQuery } from "../aboutGetUrlQuery/getNationQuery";
 
 import { API_ENDPOINT } from "../../constants/apiConstant";
-import { API_DELAYTIME } from "../../constants/constatns";
+import { API_DELAYTIME } from "../../constants/apiConstant";
 
 const getFilteredDataFromServer = async (option: FetchingFuncProps) => {
   const { pageNum, headlineFilter, dateFilter, nationFilter, dispatch } = option;
@@ -41,10 +41,6 @@ const getFilteredDataFromServer = async (option: FetchingFuncProps) => {
 
       if (rawData.length === 0) {
         pageNum === 0 && dispatch(plusArticleData([]));
-
-        // pageNum === 0 이면서 신규 data가 없는 경우
-        // pageNum !== 0 이면서 신규 data가 없는 경우
-        // → 2가지 경우로 나눠서 분기처리?
       } else {
         const transformData = transformRawData(rawData);
         dispatch(plusArticleData(transformData));

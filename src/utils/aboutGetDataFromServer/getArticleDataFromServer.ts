@@ -8,7 +8,7 @@ import { plusArticleData } from "../../reducers/server/articleDataFromServer-Red
 import { setFetchingErrorState } from "../../reducers/client/fetchingErrorState-Reducer";
 import { setFilterModal } from "../../reducers/client/filterModalState-Reducer";
 import { API_ENDPOINT } from "../../constants/apiConstant";
-import { API_DELAYTIME } from "../../constants/constatns";
+import { API_DELAYTIME } from "../../constants/apiConstant";
 
 const getArticleDataFromServer = async (option: FetchingFuncProps) => {
   const { pageNum, dispatch } = option;
