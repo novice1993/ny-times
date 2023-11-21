@@ -6,11 +6,11 @@ import { ListLayout } from "../../layout/layout";
 import Article from "../article";
 
 const ScrapList = () => {
-  const scrapArticles = useSelector((state: GlobalStateProps) => state.scrapArticles);
+  const scrapList = useSelector((state: GlobalStateProps) => state.scrapList.filteredList);
 
   return (
     <ListLayout>
-      {scrapArticles.map((article: ArticleProps) => {
+      {scrapList.map((article: ArticleProps) => {
         const { headline, newspaper, reporter, date, url } = article;
 
         return (

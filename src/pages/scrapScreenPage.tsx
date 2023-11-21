@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import useFilteringScrapList from "../hooks/useFilteringScrapList";
 import { GlobalStateProps } from "../models/globalStateProps";
-import { scrapListKeyInLocalStorage } from "../constants/constatns";
 
 import { PageLayout } from "../layout/layout";
 import Header from "../components/header";
@@ -16,31 +15,20 @@ const ScrapScreenPage = () => {
   const [isScrap, setScrap] = useState(false);
   const [noResult, setNoResult] = useState(false);
 
+  const scrapList = useSelector((state: GlobalStateProps) => state.scrapList);
   const isFilterModal = useSelector((state: GlobalStateProps) => state.isFilterModal);
-  const scrapArticles = useSelector((state: GlobalStateProps) => state.scrapArticles);
   const headerFilterState = useSelector((state: GlobalStateProps) => state.headerFilterState);
+
+  const { filteredList, originList } = scrapList;
   const { headline, date, nation } = headerFilterState.scrapScreen;
 
   useEffect(() => {
-    if (scrapArticles === null) {
-      setScrap(false);
-      setNoResult(false);
-      return;
-    }
+    const existScrap = originList.length !== 0 ? true : false;
+    const existFilteredScrap = filteredList.length !== 0 ? true : false;
 
-    if (scrapArticles.length !== 0) {
-      setScrap(true);
-      setNoResult(false);
-    } else {
-      const scrapList = localStorage.getItem(scrapListKeyInLocalStorage);
-
-      scrapList === null
-        ? setScrap(false)
-        : scrapList.length === 0
-        ? setScrap(false)
-        : setNoResult(true); // exist scrapList, but don't match with filter
-    }
-  }, [scrapArticles]);
+    setScrap(existScrap && existFilteredScrap);
+    setNoResult(existScrap && !existFilteredScrap);
+  }, [filteredList]);
 
   return (
     <PageLayout>

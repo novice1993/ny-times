@@ -1,27 +1,36 @@
+import { setFilterdScrapList } from "../../reducers/scrapList-Reducer";
 import { getHeadlinFilteringArticle } from "./getHeadlineFilterArticle";
 import { getDateFilteringArticle } from "./getDateFilteringArticle";
 import { getNationFilteringArticle } from "./getNationFilterArticle";
-import { setScrapArticles } from "../../reducers/scrapedArticles-Reducer";
 import { ArticleProps } from "../../models/articleProps";
 
 export const filteringScrapList = (option: OwnProps) => {
   const { originScrapList, headlineFilter, dateFilter, nationFilter, dispatch } = option;
 
   let filteredList = [...originScrapList];
+  const existHeadline = headlineFilter !== "" ? true : false;
+  const existDate = dateFilter !== "" ? true : false;
+  const existNation = nationFilter.length !== 0 ? true : false;
+  const noFilter = !existHeadline && !existDate && !existNation;
 
-  if (headlineFilter !== "") {
-    filteredList = getHeadlinFilteringArticle(filteredList, headlineFilter);
+  if (noFilter) {
+    dispatch(setFilterdScrapList(filteredList));
+    return;
   }
 
-  if (dateFilter !== "") {
-    filteredList = getDateFilteringArticle(filteredList, dateFilter);
+  switch (true) {
+    case existHeadline:
+      filteredList = getHeadlinFilteringArticle(filteredList, headlineFilter);
+      break;
+    case existDate:
+      filteredList = getDateFilteringArticle(filteredList, dateFilter);
+      break;
+    case existNation:
+      filteredList = getNationFilteringArticle(filteredList, nationFilter);
+      break;
   }
 
-  if (nationFilter.length !== 0) {
-    filteredList = getNationFilteringArticle(filteredList, nationFilter);
-  }
-
-  dispatch(setScrapArticles(filteredList));
+  dispatch(setFilterdScrapList(filteredList));
 };
 
 interface OwnProps {

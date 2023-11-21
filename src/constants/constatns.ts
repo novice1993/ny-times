@@ -1,5 +1,7 @@
 import searchIcon from "../assets/header-searchIcon.svg";
+import searchIcon02 from "../assets/header-searchIcon02.svg";
 import calendarIcon from "../assets/header-calendarIcon.svg";
+import calendarIcon02 from "../assets/header-calendarIcon02.svg";
 import homeOnIcon from "../assets/footer-homeOn.svg";
 import homeOffIcon from "../assets/footer-homeOff.svg";
 import scrapOnIcon from "../assets/footer-scrapOn.svg";
@@ -29,6 +31,8 @@ export const deleteScrapMessage = "기사가 스크랩에서 제거되었습니�
 // header 컴포넌트
 export const headerSearchIcon: string = searchIcon;
 export const headerCalendarIcon: string = calendarIcon;
+export const headerFilterdSearchIcon: string = searchIcon02;
+export const headerFilterdCalendarIcon: string = calendarIcon02;
 export const headerButtonText01: string = "전체 헤드라인";
 export const headerButtonText02: string = "전체 날짜";
 export const headerButtonText03: string = "전체 국가";
@@ -52,7 +56,7 @@ export const openModalButtonText: string = "조건 다시 설정하기";
 
 // errorIndicator 컴포넌트
 export const errorMessage = "기사 목록을 불러올 수 없습니다.";
-export const refetchButtonText = "기사 목록 다시 불러오기";
+export const refetchButtonText = "페이지 새로고침";
 export const errorIndicatorIcon = errorIcon;
 
 // filterModal 컴포넌트

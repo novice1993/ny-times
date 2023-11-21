@@ -2,7 +2,6 @@ import axios from "axios";
 import store from "../store/config";
 import { transformRawData } from "../utils/aboutOrganizeData/transformRawData";
 import { getHeadlineQuery, getDateQuery, getNationQuery } from "./aboutGetUrlQuery";
-
 import { API_ENDPOINT } from "../constants/apiConstant";
 
 const getArticleData = async (pageNum: number) => {
@@ -23,9 +22,11 @@ const getArticleData = async (pageNum: number) => {
     const res = await axios.get(API);
     const rawData = res.data.response.docs;
     const articleInfo = transformRawData(rawData);
+
     return articleInfo;
   } catch (error) {
     console.error(error);
+    throw error;
   }
 };
 

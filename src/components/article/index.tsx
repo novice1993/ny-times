@@ -1,10 +1,9 @@
 import styled from "styled-components";
-import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { handleAddScrap, handleDeleteScrap } from "../../utils/aboutSetScrapList";
-
+import { GlobalStateProps } from "../../models/globalStateProps";
 import { ArticleProps } from "../../models/articleProps";
-import { scrapListKeyInLocalStorage } from "../../constants/constatns";
 
 import scrap from "../../assets/article-starFill.svg";
 import noScrap from "../../assets/article-star.svg";
@@ -14,29 +13,27 @@ const Article = (props: ArticleProps) => {
 
   const dispatch = useDispatch();
   const [isScrap, setScrap] = useState(false);
+  const originScrapList = useSelector((state: GlobalStateProps) => state.scrapList.originList);
 
-  const handleRedirect = (url: string) => {
+  const handleClickStarBtn = () => {
+    isScrap
+      ? handleDeleteScrap(headline, setScrap, dispatch)
+      : handleAddScrap(props, setScrap, dispatch);
+  };
+
+  const handleRedirectToUrl = (url: string) => {
     window.location.href = url;
   };
 
-  const handleClickStarBtn = isScrap
-    ? () => handleDeleteScrap(headline, setScrap, dispatch)
-    : () => handleAddScrap(props, setScrap, dispatch);
-
   // already done scrap check
   useEffect(() => {
-    const scrapArticles = localStorage.getItem(scrapListKeyInLocalStorage);
-    const scrapList = scrapArticles !== null ? JSON.parse(scrapArticles) : [];
-
-    scrapList.forEach((article: ArticleProps) => {
-      article.headline === headline && setScrap(true);
-    });
+    originScrapList.some((article) => article.headline === headline) && setScrap(true);
   }, []);
 
   return (
     <Container>
       <div className="firstLine">
-        <div className="headline" onClick={() => handleRedirect(url)}>
+        <div className="headline" onClick={() => handleRedirectToUrl(url)}>
           {headline}
         </div>
         <img className="scrapBtn" src={isScrap ? scrap : noScrap} onClick={handleClickStarBtn} />
