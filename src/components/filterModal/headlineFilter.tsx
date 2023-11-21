@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { FilterSetProps } from "../../models/flterProps";
 import { headLineFilterTitle, headLineFilterInputText } from "../../constants/constatns";
+import { mediaQuery } from "../../style/mediaQuery";
 
 const HeadlineFilter = (props: FilterSetProps) => {
   const { filterState, filterStateFunc, dispatch } = props;
@@ -30,7 +31,6 @@ export default HeadlineFilter;
 const Container = styled.div`
   width: 100%;
   max-width: 295px;
-  /* width: 295px; */
   height: 76px;
 
   display: flex;
@@ -45,6 +45,10 @@ const Container = styled.div`
     font-weight: 600;
     line-height: 24px;
     letter-spacing: -0.8px;
+
+    ${mediaQuery.maxWidth310} {
+      font-size: 14px;
+    }
   }
 
   .inputBox {
@@ -68,6 +72,10 @@ const Container = styled.div`
 
     &::placeholder {
       color: #c4c4c4;
+
+      ${mediaQuery.maxWidth310} {
+        font-size: 12px;
+      }
     }
 
     &:focus {

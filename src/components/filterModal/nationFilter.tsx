@@ -2,6 +2,7 @@ import styled from "styled-components";
 import NationBtn from "./nationBtn";
 import { FilterSetProps } from "../../models/flterProps";
 import { nationFilterTitle, nations } from "../../constants/constatns";
+import { mediaQuery } from "../../style/mediaQuery";
 
 const NationFilter = (props: FilterSetProps) => {
   const { filterState, filterStateFunc, dispatch } = props;
@@ -43,11 +44,19 @@ const Container = styled.div`
     font-weight: 600;
     line-height: 24px;
     letter-spacing: -0.8px;
+
+    ${mediaQuery.maxWidth310} {
+      font-size: 14px;
+    }
   }
 
   .nationList {
     display: flex;
     flex-wrap: wrap;
     gap: 6px;
+
+    ${mediaQuery.maxWidth310} {
+      justify-content: center;
+    }
   }
 `;
