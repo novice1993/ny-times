@@ -8,6 +8,7 @@ import store from "./store/config.ts";
 import { REACTQUERY_STALETIME } from "./constants/constatns.ts";
 import "./index.css";
 
+const persistor = persistStore(store);
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -15,7 +16,6 @@ const queryClient = new QueryClient({
     },
   },
 });
-const persistor = persistStore(store);
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <QueryClientProvider client={queryClient}>

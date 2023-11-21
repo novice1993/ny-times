@@ -1,10 +1,9 @@
 import styled from "styled-components";
-import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { handleAddScrap, handleDeleteScrap } from "../../utils/aboutSetScrapList";
-
+import { GlobalStateProps } from "../../models/globalStateProps";
 import { ArticleProps } from "../../models/articleProps";
-import { scrapListKeyInLocalStorage } from "../../constants/constatns";
 
 import scrap from "../../assets/article-starFill.svg";
 import noScrap from "../../assets/article-star.svg";
@@ -14,29 +13,27 @@ const Article = (props: ArticleProps) => {
 
   const dispatch = useDispatch();
   const [isScrap, setScrap] = useState(false);
+  const originScrapList = useSelector((state: GlobalStateProps) => state.scrapList.originList);
 
-  const handleRedirect = (url: string) => {
+  const handleClickStarBtn = () => {
+    isScrap
+      ? handleDeleteScrap(headline, setScrap, dispatch)
+      : handleAddScrap(props, setScrap, dispatch);
+  };
+
+  const handleRedirectToUrl = (url: string) => {
     window.location.href = url;
   };
 
-  const handleClickStarBtn = isScrap
-    ? () => handleDeleteScrap(headline, setScrap, dispatch)
-    : () => handleAddScrap(props, setScrap, dispatch);
-
   // already done scrap check
   useEffect(() => {
-    const scrapArticles = localStorage.getItem(scrapListKeyInLocalStorage);
-    const scrapList = scrapArticles !== null ? JSON.parse(scrapArticles) : [];
-
-    scrapList.forEach((article: ArticleProps) => {
-      article.headline === headline && setScrap(true);
-    });
+    originScrapList.some((article) => article.headline === headline) && setScrap(true);
   }, []);
 
   return (
     <Container>
       <div className="firstLine">
-        <div className="headline" onClick={() => handleRedirect(url)}>
+        <div className="headline" onClick={() => handleRedirectToUrl(url)}>
           {headline}
         </div>
         <img className="scrapBtn" src={isScrap ? scrap : noScrap} onClick={handleClickStarBtn} />
@@ -55,7 +52,8 @@ const Article = (props: ArticleProps) => {
 export default Article;
 
 const Container = styled.section`
-  width: 335px;
+  width: 100%;
+  /* width: 335px; */
   height: 104px;
   padding: 10px 20px 10px 20px;
 
@@ -67,6 +65,7 @@ const Container = styled.section`
   gap: 8px;
 
   .firstLine {
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
@@ -76,7 +75,8 @@ const Container = styled.section`
     }
 
     .headline {
-      width: 260px;
+      width: 70%;
+      /* width: 260px; */
       height: 56px;
       flex-shrink: 0;
       color: #000;
@@ -101,6 +101,7 @@ const Container = styled.section`
   }
 
   .secondLine {
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
@@ -118,6 +119,7 @@ const Container = styled.section`
     letter-spacing: -0.65px;
 
     .reporter {
+      /* width: 26%; */
       width: 100px;
       overflow: hidden;
       display: -webkit-box;

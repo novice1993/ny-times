@@ -1,18 +1,23 @@
 import styled from "styled-components";
+import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { setFilterModal } from "../../reducers/filterModalState-Reducer";
 
 const FilterBtn = (props: HeaderProps) => {
-  const iconImg = props.iconImg;
-  const buttonText = props.buttonText;
+  const { iconImg, buttonText, defalutValue } = props;
+  const [isFiltered, setFiltered] = useState(false);
 
   const dispatch = useDispatch();
   const handleOpenFilterModal = () => {
     dispatch(setFilterModal(true));
   };
 
+  useEffect(() => {
+    buttonText !== defalutValue ? setFiltered(true) : setFiltered(false);
+  }, [buttonText]);
+
   return (
-    <Button onClick={handleOpenFilterModal}>
+    <Button onClick={handleOpenFilterModal} isFiltered={isFiltered}>
       {iconImg && <img src={iconImg} />}
       <div className="buttonText">{buttonText}</div>
     </Button>
@@ -24,21 +29,23 @@ export default FilterBtn;
 interface HeaderProps {
   iconImg?: string;
   buttonText: string;
+  defalutValue: string;
 }
 
-const Button = styled.button`
-  max-width: 119px;
+const Button = styled.button<{ isFiltered: boolean }>`
+  width: 35%;
+  max-width: fit-content;
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 4px;
 
   padding: 6px 12px 4px 12px;
-  border: 1px solid #c4c4c4;
+  border: ${(props) => (props.isFiltered ? "1px solid #82B0F4" : "1px solid #c4c4c4")};
   border-radius: 30px;
 
   background-color: transparent;
-  color: #6d6d6d;
+  color: ${(props) => (props.isFiltered ? "#82B0F4" : "#6d6d6d")};
   text-align: right;
   font-size: 14px;
   font-style: normal;

@@ -10,11 +10,11 @@ const NoScrapIndicator = () => {
         <img className="iconImg" src={noScrapIndicatorIcon} />
         <span className="message">{noScrapMessage}</span>
       </div>
-      <Link to="/">
+      <StyledLink to="/">
         <button className="goHomeBtn">
           <div className="buttonText">{goHomeButtonText}</div>
         </button>
-      </Link>
+      </StyledLink>
     </Container>
   );
 };
@@ -22,7 +22,7 @@ const NoScrapIndicator = () => {
 export default NoScrapIndicator;
 
 const Container = styled.div`
-  height: 100vh;
+  height: 100%;
   background-color: #f0f1f4;
   display: flex;
   flex-direction: column;
@@ -54,7 +54,8 @@ const Container = styled.div`
   }
 
   .goHomeBtn {
-    width: 295px;
+    width: 80%;
+    max-width: 295px;
     height: 60px;
     flex-shrink: 0;
     border: none;
@@ -71,4 +72,11 @@ const Container = styled.div`
       letter-spacing: -0.8px;
     }
   }
+`;
+
+const StyledLink = styled(Link)`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  text-decoration: none;
 `;
