@@ -52,7 +52,7 @@ const Container = styled.footer`
   width: 100%;
   max-width: 560px;
   max-height: 85px;
-  padding: 20px 20% 20px 20%;
+  padding: 20px 80px 20px 80px;
   border-radius: 30px;
   background: #000;
 

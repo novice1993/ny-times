@@ -41,7 +41,7 @@ const FilterModal = ({ type }: { type: string }) => {
 export default FilterModal;
 
 const Background = styled.div`
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
@@ -54,7 +54,8 @@ const Background = styled.div`
   align-items: center;
 
   .container {
-    width: 335px;
+    width: 90%;
+    max-width: 335px;
     height: 480px;
     padding: 20px;
     border-radius: 16px;
@@ -62,12 +63,13 @@ const Background = styled.div`
 
     display: inline-flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     gap: 40px;
   }
 
   .confirmBtn {
-    width: 295px;
+    width: 80%;
+    max-width: 295px;
     height: 60px;
     border: none;
     border-radius: 16px;

@@ -27,6 +27,7 @@ const NoResultIndicator = () => {
 export default NoResultIndicator;
 
 const Container = styled.div`
+  width: 100%;
   height: 100%;
   background-color: #f0f1f4;
   display: flex;
@@ -59,7 +60,8 @@ const Container = styled.div`
   }
 
   .openModalBtn {
-    width: 295px;
+    width: 80%;
+    max-width: 295px;
     height: 60px;
     flex-shrink: 0;
     border: none;

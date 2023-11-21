@@ -67,6 +67,7 @@ export const headLineFilterInputText: string = "검색하실 헤드라인을 입
 
 export const dateFilterTitle: string = "날짜";
 export const dateFilterInputText: string = "날짜를 입력해주세요";
+export const dateResetText: string = "✔️ 달력 아이콘을 누르면 날짜가 초기화됩니다";
 export const dateFilterIconImg: string = calendarIcon;
 
 export const nationFilterTitle: string = "국가";

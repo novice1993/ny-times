@@ -28,7 +28,9 @@ const HeadlineFilter = (props: FilterSetProps) => {
 export default HeadlineFilter;
 
 const Container = styled.div`
-  width: 295px;
+  width: 100%;
+  max-width: 295px;
+  /* width: 295px; */
   height: 76px;
 
   display: flex;
@@ -46,7 +48,8 @@ const Container = styled.div`
   }
 
   .inputBox {
-    width: 295px;
+    width: 100%;
+    max-width: 295px;
     display: flex;
     align-items: center;
     padding: 10px 20px;
