@@ -25,14 +25,17 @@ interface HeaderProps {
 const Container = styled.header`
   position: fixed;
   top: 0;
-  width: 375px;
-  height: 60px;
+  /* width: 375px; */
+  width: 100%;
+  max-width: 560px;
+  max-height: 60px;
   padding: 13px 0px 13px 20px;
 
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  gap: 7px;
+  gap: 2%;
+  /* gap: 7px; */
 
   background-color: rgba(255, 255, 255, 1);
   border-bottom: 1px solid #c4c4c4;

@@ -22,6 +22,12 @@ const ScrapScreenPage = () => {
   const { headline, date, nation } = headerFilterState.scrapScreen;
 
   useEffect(() => {
+    if (scrapArticles === null) {
+      setScrap(false);
+      setNoResult(false);
+      return;
+    }
+
     if (scrapArticles.length !== 0) {
       setScrap(true);
       setNoResult(false);
