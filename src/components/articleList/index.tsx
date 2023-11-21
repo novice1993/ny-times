@@ -1,67 +1,75 @@
 import styled from "styled-components";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useInView } from "react-intersection-observer";
 
 import { GlobalStateProps } from "../../models/globalStateProps";
 import { ArticleProps } from "../../models/articleProps";
+
 import { ListLayout } from "../../layout/layout";
-// import NoResultIndicator from "../noResultIndicator";
-
-import UnderlineLoadingIndicator from "../loadingIndicator/UnderlineLoadingIndicator";
 import Article from "../article";
+import NoResultIndicator from "../noResultIndicator";
+import UnderlineLoadingIndicator from "../loadingIndicator/UnderlineLoadingIndicator";
 
-interface OwnProps {
-  articleData: any;
-  hasNextPage: boolean | undefined;
-  fetchNextPage: () => void;
-}
-
-const ArticleList = ({ articleData, hasNextPage, fetchNextPage }: OwnProps) => {
-  // const dispatch = useDispatch();
-  // const [noResult, setNoResult] = useState(false);
+const ArticleList = ({ articleData, hasNextPage, fetchNextPage }: ArticleListProps) => {
   const [targetRef, inView] = useInView();
+  const [existArticle, setExistArticle] = useState(false);
   const isLoadingIndicator = useSelector((state: GlobalStateProps) => state.isLoadingIndicator);
 
   useEffect(() => {
-    if (inView && hasNextPage) {
-      fetchNextPage();
-    }
+    inView && hasNextPage && fetchNextPage();
   }, [inView]);
+
+  // check article search result
+  useEffect(() => {
+    if (articleData) {
+      const isExist = articleData.pages[0].length === 0 ? false : true;
+      setExistArticle(isExist);
+    }
+  }, [articleData]);
 
   if (articleData !== undefined) {
     const articleList = articleData.pages.flat();
 
-    return (
-      <ListLayout>
-        {articleList.map((article: ArticleProps, idx: number) => {
-          if (!article) {
-            return null;
-          }
+    if (!existArticle) {
+      return <NoResultIndicator />;
+    } else {
+      return (
+        <ListLayout>
+          {articleList.map((article: ArticleProps) => {
+            if (!article) {
+              return null;
+            }
+            const { headline, newspaper, reporter, date, url, nation } = article;
 
-          const { headline, newspaper, reporter, date, url, nation } = article;
-
-          return (
-            <Article
-              key={headline + reporter + idx}
-              headline={headline}
-              newspaper={newspaper}
-              reporter={reporter}
-              date={date}
-              url={url}
-              nation={nation}
-            />
-          );
-        })}
-        <ObsererTarget ref={targetRef}>
-          {isLoadingIndicator.underline && <UnderlineLoadingIndicator />}
-        </ObsererTarget>
-      </ListLayout>
-    );
+            return (
+              <Article
+                key={headline + reporter}
+                headline={headline}
+                newspaper={newspaper}
+                reporter={reporter}
+                date={date}
+                url={url}
+                nation={nation}
+              />
+            );
+          })}
+          <ObsererTarget ref={targetRef}>
+            {isLoadingIndicator.underline && <UnderlineLoadingIndicator />}
+          </ObsererTarget>
+        </ListLayout>
+      );
+    }
   }
 };
 
 export default ArticleList;
+
+interface ArticleListProps {
+  articleData: any;
+  hasNextPage: boolean | undefined;
+  fetchNextPage: () => void;
+}
 
 const ObsererTarget = styled.div`
   padding: 22px 0px 18px 0px;

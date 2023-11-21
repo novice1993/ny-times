@@ -26,8 +26,3 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
     </Provider>
   </QueryClientProvider>
 );
-
-//
-
-const homeScreenFilter = store.getState().homeScreenFilterState;
-console.log(homeScreenFilter.dateFilter);

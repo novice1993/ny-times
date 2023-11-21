@@ -7,11 +7,13 @@ const useGetArticleData = () => {
   const headerFilterState = useSelector((state: GlobalStateProps) => state.headerFilterState);
   const { headline, date, nation } = headerFilterState.homeScreen;
 
-  const { data, isLoading, isError, hasNextPage, fetchNextPage } = useInfiniteQuery<any, Error>({
+  const { data, status, hasNextPage, fetchNextPage } = useInfiniteQuery<any, Error>({
     queryKey: [`${headline}${date}${nation}`],
     queryFn: ({ pageParam = 0 }) => getArticleData(pageParam),
     getNextPageParam: (lastPage, allPages) => {
-      return lastPage.length === 0 ? undefined : allPages.length;
+      if (lastPage !== undefined) {
+        return lastPage.length === 0 ? undefined : allPages.length;
+      }
     },
     refetchOnWindowFocus: false,
     refetchOnMount: false,
@@ -19,8 +21,7 @@ const useGetArticleData = () => {
 
   return {
     articleData: data,
-    isLoading,
-    isError,
+    status,
     hasNextPage,
     fetchNextPage,
   };

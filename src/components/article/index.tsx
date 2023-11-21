@@ -1,8 +1,7 @@
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
-import { handleAddScrap } from "../../utils/aboutSetScrapList/handleAddScrap";
-import { handleDeleteScrap } from "../../utils/aboutSetScrapList/handleDeleteScrap";
+import { handleAddScrap, handleDeleteScrap } from "../../utils/aboutSetScrapList";
 
 import { ArticleProps } from "../../models/articleProps";
 import { scrapListKeyInLocalStorage } from "../../constants/constatns";

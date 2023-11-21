@@ -9,7 +9,6 @@ import { homeScreenFilterStateReducer } from "../reducers/homeScreenFilterState-
 import { headerFilterStateReducer } from "../reducers/headerFilterState-Reducer";
 import { scrapScreenFilterStateReducer } from "../reducers/scrapScreenFilterState-Reducer";
 import { loadingIndicatorReducer } from "../reducers/loadingIndicatorState-Reducer";
-import { fetchingErrorStateReducer } from "../reducers/fetchingErrorState-Reducer";
 
 const reducers = combineReducers({
   isFilterModal: filterModalReducer,
@@ -18,7 +17,6 @@ const reducers = combineReducers({
   homeScreenFilterState: homeScreenFilterStateReducer,
   scrapScreenFilterState: scrapScreenFilterStateReducer,
   headerFilterState: headerFilterStateReducer,
-  fetchingErrorState: fetchingErrorStateReducer,
 });
 
 const persistConfig = {

@@ -9,25 +9,20 @@ import ErrorIndicator from "../components/errorIndicator";
 import ArticleList from "../components/articleList";
 import FilterModal from "../components/filterModal";
 
-// test
-// import useGetArticleData from "../hooks/useGetArticleData";
-
 const HomeSreenPage = () => {
   const isFilterModal = useSelector((state: GlobalStateProps) => state.isFilterModal);
-  // const fetchErrorState = useSelector((state: GlobalStateProps) => state.fetchingErrorState);
-
-  const { articleData, isLoading, isError, hasNextPage, fetchNextPage } = useGetArticleData();
+  const { articleData, status, hasNextPage, fetchNextPage } = useGetArticleData();
 
   return (
     <PageLayout>
-      {isLoading ? (
-        <>
-          <Header type="home" />
-          <TotalLoadingIndicator />
-        </>
+      <Header type="home" />
+
+      {status === "loading" ? (
+        <TotalLoadingIndicator />
+      ) : status === "error" ? (
+        <ErrorIndicator />
       ) : (
         <>
-          <Header type="home" />
           <ArticleList
             articleData={articleData}
             hasNextPage={hasNextPage}

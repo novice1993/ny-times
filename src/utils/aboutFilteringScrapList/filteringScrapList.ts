@@ -4,54 +4,30 @@ import { getNationFilteringArticle } from "./getNationFilterArticle";
 import { setScrapArticles } from "../../reducers/scrapedArticles-Reducer";
 import { ArticleProps } from "../../models/articleProps";
 
-export const filteringScrapList = (
-  originList: ArticleProps[],
-  headlineFilter: string,
-  dateFilter: string,
-  nationFilter: string[],
-  dispatch: (func: any) => void
-) => {
+export const filteringScrapList = (props: OwnProps) => {
+  const { originList, headlineFilter, dateFilter, nationFilter, dispatch } = props;
+
+  let filteredList = [...originList];
+
   if (headlineFilter !== "") {
-    const headlineFiltedList = getHeadlinFilteringArticle(originList, headlineFilter);
-
-    if (dateFilter !== "") {
-      const dateFilterdList = getDateFilteringArticle(headlineFiltedList, dateFilter);
-
-      // headline + date + nation
-      if (nationFilter.length !== 0) {
-        const nationFilterdList = getNationFilteringArticle(dateFilterdList, nationFilter);
-        dispatch(setScrapArticles(nationFilterdList));
-      } else {
-        // headline + date
-        dispatch(setScrapArticles(dateFilterdList));
-      }
-    } else {
-      // headine + nation
-      if (nationFilter.length !== 0) {
-        const nationFilterdList = getNationFilteringArticle(headlineFiltedList, nationFilter);
-        dispatch(setScrapArticles(nationFilterdList));
-
-        // only headline
-      } else {
-        dispatch(setScrapArticles(headlineFiltedList));
-      }
-    }
-  } else if (dateFilter !== "") {
-    const dateFiltedList = getDateFilteringArticle(originList, dateFilter);
-
-    // date + nation
-    if (nationFilter.length !== 0) {
-      const nationFilterdList = getNationFilteringArticle(dateFiltedList, nationFilter);
-      dispatch(setScrapArticles(nationFilterdList));
-
-      // only date
-    } else {
-      dispatch(setScrapArticles(dateFiltedList));
-    }
-
-    // only nation
-  } else if (nationFilter.length !== 0) {
-    const nationFilterdList = getNationFilteringArticle(originList, nationFilter);
-    dispatch(setScrapArticles(nationFilterdList));
+    filteredList = getHeadlinFilteringArticle(filteredList, headlineFilter);
   }
+
+  if (dateFilter !== "") {
+    filteredList = getDateFilteringArticle(filteredList, dateFilter);
+  }
+
+  if (nationFilter.length !== 0) {
+    filteredList = getNationFilteringArticle(filteredList, nationFilter);
+  }
+
+  dispatch(setScrapArticles(filteredList));
 };
+
+interface OwnProps {
+  originList: ArticleProps[];
+  headlineFilter: string;
+  dateFilter: string;
+  nationFilter: string[];
+  dispatch: (func: any) => void;
+}
