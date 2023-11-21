@@ -7,14 +7,14 @@ const FilterBtn = (props: HeaderProps) => {
   const { iconImg, buttonText, defalutValue } = props;
   const [isFiltered, setFiltered] = useState(false);
 
-  useEffect(() => {
-    buttonText !== defalutValue ? setFiltered(true) : setFiltered(false);
-  }, [buttonText]);
-
   const dispatch = useDispatch();
   const handleOpenFilterModal = () => {
     dispatch(setFilterModal(true));
   };
+
+  useEffect(() => {
+    buttonText !== defalutValue ? setFiltered(true) : setFiltered(false);
+  }, [buttonText]);
 
   return (
     <Button onClick={handleOpenFilterModal} isFiltered={isFiltered}>
