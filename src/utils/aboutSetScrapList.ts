@@ -1,8 +1,7 @@
-import { setScrapArticles } from "../reducers/scrapedArticles-Reducer";
-import { scrapListKeyInLocalStorage } from "../constants/constatns";
-import { ArticleProps } from "../models/articleProps";
 import { toast } from "react-toastify";
+import { addOringScrapList, deleteOriginScrapList } from "../reducers/scrapList-Reducer";
 import { toastStyle, addScrapMessage, deleteScrapMessage } from "../constants/constatns";
+import { ArticleProps } from "../models/articleProps";
 
 // add scrapList function
 export const handleAddScrap = (
@@ -10,8 +9,6 @@ export const handleAddScrap = (
   setScrap: (boolean: boolean) => void,
   dispatch: (func: any) => void
 ) => {
-  toast.success(addScrapMessage, toastStyle as any);
-  const scrapArticles = localStorage.getItem(scrapListKeyInLocalStorage);
   const articleInfo = [
     {
       headline: props.headline,
@@ -23,16 +20,9 @@ export const handleAddScrap = (
     },
   ];
 
-  if (scrapArticles === null) {
-    storeInLocalStorage(articleInfo);
-    dispatch(setScrapArticles(articleInfo));
-  } else {
-    const scrapList = JSON.parse(scrapArticles);
-    const newScrapList = [...scrapList, ...articleInfo];
-    storeInLocalStorage(newScrapList);
-    dispatch(setScrapArticles(newScrapList));
-  }
   setScrap(true);
+  dispatch(addOringScrapList(articleInfo));
+  toast.success(addScrapMessage, toastStyle as any);
 };
 
 // delete scrapList function
@@ -41,32 +31,7 @@ export const handleDeleteScrap = (
   setScrap: (boolean: boolean) => void,
   dispatch: (func: any) => void
 ) => {
+  setScrap(false);
+  dispatch(deleteOriginScrapList(deleteArticleHeadline));
   toast.info(deleteScrapMessage, toastStyle as any);
-
-  const scrapArticles = localStorage.getItem(scrapListKeyInLocalStorage);
-
-  if (scrapArticles !== null) {
-    const scrapList = JSON.parse(scrapArticles);
-    const newScrapList = scrapList.filter((article: ArticleProps) => {
-      if (article.headline !== deleteArticleHeadline) {
-        return article;
-      }
-    });
-
-    if (newScrapList.length === 0) {
-      localStorage.removeItem(scrapListKeyInLocalStorage);
-      dispatch(setScrapArticles([]));
-    } else {
-      storeInLocalStorage(newScrapList);
-      dispatch(setScrapArticles(newScrapList));
-    }
-
-    setScrap(false);
-  }
-};
-
-// store scrapList in localStorage
-const storeInLocalStorage = (data: any) => {
-  const scrapData = JSON.stringify(data);
-  localStorage.setItem(scrapListKeyInLocalStorage, scrapData);
 };

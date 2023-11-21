@@ -4,14 +4,14 @@ import storage from "redux-persist/lib/storage";
 import { persistReducer } from "redux-persist";
 
 import { filterModalReducer } from "../reducers/filterModalState-Reducer";
-import { scrapArticlesReducer } from "../reducers/scrapedArticles-Reducer";
+import { scrapListReducer } from "../reducers/scrapList-Reducer";
 import { homeScreenFilterStateReducer } from "../reducers/homeScreenFilterState-Rudcer";
 import { headerFilterStateReducer } from "../reducers/headerFilterState-Reducer";
 import { scrapScreenFilterStateReducer } from "../reducers/scrapScreenFilterState-Reducer";
 
 const reducers = combineReducers({
   isFilterModal: filterModalReducer,
-  scrapArticles: scrapArticlesReducer,
+  scrapList: scrapListReducer,
   homeScreenFilterState: homeScreenFilterStateReducer,
   scrapScreenFilterState: scrapScreenFilterStateReducer,
   headerFilterState: headerFilterStateReducer,
@@ -20,7 +20,7 @@ const reducers = combineReducers({
 const persistConfig = {
   key: "root",
   storage,
-  whiteList: ["homeScreenFilterState", "scrapScreenFilterState", "headerFilterState"],
+  whiteList: ["scrapList", "homeScreenFilterState", "scrapScreenFilterState", "headerFilterState"],
 };
 
 const persistedReducer = persistReducer(persistConfig, reducers);
