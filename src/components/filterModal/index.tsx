@@ -1,42 +1,23 @@
 import styled from "styled-components";
-import { useSelector, useDispatch } from "react-redux";
-
-import { homeScreenFilterFunc } from "../../reducers/homeScreenFilterState-Rudcer";
-import { scrapScreenFilterFunc } from "../../reducers/scrapScreenFilterState-Reducer";
-import { homeScreenHeaderFilterFunc } from "../../reducers/headerFilterState-Reducer";
-import { scrapScreenHeaderFilterFun } from "../../reducers/headerFilterState-Reducer";
-import { GlobalStateProps } from "../../models/globalStateProps";
+import { useDispatch } from "react-redux";
+import useSetFilterState from "../../hooks/useSetFilterState";
 
 import HeadlineFilter from "./headlineFilter";
 import DateFilter from "./dateFilter";
 import NationFilter from "./nationFilter";
 import { setFilterModal } from "../../reducers/filterModalState-Reducer";
-
 import { confirmButtonText } from "../../constants/constatns";
 
 const FilterModal = ({ type }: { type: string }) => {
   const dispatch = useDispatch();
-  const homeScreenFilter = useSelector((state: GlobalStateProps) => state.homeScreenFilterState);
-  const scrapScreenFilter = useSelector((state: GlobalStateProps) => state.scrapScreenFilterState);
+  const { filterState, filterSetFunc, setHeaderState } = useSetFilterState(type);
 
-  // article filtering keyword (headline, date, nation)
-  const { headlineFilter, dateFilter, nationFilter } =
-    type === "home" ? homeScreenFilter : scrapScreenFilter;
+  const { headlineFilter, dateFilter, nationFilter } = filterState;
+  const { setHeadline, setDate, setNation } = filterSetFunc;
 
-  // function for setting artcile filtering keyword
-  const { setHeadlineFilter, setDateFilter, setNationFilter } =
-    type === "home" ? homeScreenFilterFunc : scrapScreenFilterFunc;
-
-  // set header filter text (headline, date, nation)
-  const { changeHeaderHeadline, changeHeadaerDate, changeHeaderNation } =
-    type === "home" ? homeScreenHeaderFilterFunc : scrapScreenHeaderFilterFun;
-
-  const handleCloseFilterModal = () => {
+  const handleClickModalBtn = () => {
     dispatch(setFilterModal(false));
-
-    dispatch(changeHeaderHeadline(headlineFilter));
-    dispatch(changeHeadaerDate(dateFilter));
-    dispatch(changeHeaderNation(nationFilter));
+    setHeaderState();
   };
 
   return (
@@ -44,16 +25,12 @@ const FilterModal = ({ type }: { type: string }) => {
       <div className="container">
         <HeadlineFilter
           filterState={headlineFilter}
-          filterStateFunc={setHeadlineFilter}
+          filterStateFunc={setHeadline}
           dispatch={dispatch}
         />
-        <DateFilter filterState={dateFilter} filterStateFunc={setDateFilter} dispatch={dispatch} />
-        <NationFilter
-          filterState={nationFilter}
-          filterStateFunc={setNationFilter}
-          dispatch={dispatch}
-        />
-        <button className="confirmBtn" onClick={handleCloseFilterModal}>
+        <DateFilter filterState={dateFilter} filterStateFunc={setDate} dispatch={dispatch} />
+        <NationFilter filterState={nationFilter} filterStateFunc={setNation} dispatch={dispatch} />
+        <button className="confirmBtn" onClick={handleClickModalBtn}>
           <div className="buttonText">{confirmButtonText}</div>
         </button>
       </div>

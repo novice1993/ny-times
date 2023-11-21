@@ -4,10 +4,10 @@ import { getNationFilteringArticle } from "./getNationFilterArticle";
 import { setScrapArticles } from "../../reducers/scrapedArticles-Reducer";
 import { ArticleProps } from "../../models/articleProps";
 
-export const filteringScrapList = (props: OwnProps) => {
-  const { originList, headlineFilter, dateFilter, nationFilter, dispatch } = props;
+export const filteringScrapList = (option: OwnProps) => {
+  const { originScrapList, headlineFilter, dateFilter, nationFilter, dispatch } = option;
 
-  let filteredList = [...originList];
+  let filteredList = [...originScrapList];
 
   if (headlineFilter !== "") {
     filteredList = getHeadlinFilteringArticle(filteredList, headlineFilter);
@@ -25,7 +25,7 @@ export const filteringScrapList = (props: OwnProps) => {
 };
 
 interface OwnProps {
-  originList: ArticleProps[];
+  originScrapList: ArticleProps[];
   headlineFilter: string;
   dateFilter: string;
   nationFilter: string[];

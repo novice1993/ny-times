@@ -65,6 +65,7 @@ export const handleDeleteScrap = (
   }
 };
 
+// store scrapList in localStorage
 const storeInLocalStorage = (data: any) => {
   const scrapData = JSON.stringify(data);
   localStorage.setItem(scrapListKeyInLocalStorage, scrapData);

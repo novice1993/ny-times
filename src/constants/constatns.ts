@@ -10,6 +10,9 @@ import errorIcon from "../assets/errorIndicator-errorIcon.png";
 // scrap Article Data Key in LocalStroage
 export const scrapListKeyInLocalStorage = "scrapArticles";
 
+// staleTime option
+export const REACTQUERY_STALETIME = 1000 * 60 * 30;
+
 // about toast message
 export const toastStyle = {
   position: "top-left",
@@ -74,86 +77,5 @@ export const nations: string[] = [
   "영국",
 ];
 
-// indicator 컴포넌트
+// loadingIndicator 컴포넌트
 export const loadingIndicatorText = "Loading...";
-
-// article dummy data
-export const dummyArticle = [
-  {
-    headline: "'한동훈 독직폭행' 정진웅∙∙∙ 검찰, 항소심서도 징역 1년 구형",
-    newspaper: "중앙일보",
-    reporter: "이정확",
-    date: "2021.3.15. (목)",
-    url: "",
-  },
-  {
-    headline: "'한동훈 독직폭행' 정진웅∙∙∙ 검찰, 항소심서도 징역 1년 구형",
-    newspaper: "중앙일보",
-    reporter: "이정확",
-    date: "2021.3.15. (목)",
-    url: "",
-  },
-  {
-    headline: "'한동훈 독직폭행' 정진웅∙∙∙ 검찰, 항소심서도 징역 1년 구형",
-    newspaper: "중앙일보",
-    reporter: "이정확",
-    date: "2021.3.15. (목)",
-    url: "",
-  },
-  {
-    headline: "'한동훈 독직폭행' 정진웅∙∙∙ 검찰, 항소심서도 징역 1년 구형",
-    newspaper: "중앙일보",
-    reporter: "이정확",
-    date: "2021.3.15. (목)",
-    url: "",
-  },
-  {
-    headline: "'한동훈 독직폭행' 정진웅∙∙∙ 검찰, 항소심서도 징역 1년 구형",
-    newspaper: "중앙일보",
-    reporter: "이정확",
-    date: "2021.3.15. (목)",
-    url: "",
-  },
-  {
-    headline: "'한동훈 독직폭행' 정진웅∙∙∙ 검찰, 항소심서도 징역 1년 구형",
-    newspaper: "중앙일보",
-    reporter: "이정확",
-    date: "2021.3.15. (목)",
-    url: "",
-  },
-  {
-    headline: "'한동훈 독직폭행' 정진웅∙∙∙ 검찰, 항소심서도 징역 1년 구형",
-    newspaper: "중앙일보",
-    reporter: "이정확",
-    date: "2021.3.15. (목)",
-    url: "",
-  },
-  {
-    headline: "'한동훈 독직폭행' 정진웅∙∙∙ 검찰, 항소심서도 징역 1년 구형",
-    newspaper: "중앙일보",
-    reporter: "이정확",
-    date: "2021.3.15. (목)",
-    url: "",
-  },
-  {
-    headline: "'한동훈 독직폭행' 정진웅∙∙∙ 검찰, 항소심서도 징역 1년 구형",
-    newspaper: "중앙일보",
-    reporter: "이정확",
-    date: "2021.3.15. (목)",
-    url: "",
-  },
-  {
-    headline: "'한동훈 독직폭행' 정진웅∙∙∙ 검찰, 항소심서도 징역 1년 구형",
-    newspaper: "중앙일보",
-    reporter: "이정확",
-    date: "2021.3.15. (목)",
-    url: "",
-  },
-  {
-    headline: "'한동훈 독직폭행' 정진웅∙∙∙ 검찰, 항소심서도 징역 1년 구형",
-    newspaper: "중앙일보",
-    reporter: "이정확",
-    date: "2021.3.15. (목)",
-    url: "",
-  },
-];

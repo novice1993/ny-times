@@ -25,10 +25,10 @@ const useFilteringScrapList = () => {
 
   useEffect(() => {
     const originScrapList = JSON.parse(localStorage.getItem(scrapListKeyInLocalStorage) as string);
+    const option = { originScrapList, headlineFilter, dateFilter, nationFilter, dispatch };
 
     !isFiltering && dispatch(setScrapArticles(originScrapList));
-    isFiltering &&
-      filteringScrapList(originScrapList, headlineFilter, dateFilter, nationFilter, dispatch);
+    isFiltering && filteringScrapList(option);
   }, [headline, date, nation]);
 
   return;

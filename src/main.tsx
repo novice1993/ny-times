@@ -5,13 +5,13 @@ import persistStore from "redux-persist/es/persistStore";
 import { PersistGate } from "redux-persist/integration/react";
 import { QueryClient, QueryClientProvider } from "react-query";
 import store from "./store/config.ts";
+import { REACTQUERY_STALETIME } from "./constants/constatns.ts";
 import "./index.css";
 
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      staleTime: 1000 * 60 * 30,
-      cacheTime: 1000 * 60 * 30,
+      staleTime: REACTQUERY_STALETIME,
     },
   },
 });

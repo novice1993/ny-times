@@ -1,5 +1,6 @@
 import { changeNationFormat } from "./aboutOrganizeData/changeNationFormat";
 
+// headline Query
 export const getHeadlineQuery = (headlineFilter: string) => {
   if (headlineFilter === "") {
     return headlineFilter;
@@ -8,6 +9,7 @@ export const getHeadlineQuery = (headlineFilter: string) => {
   }
 };
 
+// date Query
 export const getDateQuery = (dateFilter: string) => {
   if (dateFilter === "") {
     return dateFilter;
@@ -17,6 +19,7 @@ export const getDateQuery = (dateFilter: string) => {
   }
 };
 
+// nation Query
 export const getNationQuery = (nationFilter: string[]) => {
   if (nationFilter.length === 0) {
     return "";

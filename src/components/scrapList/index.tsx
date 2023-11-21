@@ -1,9 +1,9 @@
 import { useSelector } from "react-redux";
-
 import { GlobalStateProps } from "../../models/globalStateProps";
+import { ArticleProps } from "../../models/articleProps";
+
 import { ListLayout } from "../../layout/layout";
 import Article from "../article";
-import { ArticleProps } from "../../models/articleProps";
 
 const ScrapList = () => {
   const scrapArticles = useSelector((state: GlobalStateProps) => state.scrapArticles);

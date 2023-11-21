@@ -12,11 +12,14 @@ import ScrapList from "../components/scrapList";
 import FilterModal from "../components/filterModal";
 
 const ScrapScreenPage = () => {
+  useFilteringScrapList();
   const [isScrap, setScrap] = useState(false);
   const [noResult, setNoResult] = useState(false);
+
   const isFilterModal = useSelector((state: GlobalStateProps) => state.isFilterModal);
   const scrapArticles = useSelector((state: GlobalStateProps) => state.scrapArticles);
-  useFilteringScrapList();
+  const headerFilterState = useSelector((state: GlobalStateProps) => state.headerFilterState);
+  const { headline, date, nation } = headerFilterState.scrapScreen;
 
   useEffect(() => {
     if (scrapArticles.length !== 0) {
@@ -33,29 +36,13 @@ const ScrapScreenPage = () => {
     }
   }, [scrapArticles]);
 
-  if (noResult) {
-    return (
-      <PageLayout>
-        <Header type="scrap" />
-        <NoResultIndicator />
-        {isFilterModal && <FilterModal type="scrap" />}
-      </PageLayout>
-    );
-  } else {
-    return (
-      <PageLayout>
-        {isScrap ? (
-          <>
-            <Header type="scrap" />
-            <ScrapList />
-            {isFilterModal && <FilterModal type="scrap" />}
-          </>
-        ) : (
-          <NoScrapIndicator />
-        )}
-      </PageLayout>
-    );
-  }
+  return (
+    <PageLayout>
+      {(noResult || isScrap) && <Header headline={headline} date={date} nation={nation} />}
+      {noResult ? <NoResultIndicator /> : isScrap ? <ScrapList /> : <NoScrapIndicator />}
+      {isFilterModal && <FilterModal type="scrap" />}
+    </PageLayout>
+  );
 };
 
 export default ScrapScreenPage;

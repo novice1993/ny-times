@@ -9,19 +9,15 @@ const getArticleData = async (pageNum: number) => {
   const headerFilterState = store.getState().homeScreenFilterState;
   const { headlineFilter, dateFilter, nationFilter } = headerFilterState;
 
+  // Url Queries
   const headlineQuery = getHeadlineQuery(headlineFilter as string);
   const dateQuery = getDateQuery(dateFilter as string);
   const nationQuery = getNationQuery(nationFilter as string[]);
-  let API = `${API_ENDPOINT}&page=${pageNum}${dateQuery}`;
 
   // API change by Query state
-  if (headlineQuery !== "") {
-    nationQuery !== ""
-      ? (API = `${API}&fq=${headlineQuery}%20AND%20${nationQuery}`)
-      : (API = `${API}&fq=${headlineQuery}`);
-  } else {
-    nationQuery !== "" ? (API = `${API}&fq=${nationQuery}`) : null;
-  }
+  let API = `${API_ENDPOINT}&page=${pageNum}${dateQuery}`;
+  API += headlineQuery !== "" ? `&fq=${headlineQuery}` : "";
+  API += nationQuery !== "" ? `${headlineQuery !== "" ? "%20AND%20" : "&fq="}${nationQuery}` : "";
 
   try {
     const res = await axios.get(API);

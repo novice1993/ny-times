@@ -10,27 +10,25 @@ import ArticleList from "../components/articleList";
 import FilterModal from "../components/filterModal";
 
 const HomeSreenPage = () => {
-  const isFilterModal = useSelector((state: GlobalStateProps) => state.isFilterModal);
   const { articleData, status, hasNextPage, fetchNextPage } = useGetArticleData();
+
+  const isFilterModal = useSelector((state: GlobalStateProps) => state.isFilterModal);
+  const headerFilterState = useSelector((state: GlobalStateProps) => state.headerFilterState);
+  const { headline, date, nation } = headerFilterState.homeScreen;
 
   return (
     <PageLayout>
-      <Header type="home" />
-
-      {status === "loading" ? (
-        <TotalLoadingIndicator />
-      ) : status === "error" ? (
-        <ErrorIndicator />
-      ) : (
-        <>
-          <ArticleList
-            articleData={articleData}
-            hasNextPage={hasNextPage}
-            fetchNextPage={fetchNextPage}
-          />
-          {isFilterModal && <FilterModal type="home" />}
-        </>
+      <Header headline={headline} date={date} nation={nation} />
+      {status === "loading" && <TotalLoadingIndicator />}
+      {status === "error" && <ErrorIndicator />}
+      {status === "success" && (
+        <ArticleList
+          articleData={articleData}
+          hasNextPage={hasNextPage}
+          fetchNextPage={fetchNextPage}
+        />
       )}
+      {isFilterModal && <FilterModal type="home" />}
     </PageLayout>
   );
 };

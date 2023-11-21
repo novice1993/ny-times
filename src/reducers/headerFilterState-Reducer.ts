@@ -21,52 +21,45 @@ const headerFilterStateSlice = createSlice({
   initialState: initialState,
   reducers: {
     changeHomeHeaderHeadline: (state, action) => {
-      if (action.payload === "") {
-        state.homeScreen.headline = defaultHeadline;
-      } else {
-        state.homeScreen.headline = action.payload;
-      }
+      state.homeScreen.headline = action.payload === "" ? defaultHeadline : action.payload;
     },
     changeHomeHeaderDate: (state, action) => {
-      if (action.payload === "") {
-        state.homeScreen.date = defaultDate;
-      } else {
-        state.homeScreen.date = action.payload;
-      }
+      state.homeScreen.date = action.payload === "" ? defaultDate : action.payload;
     },
     chnageHomeHeaderNation: (state, action) => {
-      if (action.payload.length === 0) {
-        state.homeScreen.nation = defaultNation;
-      } else if (action.payload.length === 1) {
-        state.homeScreen.nation = action.payload[0];
-      } else {
-        const remainNum = action.payload.length - 1;
-        state.homeScreen.nation = `${action.payload[0]} 외 ${remainNum}개`;
+      const { payload } = action;
+
+      switch (payload.length) {
+        case 0:
+          state.homeScreen.nation = defaultNation;
+          break;
+        case 1:
+          state.homeScreen.nation = payload[0];
+          break;
+        default:
+          state.homeScreen.nation = `${payload[0]} 외 ${payload.length - 1}개`;
+          break;
       }
     },
-
     chnageScrapHeaderHeadline: (state, action) => {
-      if (action.payload === "") {
-        state.scrapScreen.headline = defaultHeadline;
-      } else {
-        state.scrapScreen.headline = action.payload;
-      }
+      state.scrapScreen.headline = action.payload === "" ? defaultHeadline : action.payload;
     },
     chnageScrapHeaderDate: (state, action) => {
-      if (action.payload === "") {
-        state.scrapScreen.date = defaultDate;
-      } else {
-        state.scrapScreen.date = action.payload;
-      }
+      state.scrapScreen.date = action.payload === "" ? defaultDate : action.payload;
     },
     chnageScrapHeaderNation: (state, action) => {
-      if (action.payload.length === 0) {
-        state.scrapScreen.nation = defaultNation;
-      } else if (action.payload.length === 1) {
-        state.scrapScreen.nation = action.payload[0];
-      } else {
-        const remainNum = action.payload.length - 1;
-        state.scrapScreen.nation = `${action.payload[0]} 외 ${remainNum}개`;
+      const { payload } = action;
+
+      switch (payload.length) {
+        case 0:
+          state.scrapScreen.nation = defaultNation;
+          break;
+        case 1:
+          state.scrapScreen.nation = payload[0];
+          break;
+        default:
+          state.scrapScreen.nation = `${payload[0]} 외 ${payload.length - 1}개`;
+          break;
       }
     },
   },

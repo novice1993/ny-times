@@ -17,12 +17,14 @@ const scrapScreenFilterStateSlice = createSlice({
       state.dateFilter = action.payload;
     },
     setNationFilter: (state, action) => {
-      if (!action.payload.isSelect) {
-        state.nationFilter.push(action.payload.nation);
+      const { isSelect, nation } = action.payload;
+
+      if (!isSelect) {
+        state.nationFilter.push(nation);
       } else {
-        state.nationFilter = state.nationFilter.filter((nation: string) => {
-          return nation !== action.payload.nation;
-        });
+        state.nationFilter = state.nationFilter.filter(
+          (selectedNation: string) => selectedNation !== nation
+        );
       }
     },
   },
