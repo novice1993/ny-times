@@ -3,7 +3,8 @@ import styled from "styled-components";
 // HomeScreen, ScrapScreen 페이지 레이이웃
 export const PageLayout = styled.div`
   position: relative;
-  width: 375px;
+  width: 100%;
+  /* width: 375px; */
   height: 100%;
   max-width: 560px;
 `;
@@ -22,5 +23,6 @@ export const ListLayout = styled.div`
 
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 8px;
 `;

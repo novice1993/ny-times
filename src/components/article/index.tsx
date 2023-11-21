@@ -55,7 +55,8 @@ const Article = (props: ArticleProps) => {
 export default Article;
 
 const Container = styled.section`
-  width: 335px;
+  width: 100%;
+  /* width: 335px; */
   height: 104px;
   padding: 10px 20px 10px 20px;
 
@@ -67,6 +68,7 @@ const Container = styled.section`
   gap: 8px;
 
   .firstLine {
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
@@ -76,7 +78,8 @@ const Container = styled.section`
     }
 
     .headline {
-      width: 260px;
+      width: 70%;
+      /* width: 260px; */
       height: 56px;
       flex-shrink: 0;
       color: #000;
@@ -101,6 +104,7 @@ const Container = styled.section`
   }
 
   .secondLine {
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
@@ -118,6 +122,7 @@ const Container = styled.section`
     letter-spacing: -0.65px;
 
     .reporter {
+      /* width: 26%; */
       width: 100px;
       overflow: hidden;
       display: -webkit-box;

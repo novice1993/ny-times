@@ -27,7 +27,8 @@ interface HeaderProps {
 }
 
 const Button = styled.button`
-  max-width: 119px;
+  width: 35%;
+  max-width: fit-content;
   display: flex;
   justify-content: center;
   align-items: center;
