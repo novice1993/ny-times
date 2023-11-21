@@ -28,7 +28,7 @@ const NationFilter = (props: FilterSetProps) => {
 export default NationFilter;
 
 const Container = styled.div`
-  width: 295px;
+  max-width: 295px;
   height: 108px;
 
   display: flex;

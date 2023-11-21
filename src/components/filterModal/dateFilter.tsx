@@ -1,14 +1,21 @@
 import styled from "styled-components";
 import Calendar from "./calendar";
 import { FilterSetProps } from "../../models/flterProps";
-import { dateFilterTitle, dateFilterIconImg } from "../../constants/constatns";
+import { dateFilterTitle, dateResetText, dateFilterIconImg } from "../../constants/constatns";
 
 const DateFilter = (props: FilterSetProps) => {
   const { filterState, filterStateFunc, dispatch } = props;
 
+  const handleRestDate = () => {
+    dispatch(filterStateFunc(""));
+  };
+
   return (
     <Container>
-      <div className="title">{dateFilterTitle}</div>
+      <div className="title">
+        <span>{dateFilterTitle}</span>
+        <span className="guideText">{dateResetText}</span>
+      </div>
       <div className="inputBox">
         <label>
           <Calendar
@@ -17,7 +24,7 @@ const DateFilter = (props: FilterSetProps) => {
             dispatch={dispatch}
           />
         </label>
-        <img src={dateFilterIconImg} />
+        <img src={dateFilterIconImg} onClick={handleRestDate} />
       </div>
     </Container>
   );
@@ -26,7 +33,8 @@ const DateFilter = (props: FilterSetProps) => {
 export default DateFilter;
 
 const Container = styled.div`
-  width: 295px;
+  width: 100%;
+  max-width: 295px;
   height: 76px;
 
   display: flex;
@@ -41,12 +49,23 @@ const Container = styled.div`
     font-weight: 600;
     line-height: 24px;
     letter-spacing: -0.8px;
+
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+
+  .guideText {
+    font-size: 11px;
+    color: #9999;
   }
 
   .inputBox {
-    display: flex;
-    width: 295px;
+    width: 100%;
+    max-width: 295px;
     padding: 10px 20px;
+    display: flex;
     justify-content: space-between;
     align-items: center;
     border-radius: 8px;
@@ -62,6 +81,7 @@ const Container = styled.div`
   }
 
   & input {
+    width: 100%;
     font-size: 14px;
     font-style: normal;
     font-weight: 400;

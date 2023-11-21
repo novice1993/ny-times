@@ -59,7 +59,8 @@ const Container = styled.div`
   }
 
   .pageReloadBtn {
-    width: 295px;
+    width: 80%;
+    max-width: 295px;
     height: 60px;
     flex-shrink: 0;
     border: none;
