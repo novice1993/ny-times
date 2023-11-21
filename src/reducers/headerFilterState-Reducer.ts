@@ -3,7 +3,7 @@ import {
   headerButtonText01 as defaultHeadline,
   headerButtonText02 as defaultDate,
   headerButtonText03 as defaultNation,
-} from "../../constants/constatns";
+} from "../constants/constatns";
 
 const defaultValue = {
   headline: defaultHeadline,

@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { setScrapArticles } from "../reducers/client/scrapedArticles-Reducer";
+import { setScrapArticles } from "../reducers/scrapedArticles-Reducer";
 import { filteringScrapList } from "../utils/aboutFilteringScrapList/filteringScrapList";
 import { GlobalStateProps } from "../models/globalStateProps";
 

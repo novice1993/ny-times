@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
-import { setFetchingErrorState } from "../../reducers/client/fetchingErrorState-Reducer";
+import { setFetchingErrorState } from "../../reducers/fetchingErrorState-Reducer";
 import { errorIndicatorIcon } from "../../constants/constatns";
 
 const errorMessage = "기사 목록을 불러올 수 없습니다.";

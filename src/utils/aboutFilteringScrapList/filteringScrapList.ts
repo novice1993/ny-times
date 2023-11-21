@@ -1,7 +1,7 @@
 import { getHeadlinFilteringArticle } from "./getHeadlineFilterArticle";
 import { getDateFilteringArticle } from "./getDateFilteringArticle";
 import { getNationFilteringArticle } from "./getNationFilterArticle";
-import { setScrapArticles } from "../../reducers/client/scrapedArticles-Reducer";
+import { setScrapArticles } from "../../reducers/scrapedArticles-Reducer";
 import { ArticleProps } from "../../models/articleProps";
 
 export const filteringScrapList = (
@@ -14,7 +14,6 @@ export const filteringScrapList = (
   if (headlineFilter !== "") {
     const headlineFiltedList = getHeadlinFilteringArticle(originList, headlineFilter);
 
-    // headline + date
     if (dateFilter !== "") {
       const dateFilterdList = getDateFilteringArticle(headlineFiltedList, dateFilter);
 

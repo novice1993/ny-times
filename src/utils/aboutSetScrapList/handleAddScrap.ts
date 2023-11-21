@@ -1,4 +1,4 @@
-import { setScrapArticles } from "../../reducers/client/scrapedArticles-Reducer";
+import { setScrapArticles } from "../../reducers/scrapedArticles-Reducer";
 import { storeInLocalStorage } from "./storeInLocalStorage";
 import { scrapListKeyInLocalStorage } from "../../constants/constatns";
 import { ArticleProps } from "../../models/articleProps";

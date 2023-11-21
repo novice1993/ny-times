@@ -1,16 +1,16 @@
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 
-import { homeScreenFilterFunc } from "../../reducers/client/homeScreenFilterState-Rudcer";
-import { scrapScreenFilterFunc } from "../../reducers/client/scrapScreenFilterState-Reducer";
-import { homeScreenHeaderFilterFunc } from "../../reducers/client/headerFilterState-Reducer";
-import { scrapScreenHeaderFilterFun } from "../../reducers/client/headerFilterState-Reducer";
+import { homeScreenFilterFunc } from "../../reducers/homeScreenFilterState-Rudcer";
+import { scrapScreenFilterFunc } from "../../reducers/scrapScreenFilterState-Reducer";
+import { homeScreenHeaderFilterFunc } from "../../reducers/headerFilterState-Reducer";
+import { scrapScreenHeaderFilterFun } from "../../reducers/headerFilterState-Reducer";
 import { GlobalStateProps } from "../../models/globalStateProps";
 
 import HeadlineFilter from "./headlineFilter";
 import DateFilter from "./dateFilter";
 import NationFilter from "./nationFilter";
-import { setFilterModal } from "../../reducers/client/filterModalState-Reducer";
+import { setFilterModal } from "../../reducers/filterModalState-Reducer";
 
 import { confirmButtonText } from "../../constants/constatns";
 

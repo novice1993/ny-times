@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
-import { setFilterModal } from "../../reducers/client/filterModalState-Reducer";
+import { setFilterModal } from "../../reducers/filterModalState-Reducer";
 import { noScrapIndicatorIcon as noResultIndicatorIcon } from "../../constants/constatns";
 import { noResultMessage, openModalButtonText } from "../../constants/constatns";
 
