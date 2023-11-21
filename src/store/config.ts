@@ -8,11 +8,9 @@ import { scrapArticlesReducer } from "../reducers/scrapedArticles-Reducer";
 import { homeScreenFilterStateReducer } from "../reducers/homeScreenFilterState-Rudcer";
 import { headerFilterStateReducer } from "../reducers/headerFilterState-Reducer";
 import { scrapScreenFilterStateReducer } from "../reducers/scrapScreenFilterState-Reducer";
-import { loadingIndicatorReducer } from "../reducers/loadingIndicatorState-Reducer";
 
 const reducers = combineReducers({
   isFilterModal: filterModalReducer,
-  isLoadingIndicator: loadingIndicatorReducer,
   scrapArticles: scrapArticlesReducer,
   homeScreenFilterState: homeScreenFilterStateReducer,
   scrapScreenFilterState: scrapScreenFilterStateReducer,
