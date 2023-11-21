@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { setFilterModal } from "../../reducers/filterModalState-Reducer";
+import { mediaQuery } from "../../style/mediaQuery";
 
 const FilterBtn = (props: HeaderProps) => {
   const { iconImg, buttonText, defalutValue } = props;
@@ -52,6 +53,18 @@ const Button = styled.button<{ isFiltered: boolean }>`
   font-weight: 400;
   line-height: 24px;
   letter-spacing: -0.56px;
+
+  ${mediaQuery.maxWidth370} {
+    font-size: 12px;
+  }
+
+  ${mediaQuery.maxWidth330} {
+    font-size: 10px;
+  }
+
+  ${mediaQuery.maxWidth310} {
+    padding: 3px 9px 1px 9px;
+  }
 
   .buttonText {
     overflow: hidden;

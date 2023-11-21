@@ -23,10 +23,16 @@ export const toastStyle = {
   closeOnClick: true,
   pauseOnHover: true,
   draggable: true,
+  style: {
+    maxWidth: "200px",
+    width: "100%",
+    fontSize: "12px",
+    fontWeight: "lighter",
+  },
 };
 
-export const addScrapMessage = "기사가 스크랩에 추가되었습니다";
-export const deleteScrapMessage = "기사가 스크랩에서 제거되었습니다";
+export const addScrapMessage = "스크랩에 추가되었습니다";
+export const deleteScrapMessage = "스크랩에서 제거되었습니다";
 
 // header 컴포넌트
 export const headerSearchIcon: string = searchIcon;

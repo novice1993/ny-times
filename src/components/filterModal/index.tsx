@@ -7,6 +7,7 @@ import DateFilter from "./dateFilter";
 import NationFilter from "./nationFilter";
 import { setFilterModal } from "../../reducers/filterModalState-Reducer";
 import { confirmButtonText } from "../../constants/constatns";
+import { mediaQuery } from "../../style/mediaQuery";
 
 const FilterModal = ({ type }: { type: string }) => {
   const dispatch = useDispatch();
@@ -75,6 +76,11 @@ const Background = styled.div`
     border-radius: 16px;
     background: #3478f6;
 
+    ${mediaQuery.maxWidth310} {
+      width: 70%;
+      height: 50px;
+    }
+
     .buttonText {
       color: #fff;
       text-align: center;
@@ -83,6 +89,10 @@ const Background = styled.div`
       font-weight: 600;
       line-height: 24px;
       letter-spacing: -0.8px;
+
+      ${mediaQuery.maxWidth310} {
+        font-size: 15px;
+      }
     }
   }
 `;
