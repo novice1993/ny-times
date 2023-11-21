@@ -27,7 +27,7 @@ const NoResultIndicator = () => {
 export default NoResultIndicator;
 
 const Container = styled.div`
-  height: 100vh;
+  height: 100%;
   background-color: #f0f1f4;
   display: flex;
   flex-direction: column;

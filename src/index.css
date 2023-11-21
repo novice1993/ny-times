@@ -5,6 +5,12 @@
   font-style: normal;
 }
 
+html,
+body,
+#root {
+  height: 100%;
+}
+
 * {
   font-family: "Apple SD Gothic Neo", sans-serif;
   box-sizing: border-box;

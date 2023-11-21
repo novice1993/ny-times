@@ -47,7 +47,7 @@ const Footer = () => {
 export default Footer;
 
 const Container = styled.footer`
-  position: fixed;
+  position: sticky;
   bottom: 0;
   width: 375px;
   height: 85px;

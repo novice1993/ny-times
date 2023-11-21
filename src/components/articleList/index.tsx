@@ -1,9 +1,6 @@
 import styled from "styled-components";
 import { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
 import { useInView } from "react-intersection-observer";
-
-import { GlobalStateProps } from "../../models/globalStateProps";
 import { ArticleProps } from "../../models/articleProps";
 
 import { ListLayout } from "../../layout/layout";
@@ -14,7 +11,6 @@ import UnderlineLoadingIndicator from "../loadingIndicator/UnderlineLoadingIndic
 const ArticleList = ({ articleData, hasNextPage, fetchNextPage }: ArticleListProps) => {
   const [targetRef, inView] = useInView();
   const [existArticle, setExistArticle] = useState(false);
-  const isLoadingIndicator = useSelector((state: GlobalStateProps) => state.isLoadingIndicator);
 
   useEffect(() => {
     inView && hasNextPage && fetchNextPage();
@@ -55,7 +51,7 @@ const ArticleList = ({ articleData, hasNextPage, fetchNextPage }: ArticleListPro
             );
           })}
           <ObsererTarget ref={targetRef}>
-            {isLoadingIndicator.underline && <UnderlineLoadingIndicator />}
+            <UnderlineLoadingIndicator />
           </ObsererTarget>
         </ListLayout>
       );
