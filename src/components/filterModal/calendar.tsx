@@ -12,12 +12,8 @@ const Calendar = (props: FilterSetProps) => {
   const [startDate, setStartDate] = useState(initialState);
 
   useEffect(() => {
-    if (startDate === null) {
-      dispatch(filterStateFunc(""));
-    } else {
-      const date = transformDateForm(startDate);
-      dispatch(filterStateFunc(date));
-    }
+    const date = startDate === null ? "" : transformDateForm(startDate);
+    dispatch(filterStateFunc(date));
   }, [startDate]);
 
   return (
