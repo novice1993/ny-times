@@ -2,6 +2,7 @@ import styled from "styled-components";
 import Calendar from "./calendar";
 import { FilterSetProps } from "../../models/flterProps";
 import { dateFilterTitle, dateResetText, dateFilterIconImg } from "../../constants/constatns";
+import { mediaQuery } from "../../style/mediaQuery";
 
 const DateFilter = (props: FilterSetProps) => {
   const { filterState, filterStateFunc, dispatch } = props;
@@ -49,11 +50,14 @@ const Container = styled.div`
     font-weight: 600;
     line-height: 24px;
     letter-spacing: -0.8px;
-
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: baseline;
+
+    ${mediaQuery.maxWidth310} {
+      font-size: 14px;
+    }
   }
 
   .guideText {
@@ -73,6 +77,10 @@ const Container = styled.div`
 
     & ::placeholder {
       color: #c4c4c4;
+
+      ${mediaQuery.maxWidth310} {
+        font-size: 12px;
+      }
     }
 
     & :focus {

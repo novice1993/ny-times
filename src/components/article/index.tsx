@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { handleAddScrap, handleDeleteScrap } from "../../utils/aboutSetScrapList";
 import { GlobalStateProps } from "../../models/globalStateProps";
 import { ArticleProps } from "../../models/articleProps";
+import { mediaQuery } from "../../style/mediaQuery";
 
 import scrap from "../../assets/article-starFill.svg";
 import noScrap from "../../assets/article-star.svg";
@@ -53,7 +54,6 @@ export default Article;
 
 const Container = styled.section`
   width: 100%;
-  /* width: 335px; */
   height: 104px;
   padding: 10px 20px 10px 20px;
 
@@ -76,7 +76,6 @@ const Container = styled.section`
 
     .headline {
       width: 70%;
-      /* width: 260px; */
       height: 56px;
       flex-shrink: 0;
       color: #000;
@@ -93,6 +92,14 @@ const Container = styled.section`
       -webkit-box-orient: vertical;
       word-wrap: break-word;
       white-space: normal;
+
+      ${mediaQuery.maxWidth370} {
+        font-size: 15px;
+      }
+
+      ${mediaQuery.samsungGalaxyFold} {
+        font-size: 13px;
+      }
     }
 
     .scrapBtn {
@@ -119,7 +126,6 @@ const Container = styled.section`
     letter-spacing: -0.65px;
 
     .reporter {
-      /* width: 26%; */
       width: 100px;
       overflow: hidden;
       display: -webkit-box;
@@ -127,6 +133,14 @@ const Container = styled.section`
       -webkit-box-orient: vertical;
       word-wrap: break-word;
       white-space: normal;
+
+      ${mediaQuery.maxWidth330} {
+        display: none;
+      }
+    }
+
+    ${mediaQuery.maxWidth370} {
+      font-size: 11px;
     }
   }
 
@@ -137,5 +151,9 @@ const Container = styled.section`
     font-weight: 400;
     line-height: 20px;
     letter-spacing: -0.65px;
+
+    ${mediaQuery.maxWidth370} {
+      font-size: 11px;
+    }
   }
 `;
