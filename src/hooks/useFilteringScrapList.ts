@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { setScrapArticles } from "../reducers/client/scrapedArticles-Reducer";
+import { setScrapArticles } from "../reducers/scrapedArticles-Reducer";
 import { filteringScrapList } from "../utils/aboutFilteringScrapList/filteringScrapList";
 import { GlobalStateProps } from "../models/globalStateProps";
 
@@ -25,10 +25,10 @@ const useFilteringScrapList = () => {
 
   useEffect(() => {
     const originScrapList = JSON.parse(localStorage.getItem(scrapListKeyInLocalStorage) as string);
+    const option = { originScrapList, headlineFilter, dateFilter, nationFilter, dispatch };
 
     !isFiltering && dispatch(setScrapArticles(originScrapList));
-    isFiltering &&
-      filteringScrapList(originScrapList, headlineFilter, dateFilter, nationFilter, dispatch);
+    isFiltering && filteringScrapList(option);
   }, [headline, date, nation]);
 
   return;

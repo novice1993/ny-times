@@ -1,49 +1,26 @@
 import styled from "styled-components";
-import { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { setArticlePageNum } from "../../reducers/server/articleDataFromServer-Reducer";
-import { setTotalLoadingIndicator } from "../../reducers/client/loadingIndicatorState-Reducer";
-import { GlobalStateProps } from "../../models/globalStateProps";
 import FilterBtn from "./filterBtn";
 import { headerSearchIcon, headerCalendarIcon } from "../../constants/constatns";
 
-const Header = ({ type }: { type: string }) => {
-  const dispatch = useDispatch();
-  const headerFilterState = useSelector((state: GlobalStateProps) => state.headerFilterState);
-  const {
-    headline: homeScreenHeadline,
-    date: homeScreenDate,
-    nation: homeScreenNation,
-  } = headerFilterState.homeScreen;
-
-  const {
-    headline: scrapScreenHeadline,
-    date: scrapScreenDate,
-    nation: scrapScreenNation,
-  } = headerFilterState.scrapScreen;
-
-  // if change HomeScreenPage Filter, reset PageNum
-  useEffect(() => {
-    dispatch(setArticlePageNum(0));
-    dispatch(setTotalLoadingIndicator(true));
-  }, [homeScreenHeadline, homeScreenDate, homeScreenNation]);
+const Header = (props: HeaderProps) => {
+  const { headline, date, nation } = props;
 
   return (
     <Container>
-      <FilterBtn
-        iconImg={headerSearchIcon}
-        buttonText={type === "home" ? homeScreenHeadline : scrapScreenHeadline}
-      />
-      <FilterBtn
-        iconImg={headerCalendarIcon}
-        buttonText={type === "home" ? homeScreenDate : scrapScreenDate}
-      />
-      <FilterBtn buttonText={type === "home" ? homeScreenNation : scrapScreenNation} />
+      <FilterBtn iconImg={headerSearchIcon} buttonText={headline} />
+      <FilterBtn iconImg={headerCalendarIcon} buttonText={date} />
+      <FilterBtn buttonText={nation} />
     </Container>
   );
 };
 
 export default Header;
+
+interface HeaderProps {
+  headline: string;
+  date: string;
+  nation: string;
+}
 
 const Container = styled.header`
   position: fixed;

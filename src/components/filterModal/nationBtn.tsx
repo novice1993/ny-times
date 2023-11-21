@@ -14,9 +14,7 @@ const NationBtn = (props: ButtonProps) => {
 
   // already selected check
   useEffect(() => {
-    const alreadySelect = (filterState as string[]).some((selectedNation: string) => {
-      return selectedNation === nation;
-    });
+    const alreadySelect = (filterState as string[]).includes(nation);
     alreadySelect && setSelect(true);
   }, []);
 

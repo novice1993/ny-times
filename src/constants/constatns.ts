@@ -10,6 +10,9 @@ import errorIcon from "../assets/errorIndicator-errorIcon.png";
 // scrap Article Data Key in LocalStroage
 export const scrapListKeyInLocalStorage = "scrapArticles";
 
+// staleTime option
+export const REACTQUERY_STALETIME = 1000 * 60 * 30;
+
 // about toast message
 export const toastStyle = {
   position: "top-left",
@@ -74,5 +77,5 @@ export const nations: string[] = [
   "영국",
 ];
 
-// indicator 컴포넌트
+// loadingIndicator 컴포넌트
 export const loadingIndicatorText = "Loading...";

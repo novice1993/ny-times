@@ -4,8 +4,8 @@ import styled from "styled-components";
 export const PageLayout = styled.div`
   position: relative;
   width: 375px;
+  height: 100%;
   max-width: 560px;
-  height: 100vh;
 `;
 
 // ArticleList, ScrapList 컴포넌트 레이아웃

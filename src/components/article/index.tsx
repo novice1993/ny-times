@@ -1,8 +1,7 @@
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
-import { handleAddScrap } from "../../utils/aboutSetScrapList/handleAddScrap";
-import { handleDeleteScrap } from "../../utils/aboutSetScrapList/handleDeleteScrap";
+import { handleAddScrap, handleDeleteScrap } from "../../utils/aboutSetScrapList";
 
 import { ArticleProps } from "../../models/articleProps";
 import { scrapListKeyInLocalStorage } from "../../constants/constatns";
@@ -27,13 +26,11 @@ const Article = (props: ArticleProps) => {
   // already done scrap check
   useEffect(() => {
     const scrapArticles = localStorage.getItem(scrapListKeyInLocalStorage);
+    const scrapList = scrapArticles !== null ? JSON.parse(scrapArticles) : [];
 
-    if (scrapArticles !== null) {
-      const scrapList = JSON.parse(scrapArticles);
-      scrapList.forEach((article: ArticleProps) => {
-        article.headline === headline && setScrap(true);
-      });
-    }
+    scrapList.forEach((article: ArticleProps) => {
+      article.headline === headline && setScrap(true);
+    });
   }, []);
 
   return (

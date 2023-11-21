@@ -1,26 +1,24 @@
 import styled from "styled-components";
-import { useDispatch } from "react-redux";
-import { setFetchingErrorState } from "../../reducers/client/fetchingErrorState-Reducer";
 import { errorIndicatorIcon } from "../../constants/constatns";
 
 const errorMessage = "기사 목록을 불러올 수 없습니다.";
-const refetchButtonText = "기사 목록 다시 불러오기";
+const pageReloadButtonText = "페이지 새로고침";
+
+const handleReloadPage = () => {
+  window.location.reload();
+};
 
 const ErrorIndicator = () => {
-  const dispatch = useDispatch();
-
-  const handleRefetchData = () => {
-    dispatch(setFetchingErrorState(false));
-  };
-
   return (
     <Container>
       <div className="indicator">
         <img className="iconImg" src={errorIndicatorIcon} />
         <span className="message">{errorMessage}</span>
       </div>
-      <button className="goHomeBtn" onClick={handleRefetchData}>
-        <div className="buttonText">{refetchButtonText}</div>
+      <button className="pageReloadBtn">
+        <div className="buttonText" onClick={handleReloadPage}>
+          {pageReloadButtonText}
+        </div>
       </button>
     </Container>
   );
@@ -60,7 +58,7 @@ const Container = styled.div`
     }
   }
 
-  .goHomeBtn {
+  .pageReloadBtn {
     width: 295px;
     height: 60px;
     flex-shrink: 0;
