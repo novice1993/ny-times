@@ -56,7 +56,7 @@ export const openModalButtonText: string = "조건 다시 설정하기";
 
 // errorIndicator 컴포넌트
 export const errorMessage = "기사 목록을 불러올 수 없습니다.";
-export const refetchButtonText = "기사 목록 다시 불러오기";
+export const refetchButtonText = "페이지 새로고침";
 export const errorIndicatorIcon = errorIcon;
 
 // filterModal 컴포넌트
