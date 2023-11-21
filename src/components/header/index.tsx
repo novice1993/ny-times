@@ -1,15 +1,29 @@
 import styled from "styled-components";
 import FilterBtn from "./filterBtn";
-import { headerSearchIcon, headerCalendarIcon } from "../../constants/constatns";
+import {
+  headerSearchIcon,
+  headerCalendarIcon,
+  headerFilterdSearchIcon,
+  headerFilterdCalendarIcon,
+} from "../../constants/constatns";
+
+import {
+  headerButtonText01 as defaultHeadline,
+  headerButtonText02 as defaultDate,
+  headerButtonText03 as defaultNation,
+} from "../../constants/constatns";
 
 const Header = (props: HeaderProps) => {
   const { headline, date, nation } = props;
 
+  const headerIon = headline !== defaultHeadline ? headerFilterdSearchIcon : headerSearchIcon;
+  const calendarIcon = date !== defaultDate ? headerFilterdCalendarIcon : headerCalendarIcon;
+
   return (
     <Container>
-      <FilterBtn iconImg={headerSearchIcon} buttonText={headline} />
-      <FilterBtn iconImg={headerCalendarIcon} buttonText={date} />
-      <FilterBtn buttonText={nation} />
+      <FilterBtn iconImg={headerIon} buttonText={headline} defalutValue={defaultHeadline} />
+      <FilterBtn iconImg={calendarIcon} buttonText={date} defalutValue={defaultDate} />
+      <FilterBtn buttonText={nation} defalutValue={defaultNation} />
     </Container>
   );
 };
