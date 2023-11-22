@@ -1,7 +1,11 @@
 import styled from "styled-components";
 import { FilterSetProps } from "../../models/flterProps";
-import { headLineFilterTitle, headLineFilterInputText } from "../../constants/constatns";
 import { mediaQuery } from "../../style/mediaQuery";
+
+import {
+  headlineInputTitle,
+  headlineInputText,
+} from "../../constants/aboutComponents/aboutFilterModal";
 
 const HeadlineFilter = (props: FilterSetProps) => {
   const { filterState, filterStateFunc, dispatch } = props;
@@ -13,11 +17,11 @@ const HeadlineFilter = (props: FilterSetProps) => {
 
   return (
     <Container>
-      <div className="title">{headLineFilterTitle}</div>
+      <div className="title">{headlineInputTitle}</div>
       <label className="inputBox">
         <input
           type="text"
-          placeholder={headLineFilterInputText}
+          placeholder={headlineInputText}
           value={filterState}
           onChange={handleChangeHeadlineFilter}
         />

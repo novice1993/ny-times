@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useSelector } from "react-redux/es/hooks/useSelector";
 import { useInView } from "react-intersection-observer";
 import { ArticleProps } from "../../models/articleProps";
@@ -12,33 +12,21 @@ import UnderlineLoadingIndicator from "../loadingIndicator/UnderlineLoadingIndic
 
 const ArticleList = ({ articleData, hasNextPage, fetchNextPage }: ArticleListProps) => {
   const [targetRef, inView] = useInView();
-  const [existArticle, setExistArticle] = useState(false);
   const isLoading = useSelector((state: GlobalStateProps) => state.loadingIndicatorState);
 
   useEffect(() => {
     inView && hasNextPage && fetchNextPage();
   }, [inView]);
 
-  // check article search result
-  useEffect(() => {
-    if (articleData.pages[0] !== undefined) {
-      const isExist = articleData.pages[0].length === 0 ? false : true;
-      setExistArticle(isExist);
-    }
-  }, [articleData]);
+  const articleList = articleData.pages.flat() || [];
+  const existArticle = articleList.length > 0;
 
-  if (articleData !== undefined) {
-    const articleList = articleData.pages.flat();
-
-    if (!existArticle) {
-      return <NoResultIndicator />;
-    } else {
-      return (
-        <ListLayout>
+  return (
+    <ListLayout>
+      {!existArticle && <NoResultIndicator />}
+      {existArticle && (
+        <>
           {articleList.map((article: ArticleProps) => {
-            if (!article) {
-              return null;
-            }
             const { headline, newspaper, reporter, date, url, nation } = article;
 
             return (
@@ -53,13 +41,13 @@ const ArticleList = ({ articleData, hasNextPage, fetchNextPage }: ArticleListPro
               />
             );
           })}
-          <ObsererTarget ref={targetRef}>
+          <ObserverTarget ref={targetRef}>
             {isLoading && <UnderlineLoadingIndicator />}
-          </ObsererTarget>
-        </ListLayout>
-      );
-    }
-  }
+          </ObserverTarget>
+        </>
+      )}
+    </ListLayout>
+  );
 };
 
 export default ArticleList;
@@ -70,7 +58,7 @@ interface ArticleListProps {
   fetchNextPage: () => void;
 }
 
-const ObsererTarget = styled.div`
+const ObserverTarget = styled.div`
   padding: 22px 0px 18px 0px;
   display: flex;
   justify-content: center;

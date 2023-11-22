@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { FadeLoader } from "react-spinners";
-import { loadingIndicatorText } from "../../constants/constatns";
 import { mediaQuery } from "../../style/mediaQuery";
+import { loadingIndicatorText } from "../../constants/aboutComponents/aboutIndicators";
 
 const TotalLoadingIndicator = () => {
   return (

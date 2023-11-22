@@ -1,8 +1,9 @@
 import styled from "styled-components";
 import NationBtn from "./nationBtn";
 import { FilterSetProps } from "../../models/flterProps";
-import { nationFilterTitle, nations } from "../../constants/constatns";
 import { mediaQuery } from "../../style/mediaQuery";
+
+import { nationFilterTitle, nations } from "../../constants/aboutComponents/aboutFilterModal";
 
 const NationFilter = (props: FilterSetProps) => {
   const { filterState, filterStateFunc, dispatch } = props;

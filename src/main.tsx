@@ -5,7 +5,7 @@ import persistStore from "redux-persist/es/persistStore";
 import { PersistGate } from "redux-persist/integration/react";
 import { QueryClient, QueryClientProvider } from "react-query";
 import store from "./store/config.ts";
-import { REACTQUERY_STALETIME } from "./constants/constatns.ts";
+import { REACTQUERY_STALETIME } from "./constants/etcConstatns.ts";
 import "./index.css";
 
 const persistor = persistStore(store);

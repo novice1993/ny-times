@@ -1,23 +1,15 @@
-import { useState, useEffect } from "react";
 import styled from "styled-components";
 import { FilterSetProps } from "../../models/flterProps";
 import { mediaQuery } from "../../style/mediaQuery";
 
 const NationBtn = (props: ButtonProps) => {
   const { nation, filterState, filterStateFunc, dispatch } = props;
-  const [isSelect, setSelect] = useState(false);
+  const isSelect = filterState.includes(nation);
 
   const handleSetSelectNation = () => {
     const payload = { isSelect: isSelect, nation: nation };
     dispatch(filterStateFunc(payload));
-    setSelect(!isSelect);
   };
-
-  // already selected check
-  useEffect(() => {
-    const alreadySelect = (filterState as string[]).includes(nation);
-    alreadySelect && setSelect(true);
-  }, []);
 
   return (
     <Button onClick={handleSetSelectNation} isSelect={isSelect}>

@@ -1,8 +1,13 @@
 import styled from "styled-components";
 import Calendar from "./calendar";
 import { FilterSetProps } from "../../models/flterProps";
-import { dateFilterTitle, dateResetText, dateFilterIconImg } from "../../constants/constatns";
 import { mediaQuery } from "../../style/mediaQuery";
+
+import {
+  dateFilterTitle,
+  dateResetText,
+  dateFilterIconImg,
+} from "../../constants/aboutComponents/aboutFilterModal";
 
 const DateFilter = (props: FilterSetProps) => {
   const { filterState, filterStateFunc, dispatch } = props;

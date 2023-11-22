@@ -1,17 +1,18 @@
 import styled from "styled-components";
 import FilterBtn from "./filterBtn";
+
 import {
   headerSearchIcon,
   headerCalendarIcon,
   headerFilterdSearchIcon,
   headerFilterdCalendarIcon,
-} from "../../constants/constatns";
+} from "../../constants/aboutComponents/aboutHeader";
 
 import {
   headerButtonText01 as defaultHeadline,
   headerButtonText02 as defaultDate,
   headerButtonText03 as defaultNation,
-} from "../../constants/constatns";
+} from "../../constants/aboutComponents/aboutHeader";
 
 const Header = (props: HeaderProps) => {
   const { headline, date, nation } = props;

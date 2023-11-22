@@ -5,18 +5,18 @@ import { GlobalStateProps } from "../models/globalStateProps";
 
 import { PageLayout } from "../layout/layout";
 import Header from "../components/header";
-import NoScrapIndicator from "../components/noScrapIndicator";
-import NoResultIndicator from "../components/noResultIndicator";
 import ScrapList from "../components/scrapList";
 import FilterModal from "../components/filterModal";
+import NoScrapIndicator from "../components/noScrapIndicator";
+import NoResultIndicator from "../components/noResultIndicator";
 
 const ScrapScreenPage = () => {
   useFilteringScrapList();
   const [isScrap, setScrap] = useState(false);
   const [noResult, setNoResult] = useState(false);
 
-  const scrapList = useSelector((state: GlobalStateProps) => state.scrapList);
   const isFilterModal = useSelector((state: GlobalStateProps) => state.isFilterModal);
+  const scrapList = useSelector((state: GlobalStateProps) => state.scrapList);
   const headerFilterState = useSelector((state: GlobalStateProps) => state.headerFilterState);
 
   const { filteredList, originList } = scrapList;

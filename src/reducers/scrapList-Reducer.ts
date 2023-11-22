@@ -15,7 +15,7 @@ const scrapListSlice = createSlice({
       state.filteredList = action.payload;
     },
     addOringScrapList: (state, action) => {
-      state.originList = [...state.originList, ...action.payload];
+      state.originList = [...state.originList, action.payload];
     },
     deleteOriginScrapList: (state, action) => {
       const originList = state.originList;

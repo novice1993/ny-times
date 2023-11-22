@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
 import { ko } from "date-fns/esm/locale";
-
+import { useEffect, useState } from "react";
 import { FilterSetProps } from "../../models/flterProps";
-import { dateFilterInputText } from "../../constants/constatns";
+
+import { dateFilterInputText } from "../../constants/aboutComponents/aboutFilterModal";
 import "react-datepicker/dist/react-datepicker.css";
 
 const Calendar = (props: FilterSetProps) => {
@@ -12,7 +12,7 @@ const Calendar = (props: FilterSetProps) => {
   const [startDate, setStartDate] = useState(initialState);
 
   useEffect(() => {
-    const date = startDate === null ? "" : transformDateForm(startDate);
+    const date = startDate === null ? "" : changeDateForm(startDate);
     dispatch(filterStateFunc(date));
   }, [startDate]);
 
@@ -20,7 +20,7 @@ const Calendar = (props: FilterSetProps) => {
     <DatePicker
       locale={ko}
       selected={startDate}
-      onChange={(date: any) => setStartDate(date)}
+      onChange={(date: Date | null) => setStartDate(date)}
       dateFormat="yyyy.MM.dd"
       value={filterState as string}
       placeholderText={dateFilterInputText}
@@ -31,7 +31,7 @@ const Calendar = (props: FilterSetProps) => {
 export default Calendar;
 
 // change date form to 'yyyy.mm.dd'
-const transformDateForm = (dateObj: any) => {
+const changeDateForm = (dateObj: Date) => {
   const date = new Date(dateObj);
   const yyyy = date.getFullYear();
   const mm = (date.getMonth() + 1).toString().padStart(2, "0");

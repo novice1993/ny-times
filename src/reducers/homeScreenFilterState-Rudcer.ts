@@ -30,5 +30,5 @@ const homeScreenFilterStateSlice = createSlice({
 
 export const { setHeadlineFilter, setDateFilter, setNationFilter } =
   homeScreenFilterStateSlice.actions;
-export const homeScreenFilterFunc = { setHeadlineFilter, setDateFilter, setNationFilter };
 export const homeScreenFilterStateReducer = homeScreenFilterStateSlice.reducer;
+export const homeScreenFilterFunc = { setHeadlineFilter, setDateFilter, setNationFilter };
