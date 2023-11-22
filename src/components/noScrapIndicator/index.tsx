@@ -1,7 +1,12 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { IndicatorLayout } from "../../layout/layout";
-import { noScrapIndicatorIcon, noScrapMessage, goHomeButtonText } from "../../constants/constatns";
+
+import {
+  noScrapIndicatorIcon,
+  noScrapMessage,
+  goHomeButtonText,
+} from "../../constants/aboutComponents/aboutIndicators";
 
 const NoScrapIndicator = () => {
   return (

@@ -5,7 +5,6 @@ import { mediaQuery } from "../style/mediaQuery";
 export const PageLayout = styled.div`
   position: relative;
   width: 100%;
-  /* width: 375px; */
   height: 100%;
   max-width: 560px;
 `;
@@ -28,8 +27,7 @@ export const ListLayout = styled.div`
   gap: 8px;
 `;
 
-// indicator 컴포넌트 레이아웃
-
+// Loading, Error, NoResult Indicator 컴포넌트 레이아웃
 export const IndicatorLayout = styled.div`
   height: 100%;
   background-color: #f0f1f4;

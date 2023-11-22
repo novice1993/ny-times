@@ -3,7 +3,7 @@ import {
   headerButtonText01 as defaultHeadline,
   headerButtonText02 as defaultDate,
   headerButtonText03 as defaultNation,
-} from "../constants/constatns";
+} from "../constants/aboutComponents/aboutHeader";
 
 const defaultValue = {
   headline: defaultHeadline,
@@ -74,15 +74,16 @@ export const {
   chnageScrapHeaderNation,
 } = headerFilterStateSlice.actions;
 
+export const headerFilterStateReducer = headerFilterStateSlice.reducer;
+
 export const homeScreenHeaderFilterFunc = {
   changeHeaderHeadline: changeHomeHeaderHeadline,
   changeHeadaerDate: changeHomeHeaderDate,
   changeHeaderNation: chnageHomeHeaderNation,
 };
+
 export const scrapScreenHeaderFilterFun = {
   changeHeaderHeadline: chnageScrapHeaderHeadline,
   changeHeadaerDate: chnageScrapHeaderDate,
   changeHeaderNation: chnageScrapHeaderNation,
 };
-
-export const headerFilterStateReducer = headerFilterStateSlice.reducer;

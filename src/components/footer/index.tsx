@@ -1,7 +1,7 @@
-import { useLocation } from "react-router-dom";
-import { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+import { useState, useEffect } from "react";
 
 import PageChangeBtn from "./pageChangeBtn";
 import {
@@ -11,7 +11,7 @@ import {
   footerScrapOffIcon,
   footerButtonText01,
   footerButtonText02,
-} from "../../constants/constatns";
+} from "../../constants/aboutComponents/aboutFooter";
 
 const Footer = () => {
   const location = useLocation();
@@ -19,27 +19,36 @@ const Footer = () => {
 
   useEffect(() => {
     const urlPath = location.pathname;
-    urlPath === "/" ? setActiveBtn("home") : setActiveBtn("scrap");
+    setActiveBtn(urlPath === "/" ? "home" : "scrap");
   }, [location]);
+
+  const buttons = [
+    {
+      type: "home",
+      iconImg: activeBtn === "home" ? footerHomeOnIcon : footerHomeOffIcon,
+      buttonText: footerButtonText01,
+      to: "/",
+    },
+    {
+      type: "scrap",
+      iconImg: activeBtn === "scrap" ? footerScrapOnIcon : footerScrapOffIcon,
+      buttonText: footerButtonText02,
+      to: "/scrap",
+    },
+  ];
 
   return (
     <Container>
-      <StyledLink to="/">
-        <PageChangeBtn
-          type="home"
-          activeBtn={activeBtn}
-          iconImg={activeBtn === "home" ? footerHomeOnIcon : footerHomeOffIcon}
-          buttonText={footerButtonText01}
-        />
-      </StyledLink>
-      <StyledLink to="/scrap">
-        <PageChangeBtn
-          type="scrap"
-          activeBtn={activeBtn}
-          iconImg={activeBtn === "scrap" ? footerScrapOnIcon : footerScrapOffIcon}
-          buttonText={footerButtonText02}
-        />
-      </StyledLink>
+      {buttons.map((btn) => (
+        <StyledLink to={btn.to} key={btn.type}>
+          <PageChangeBtn
+            type={btn.type}
+            activeBtn={activeBtn}
+            iconImg={btn.iconImg}
+            buttonText={btn.buttonText}
+          />
+        </StyledLink>
+      ))}
     </Container>
   );
 };

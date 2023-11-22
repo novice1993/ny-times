@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { handleAddScrap, handleDeleteScrap } from "../../utils/aboutSetScrapList";
 import { GlobalStateProps } from "../../models/globalStateProps";
@@ -13,23 +12,16 @@ const Article = (props: ArticleProps) => {
   const { headline, newspaper, reporter, date, url } = props;
 
   const dispatch = useDispatch();
-  const [isScrap, setScrap] = useState(false);
   const originScrapList = useSelector((state: GlobalStateProps) => state.scrapList.originList);
+  const isScrap = originScrapList.some((article) => article.headline === headline);
 
-  const handleClickStarBtn = () => {
-    isScrap
-      ? handleDeleteScrap(headline, setScrap, dispatch)
-      : handleAddScrap(props, setScrap, dispatch);
+  const handleScrap = () => {
+    isScrap ? handleDeleteScrap(headline, dispatch) : handleAddScrap(props, dispatch);
   };
 
   const handleRedirectToUrl = (url: string) => {
     window.location.href = url;
   };
-
-  // already done scrap check
-  useEffect(() => {
-    originScrapList.some((article) => article.headline === headline) && setScrap(true);
-  }, []);
 
   return (
     <Container>
@@ -37,7 +29,7 @@ const Article = (props: ArticleProps) => {
         <div className="headline" onClick={() => handleRedirectToUrl(url)}>
           {headline}
         </div>
-        <img className="scrapBtn" src={isScrap ? scrap : noScrap} onClick={handleClickStarBtn} />
+        <img className="scrapBtn" src={isScrap ? scrap : noScrap} onClick={handleScrap} />
       </div>
       <div className="secondLine">
         <div className="info">

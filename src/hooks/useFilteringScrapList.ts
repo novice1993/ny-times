@@ -5,6 +5,7 @@ import { GlobalStateProps } from "../models/globalStateProps";
 
 const useFilteringScrapList = () => {
   const dispatch = useDispatch();
+
   const headerFilterState = useSelector((state: GlobalStateProps) => state.headerFilterState);
   const scrapScreenFilter = useSelector((state: GlobalStateProps) => state.scrapScreenFilterState);
   const originScrapList = useSelector((state: GlobalStateProps) => state.scrapList.originList);
