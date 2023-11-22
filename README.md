@@ -1,5 +1,5 @@
 # 🧾 The New York Times
-> New York Times 기사 검색 및 필터링이 가능한 모바일 해상도 기반의 웹 사이트입니다.
+> New York Times 기사 검색 및 스크랩이 가능한 모바일 해상도 기반의 웹 사이트입니다.
 <br/>
 
 ## 🧑🏻‍💻 Install 
