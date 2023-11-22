@@ -1,8 +1,6 @@
 import { IndicatorLayout } from "../../layout/layout";
-import { errorIndicatorIcon } from "../../constants/constatns";
-
-const errorMessage = "기사 목록을 불러올 수 없습니다.";
-const pageReloadButtonText = "페이지 새로고침";
+import { errorIndicatorIcon } from "../../constants/aboutComponents/aboutIndicators";
+import { errorMessage, reloadButtonText } from "../../constants/aboutComponents/aboutIndicators";
 
 const handleReloadPage = () => {
   window.location.reload();
@@ -17,7 +15,7 @@ const ErrorIndicator = () => {
       </div>
       <button className="button">
         <div className="buttonText" onClick={handleReloadPage}>
-          {pageReloadButtonText}
+          {reloadButtonText}
         </div>
       </button>
     </IndicatorLayout>

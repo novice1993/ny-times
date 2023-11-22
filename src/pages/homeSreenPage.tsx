@@ -4,16 +4,16 @@ import { GlobalStateProps } from "../models/globalStateProps";
 
 import { PageLayout } from "../layout/layout";
 import Header from "../components/header";
-import TotalLoadingIndicator from "../components/loadingIndicator/TotalLoadingIndicator";
-import ErrorIndicator from "../components/errorIndicator";
 import ArticleList from "../components/articleList";
 import FilterModal from "../components/filterModal";
+import TotalLoadingIndicator from "../components/loadingIndicator/TotalLoadingIndicator";
+import ErrorIndicator from "../components/errorIndicator";
 
 const HomeSreenPage = () => {
-  const { articleData, status, hasNextPage, fetchNextPage } = useGetArticleData();
-
   const isFilterModal = useSelector((state: GlobalStateProps) => state.isFilterModal);
   const headerFilterState = useSelector((state: GlobalStateProps) => state.headerFilterState);
+
+  const { articleData, status, hasNextPage, fetchNextPage } = useGetArticleData();
   const { headline, date, nation } = headerFilterState.homeScreen;
 
   return (

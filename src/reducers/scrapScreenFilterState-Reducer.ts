@@ -32,5 +32,5 @@ const scrapScreenFilterStateSlice = createSlice({
 
 export const { setHeadlineFilter, setDateFilter, setNationFilter } =
   scrapScreenFilterStateSlice.actions;
-export const scrapScreenFilterFunc = { setHeadlineFilter, setDateFilter, setNationFilter };
 export const scrapScreenFilterStateReducer = scrapScreenFilterStateSlice.reducer;
+export const scrapScreenFilterFunc = { setHeadlineFilter, setDateFilter, setNationFilter };

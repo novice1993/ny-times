@@ -1,8 +1,12 @@
 import { useDispatch } from "react-redux";
 import { IndicatorLayout } from "../../layout/layout";
 import { setFilterModal } from "../../reducers/filterModalState-Reducer";
-import { noScrapIndicatorIcon as noResultIndicatorIcon } from "../../constants/constatns";
-import { noResultMessage, openModalButtonText } from "../../constants/constatns";
+
+import { noScrapIndicatorIcon as noResultIndicatorIcon } from "../../constants/aboutComponents/aboutIndicators";
+import {
+  noResultMessage,
+  openModalButtonText,
+} from "../../constants/aboutComponents/aboutIndicators";
 
 const NoResultIndicator = () => {
   const dispatch = useDispatch();

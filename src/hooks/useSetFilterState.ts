@@ -1,44 +1,33 @@
 import { useDispatch, useSelector } from "react-redux";
-import { homeScreenHeaderFilterFunc } from "../reducers/headerFilterState-Reducer";
-import { scrapScreenHeaderFilterFun } from "../reducers/headerFilterState-Reducer";
 import { homeScreenFilterFunc } from "../reducers/homeScreenFilterState-Rudcer";
 import { scrapScreenFilterFunc } from "../reducers/scrapScreenFilterState-Reducer";
+import { homeScreenHeaderFilterFunc } from "../reducers/headerFilterState-Reducer";
+import { scrapScreenHeaderFilterFun } from "../reducers/headerFilterState-Reducer";
 import { GlobalStateProps } from "../models/globalStateProps";
 
 const useSetFilterState = (type: string) => {
   const dispatch = useDispatch();
 
-  // filter state ('homeScreen' or 'ScrapScreen' by type)
-  const { headlineFilter, dateFilter, nationFilter } = useSelector((state: GlobalStateProps) =>
-    type === "home" ? state.homeScreenFilterState : state.scrapScreenFilterState
-  );
+  const filterKey = type === "home" ? "homeScreenFilterState" : "scrapScreenFilterState";
+  const filterState = useSelector((state: GlobalStateProps) => state[filterKey]);
+  const filterSetFunc = type === "home" ? homeScreenFilterFunc : scrapScreenFilterFunc;
 
-  // function to set filter state
-  const { setHeadlineFilter, setDateFilter, setNationFilter } =
-    type === "home" ? homeScreenFilterFunc : scrapScreenFilterFunc;
-
-  // function to set 'header' filter state
-  const headerFilterFunc =
+  const headerFilterSetFunc =
     type === "home" ? homeScreenHeaderFilterFunc : scrapScreenHeaderFilterFun;
 
-  const handleSetHeaderFilterState = () => {
-    dispatch(headerFilterFunc.changeHeaderHeadline(headlineFilter));
-    dispatch(headerFilterFunc.changeHeadaerDate(dateFilter));
-    dispatch(headerFilterFunc.changeHeaderNation(nationFilter));
+  const setHeaderFilterState = () => {
+    const { headlineFilter, dateFilter, nationFilter } = filterState;
+    const actions = headerFilterSetFunc;
+
+    dispatch(actions.changeHeaderHeadline(headlineFilter));
+    dispatch(actions.changeHeadaerDate(dateFilter));
+    dispatch(actions.changeHeaderNation(nationFilter));
   };
 
   const result = {
-    filterState: {
-      headlineFilter: headlineFilter,
-      dateFilter: dateFilter,
-      nationFilter: nationFilter,
-    },
-    filterSetFunc: {
-      setHeadline: setHeadlineFilter,
-      setDate: setDateFilter,
-      setNation: setNationFilter,
-    },
-    setHeaderState: handleSetHeaderFilterState,
+    filterState,
+    filterSetFunc,
+    setHeaderFilterState,
   };
 
   return result;

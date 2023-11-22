@@ -2,7 +2,7 @@ import axios from "axios";
 import store from "../store/config";
 import { transformRawData } from "../utils/aboutOrganizeData/transformRawData";
 import { getHeadlineQuery, getDateQuery, getNationQuery } from "./aboutGetUrlQuery";
-import { API_ENDPOINT } from "../constants/apiConstant";
+import { API_ENDPOINT } from "../constants/apiConstants";
 
 const getArticleData = async (pageNum: number) => {
   const headerFilterState = store.getState().homeScreenFilterState;

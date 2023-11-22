@@ -1,24 +1,24 @@
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import useSetFilterState from "../../hooks/useSetFilterState";
+import { setFilterModal } from "../../reducers/filterModalState-Reducer";
+import { mediaQuery } from "../../style/mediaQuery";
+import { confirmButtonText } from "../../constants/aboutComponents/aboutFilterModal";
 
 import HeadlineFilter from "./headlineFilter";
 import DateFilter from "./dateFilter";
 import NationFilter from "./nationFilter";
-import { setFilterModal } from "../../reducers/filterModalState-Reducer";
-import { confirmButtonText } from "../../constants/constatns";
-import { mediaQuery } from "../../style/mediaQuery";
 
 const FilterModal = ({ type }: { type: string }) => {
   const dispatch = useDispatch();
-  const { filterState, filterSetFunc, setHeaderState } = useSetFilterState(type);
+  const { filterState, filterSetFunc, setHeaderFilterState } = useSetFilterState(type);
 
   const { headlineFilter, dateFilter, nationFilter } = filterState;
-  const { setHeadline, setDate, setNation } = filterSetFunc;
+  const { setHeadlineFilter, setDateFilter, setNationFilter } = filterSetFunc;
 
   const handleClickModalBtn = () => {
     dispatch(setFilterModal(false));
-    setHeaderState();
+    setHeaderFilterState();
   };
 
   return (
@@ -26,11 +26,15 @@ const FilterModal = ({ type }: { type: string }) => {
       <div className="container">
         <HeadlineFilter
           filterState={headlineFilter}
-          filterStateFunc={setHeadline}
+          filterStateFunc={setHeadlineFilter}
           dispatch={dispatch}
         />
-        <DateFilter filterState={dateFilter} filterStateFunc={setDate} dispatch={dispatch} />
-        <NationFilter filterState={nationFilter} filterStateFunc={setNation} dispatch={dispatch} />
+        <DateFilter filterState={dateFilter} filterStateFunc={setDateFilter} dispatch={dispatch} />
+        <NationFilter
+          filterState={nationFilter}
+          filterStateFunc={setNationFilter}
+          dispatch={dispatch}
+        />
         <button className="confirmBtn" onClick={handleClickModalBtn}>
           <div className="buttonText">{confirmButtonText}</div>
         </button>
