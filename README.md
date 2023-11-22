@@ -3,7 +3,7 @@
 <br/>
 
 ## 🧑🏻‍💻 Install 
-> npm run install
+> npm install
 
 
 ## 🏃‍♂️ Start
@@ -18,7 +18,7 @@
 - Styled-Components
 
 > TypeScript와 React 기반으로 제작하였으며 </br>
-클라이언트 상태 관리는 RTK, 서버 상태 관리는 React-Query를 활용하였습니다. </br>
+클라이언트 상태관리는 RTK, 서버 상태관리는 React-Query를 활용하였습니다. </br>
 Styled-Components 라이브러리를 활용하여 CSS-in-JS 방식으로 스타일링 하였습니다.
 
 
